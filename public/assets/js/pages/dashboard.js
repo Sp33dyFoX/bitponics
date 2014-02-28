@@ -17,6 +17,7 @@ require([
   'fe-be-utils',
   'view-models',
   'd3',
+  'tooltip',
   'angularResource',
   'angularRoute',
   'angularUI',
@@ -35,7 +36,7 @@ require([
   'ngFacebook',
   'bpn.services.user'
 ],
-  function (angular, domReady, moment, feBeUtils, viewModels, d3) {
+  function (angular, domReady, moment, feBeUtils, viewModels, d3, Tooltip) {
     'use strict';
 
     var dashboardApp = angular.module('bpn.apps.dashboard', ['bpn', 'ui', 'ui.bootstrap', 'angular-flexslider', 'ngRoute', 'lvl.directives.fileupload', 'facebook']);

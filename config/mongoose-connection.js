@@ -16,8 +16,8 @@ var self = {
 		local : 'mongodb://localhost/bitponics-local',
 		development : 'mongodb://admin:1SHar3db1t@ds037597.mongolab.com:37597/bitponics-development',
 		staging : 'mongodb://admin:1SHar3db1t@ds037617.mongolab.com:37617/bitponics-staging',
-  	production : 'mongodb://bitponics-admin:1SHar3db1t@ds041507-a0.mongolab.com:41507,ds041507-spare.mongolab.com:41507/bitponics-prod',
-  	//production : 'mongodb://admin:1SHar3db1t@ds037617.mongolab.com:37617/bitponics-staging',
+  	production : 'mongodb://bitponics-admin:1SHar3db1t@ds041507-a0.mongolab.com:41507,ds041507-a1.mongolab.com:41507/bitponics-prod',
+    //production : 'mongodb://bitponics-admin:1SHar3db1t@ds041507-a0.mongolab.com:41507,ds041507-spare.mongolab.com:41507/bitponics-prod',
   	test : 'mongodb://localhost/bitponics-test',
   	localLocal : 'mongodb://localhost/bitponics-local'
 	},
