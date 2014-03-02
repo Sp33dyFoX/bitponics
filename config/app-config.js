@@ -249,7 +249,7 @@ module.exports = function(app){
   });
 
   app.configure('development', function(){
-    
+    app.use(express.basicAuth('bitponics', '8bitpass'));
   });
 
   app.configure('staging', function(){
