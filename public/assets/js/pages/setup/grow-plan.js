@@ -340,7 +340,7 @@ define([
     			$scope.sharedDataService = sharedDataService;
 
     			$scope.init = function(){
-    				//$scope.expectedGrowPlanDuration = $scope.sharedDataService.selectedGrowPlan.phases.reduce(function (prev, cur) { return prev.expectedNumberOfDays + cur.expectedNumberOfDays;});
+    				//$scope.expectedGrowPlanDuration = $scope.sharedDataService.selectedGrowPlan.phases.reduce(function (prev, cur) { return prev.expectedNumberOfDays + cur.expectedNumberOfDays;}, 0);
   					$scope.setExpectedGrowPlanDuration();
           	//$scope.setCurrentPhaseTab(0);
 

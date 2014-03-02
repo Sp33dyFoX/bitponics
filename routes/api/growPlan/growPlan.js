@@ -67,7 +67,7 @@ module.exports = function(app) {
           if(typeof value1 != 'number'){ value1 = 0; }
           if(typeof value2 != 'number'){ value2 = 0; }
           return value1 + value2
-        });
+        }, 0);
         gpObjects.push(gpo);
         
       });
