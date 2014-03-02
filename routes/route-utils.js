@@ -170,7 +170,8 @@ module.exports = {
     if (resource.visibility === feBeUtils.VISIBILITY_OPTIONS.PUBLIC){
       return true;
     }
-    var userId = user._id;
+    
+    var userId = user && user._id;
     if (!userId){ return false; }
     if (resource._id && resource._id.toString() === userId.toString()) { return true; }
     return (  user.admin ||
