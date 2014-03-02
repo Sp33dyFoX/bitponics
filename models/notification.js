@@ -627,6 +627,13 @@ NotificationSchema.method('getDisplays', function(options, callback){
                 if (!notification.triggerDetails.idealRangeId){ return innerCallback(); }
                 
                 notificationTemplateLocals.notificationDetails.idealRange = notificationTemplateLocals.notificationDetails.growPlanPhase.idealRanges.id(notification.triggerDetails.idealRangeId);
+                
+                // The line below is a quick & dirty fix for an exception...idealRange shouldn't actually be undefined here
+                if (!notificationTemplateLocals.notificationDetails.idealRange) { 
+                  winston.error("Invalid notification triggerDetails.idealRangeId " + notification._id.toString() + " " + JSON.stringify(notification.triggerDetails));
+                  return innerCallback(); 
+                }
+
                 SensorModel.findOne({code : notificationTemplateLocals.notificationDetails.idealRange.sCode})
                 .exec(function(err, sensorResult){
                   notificationTemplateLocals.notificationDetails.sensor = sensorResult;
