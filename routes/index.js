@@ -392,6 +392,7 @@ module.exports = function(app){
 	require('./account')(app);
 	require('./admin')(app);
 	require('./api')(app);
+  require('./blog')(app);
 	require('./buy')(app);
 	require('./dashboard')(app);
 	require('./gardens')(app);
