@@ -50,7 +50,8 @@
     "time": "0.10.0",
     "timezone": "=0.0.23",
     "winston": ">= 0.6.2",
-    "winston-loggly": ">= 0.6"
+    "winston-loggly": ">= 0.6",
+    "winston-nodemailer": "0.0.4"
   },
   "devDependencies": {
     "angular": "~1.2.10",

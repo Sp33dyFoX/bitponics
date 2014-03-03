@@ -1,4 +1,6 @@
 var winston = require('winston'),
+  nodemailer = require('nodemailer'),
+
 	loggly = {
       subdomain : 'bitponics',
       tokens : {
@@ -14,7 +16,16 @@ var winston = require('winston'),
 module.exports = function(env){
 	winston.cli();
 	winston.exitOnError = false;
-	
+
+  
+  winston.add(require('winston-nodemailer'), {
+    to: "engineering@bitponics.com",
+    from: "notifications@bitponics.com",
+    level: 'error',
+    handleExceptions : true,
+    transport : nodemailer.createTransport("SES", require('./email-config').amazonSES.api)
+  });
+
 	winston.add(require('winston-loggly').Loggly, {
     subdomain : loggly.subdomain,
     inputToken : loggly.tokens[env],
