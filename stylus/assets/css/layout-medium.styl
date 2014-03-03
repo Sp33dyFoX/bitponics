@@ -3,457 +3,466 @@
 
 @media $mq_medium
 
-	.content-module
-		float left
-		&.side
-			width 100%
-
-	.main, .header
-		padding 0
-
-	.header
-		position absolute
-		width 100%
-		top 0
-		left 0
-		z-index 4
-		padding 2em 0
-		height 3em
-		background white
-		color color-text-gray
-		padding 0
-
-		.icon-glyphlogo-new
-			display: none;
-			font-size: .55em;
-			position: relative;
-			top: 8em;
-			left: 10.25em;
-			height: 7em;
-			width: 7em;
-		&.header-fixed
-			display block
-			.icon-glyphlogo-new
-				display none
-			.social-icons
-				//
-
-		& > header
-			margin: 0 auto;
-			width: 95%;
-			max-width: 60em;
-
-		
-
-		&.fixed
-			@extends .fixed
-			top 0
-			z-index 1
-
-		li
-			padding 0
-			margin .25em .75em 0 0
-
-			&.first
-				min-height auto
-				width: 19.3%;
-				margin: 0 3% 0 0;
-				padding: 0.45em 0 0 0;
-
-		a 
-			color color-text-gray
-			line-height: 3em;
-			font-size .85em
-
-			&.active
-				color color-logo-green
-
-		h1 
-			&.logo a
-				font-size inherit
-				line-height inherit
-				color inherit
-
-				&:hover
-					text-decoration none
-
-			i
-				color white
-
-		
-		.toggle-menu
-			display none
-
-		.open > ul
-				position static
-				width auto
-				background transparent
-				box-shadow none
-
-				li
-					background transparent
-
-		.nav-section
-			float left
-			margin 0 0 0 0
-			padding 0 0 0 0
-			display block
-			li
-				display inline-block
-				// margin 0 1em 0 0
-				
-				a
-					color color-text-gray
-
-				&.active
-					float none
-					height auto
-					
-					a
-						color color-logo-green
-			&.elevated-item
-				li
-					line-height 3em
-				.btn 
-					margin 0
-					padding .5em
-					text-align center
-					line-height 1em
-					color color-text-gray
-					border-color color-text-gray
-					background none
-
-		.social-icons
-			position absolute
-			margin 0
-			width auto
-			clear right
-			
-			div
-				text-indent 100%
-
-			li
-				margin .5em 0 0 .2em
-				color white
-				background color-text-gray
-				position relative
-
-			a
-				position: absolute;
-				top: -.5em;
-				left: 0;
-				font-size: 1.25em;
-				color white!important
-				i
-					width: 1em;
-					height: 1em;
-
-
-		.elevated-item
-			li
-				background transparent
-				line-height 1em
-				margin: 0;
-
-		.social-icons, .elevated-item
-			position static
-			float right
-			background transparent
-
-	/*
-	 * Home Page
-	 */
-	.landing-page
-		
-
-		.content-module
-			min-height 800px
-
-		.footer
-			min-height 40px
-			position relative
-			overflow hidden
-
-			div
-				position absolute
-				bottom 1em
-
-		.featured-press, .additional-press
-			margin 1.5em 0 1.5em 16%
-			li
-				float left
-				width 20%
-				margin 0 2.8%
-				border-top 1px solid color-text-gray
-
-				&.last
-					margin 0
-
-		.featured-press
-			clear both
-			min-height 25em
-			li
-				position relative
-				padding-top 6em
-				img
-					position absolute
-					top .5em
-
-
-		h1.headline
-			display none
-
-		.headline
-			background: rgba(0,0,0,0);
-			padding: .5em;
-			color #fff
-			width 14em
-			font-size 2em
-			margin: 0 0 -6.5em 7em
-			position relative
-			height 4em
-			line-height: 1.25;
-			text-align: left;
-			position: absolute;
-			top: 4em;
-			left: .6em;
-
-			.icon-glyphlogo-new
-				display: block;
-				font-size: .55em;
-				position: relative;
-				left: -1.8em;
-				height: 7em;
-				width: 7em;
-
-		.last
-			margin 0
-
-		.page-heading, .page-content
-			max-width 60em
-			font-size 1em
-
-		.page-heading
-			line-height 2em
-			margin-bottom 1em
-
-		.main
-			.content-module, #details
-				padding-top 3.5em
-
-				&#home 
-					padding-top 0
-
-		.flexslider
-			li
-				text-align center
-			img
-				min-width 1440px
-				position static
-				margin 0
-				
-		.flex-direction-nav
-			position absolute
-			z-index: 4;
-			top: 49%;
-
-			a
-				color white
-
-				&:hover, &:active
-					color white
-					text-decoration none
-
-		p
-			max-width 35em
-
-		#how-it-works
-			p
-				float left
-				margin 0 2%
-				width: 29%;
-				border-top: 1px solid color-logo-green;
-				padding: 1em 0 0 0;
-
-			#details
-				.detail-block 
-					width 100%
-
-		// #contact
-		#wufoo-wrapper, #email-sub
-			float left
-			width: 40%;
-			margin: 1em 10% 0 0;
-
-	@media screen and (max-width: 1024px)
-		.landing-page .flexslider img
-			position: relative;
-			left: 50%;
-			margin-left: -720px;
-
-
-	/*
-	 * Pricing Page
-	 */
-	#pricing
-		.price
-			.price-number,.price-type,.price-per
-				display inline
-				padding 0
-			.price-number
-				//
-			.price-type
-				//
-			.price-per
-				display block
-				margin-top: -.85em;
-				width 100%
-
-	.list-grid-wrapper
-		font-size 1em
-		.grid-list
-			float left
-			margin 0
-			li
-				text-align center
-				border-top 1px solid color-border-gray
-				min-height 8em
-				width 100%
-				h2
-					margin 0
-					span
-						display block
-						
-				& > span
-					width 80%
-					display inline-block
-					padding 1em 1em 0
-					font-size .85em
-		
-				&.first
-					border 0 none
-					margin-top 1em
-				&.last
-					padding-top: 1em;
-
-			&.feature-icons
-				display block
-				width 10%
-				li
-					position relative
-					i
-						position absolute
-						top: .5em;
-						margin-top: 0;
-						font-size: 3em;
-						color color-logo-green
-						
-				.first
-					min-height 4em
-			&.tier1
-				width 45%
-				.first
-					min-height 4em
-			&.tier2
-				width 45%
-				.first
-					min-height 4em
-			// &.tier3
-			// 	width 30%
-			// 	.first
-			// 		min-height 4em
-	#pricing
-		.center
-			margin 1em
-
-	#installs
-		p
-			float left
-			margin 1em 2%
-			width: 29%;
-			border-top: 1px solid color-logo-green;
-			padding: 1em 0 0 0;
-		.contact-wrapper
-			display none //only displays on single-page render
-
-
-	.app-page
-		.page-heading
-			font-size 2.25em
-
-		
-		.page-heading-small.date
-			font-size 1.5em
-			text-align justify
-
-		&.dashboard .data-module.phase-info .phase-name
-			font-size .9em
-			text-align justify
-
-	/*
-	 * Get Started / Thankyou
-	 */
-	.landing-page.get-started
-		.main
-			margin: 10em auto 0 auto;
-			width: 95%
-
-		.page-heading
-			width 100%
-			font-size: 3.5em;
-
-	.landing-page.register
-		.main
-			.retail-price
-				margin-top: -1.5em;
-
-	/*
-	 * Team Page
-	 */
-	.member
-		clear both
-		margin 0 0 1em 0
-
-		img
-			margin: 1.5em 0
-
-	/*
-	 * Grow Plans Page
-	 */
-	// .grid
-	// 	li
-	// 		@extends .display-ib
-	// 		vertical-align top
-	// 		// width: 22em;
-	// 		margin .25em .25em 3em 0
-		
-	.idealRanges {
-		li {
-			clearfix()
-			max-width 15em
-		}
-		.hi, .lo {
-			label {
-				@extends .display-ib
-			}
-
-		}
-	}
-
-	/*
-	 * App pages
-	 */
-	.question
-		float left
-		width 40%
-		margin-right 5%
-
-	.question-wrap-right
-		float right
-		width: 55%;
-		
-		.question
-			width 80%
-
-	.overlay
-		padding 1em 2em 1em
+  .content-module
+    float left
+    &.side
+      width 100%
+
+  .main, .header
+    padding 0
+
+  .header
+    position absolute
+    width 100%
+    top 0
+    left 0
+    z-index 4
+    padding 2em 0
+    height 3em
+    background white
+    color color-text-gray
+    padding 0
+
+    .icon-glyphlogo-new
+      display: none;
+      font-size: .55em;
+      position: relative;
+      top: 8em;
+      left: 10.25em;
+      height: 7em;
+      width: 7em;
+    &.header-fixed
+      display block
+      .icon-glyphlogo-new
+        display none
+      .social-icons
+        display none
+
+    & > header
+      margin: 0 auto;
+      width: 95%;
+      max-width: 60em;
+
+    
+
+    &.fixed
+      @extends .fixed
+      top 0
+      z-index 1
+
+    li
+      padding 0
+      margin .25em .75em 0 0
+
+      &.first
+        min-height auto
+        width: 19.3%;
+        margin: 0 3% 0 0;
+        padding: 0.45em 0 0 0;
+
+    a 
+      color color-text-gray
+      line-height: 3em;
+      font-size .85em
+
+      &.active
+        color color-logo-green
+
+    h1 
+      &.logo a
+        font-size inherit
+        line-height inherit
+        color inherit
+
+        &:hover
+          text-decoration none
+
+      i
+        color white
+
+    
+    .toggle-menu
+      display none
+
+    .open > ul
+        position static
+        width auto
+        background transparent
+        box-shadow none
+
+        li
+          background transparent
+
+    .nav-section
+      float left
+      margin 0 0 0 0
+      padding 0 0 0 0
+      display block
+      li
+        display inline-block
+        // margin 0 1em 0 0
+        
+        a
+          color color-text-gray
+
+        &.active
+          float none
+          height auto
+          
+          a
+            color color-logo-green
+      &.elevated-item
+        li
+          line-height 3em
+        .btn 
+          margin 0
+          padding .5em
+          text-align center
+          line-height 1em
+          color color-text-gray
+          border-color color-text-gray
+          background none
+
+    .social-icons
+      position absolute
+      margin 0
+      width auto
+      clear right
+      
+      div
+        text-indent 100%
+
+      li
+        margin .5em 0 0 .2em
+        color white
+        background color-text-gray
+        position relative
+
+      a
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        text-align: center;
+        i
+          // width: 1em;
+          // height: 1em;
+          position: absolute;
+          width: 70%;
+          height: 75%;
+          top: 50%;
+          -webkit-transform: translateY(-50%) translateX(-50%);
+          left: 50%;
+
+
+    .elevated-item
+      li
+        background transparent
+        line-height 1em
+        margin: 0;
+
+    .social-icons, .elevated-item
+      position static
+      float right
+      background transparent
+
+  /*
+   * Home Page
+   */
+  .landing-page
+    
+
+    .content-module
+      min-height 800px
+
+    .footer
+      min-height 40px
+      position relative
+      overflow hidden
+
+      div
+        position absolute
+        bottom 1em
+
+    .featured-press, .additional-press
+      margin 1.5em 0 1.5em 16%
+      li
+        float left
+        width 20%
+        margin 0 2.8%
+        border-top 1px solid color-text-gray
+
+        &.last
+          margin 0
+
+    .featured-press
+      clear both
+      min-height 25em
+      li
+        position relative
+        padding-top 6em
+        img
+          position absolute
+          top .5em
+
+
+    h1.headline
+      display none
+
+    .headline
+      background: rgba(0,0,0,0);
+      padding: .5em;
+      color #fff
+      width 14em
+      font-size 2em
+      margin: 0 0 -6.5em 7em
+      position relative
+      height 4em
+      line-height: 1.25;
+      text-align: left;
+      position: absolute;
+      top: 4em;
+      left: .6em;
+
+      .icon-glyphlogo-new
+        display: block;
+        font-size: .55em;
+        position: relative;
+        left: -1.8em;
+        height: 7em;
+        width: 7em;
+
+    .last
+      margin 0
+
+    .page-heading, .page-content
+      max-width 60em
+      font-size 1em
+
+    .page-heading
+      line-height 2em
+      margin-bottom 1em
+
+    .main
+      .content-module, #details
+        padding-top 3.5em
+
+        &#home 
+          padding-top 0
+
+    .flexslider
+      li
+        text-align center
+      img
+        min-width 1440px
+        position static
+        margin 0
+        
+    .flex-direction-nav
+      position absolute
+      z-index: 4;
+      top: 49%;
+
+      a
+        color white
+
+        &:hover, &:active
+          color white
+          text-decoration none
+
+    p
+      max-width 35em
+
+    #how-it-works
+      p
+        float left
+        margin 0 2%
+        width: 29%;
+        border-top: 1px solid color-logo-green;
+        padding: 1em 0 0 0;
+
+      #details
+        .detail-block 
+          width 100%
+
+    // #contact
+    #wufoo-wrapper, #email-sub
+      float left
+      width: 40%;
+      margin: 1em 10% 0 0;
+
+  @media screen and (max-width: 1024px)
+    .landing-page .flexslider img
+      position: relative;
+      left: 50%;
+      margin-left: -720px;
+
+
+  /*
+   * Pricing Page
+   */
+  #pricing
+    .price
+      .price-number,.price-type,.price-per
+        display inline
+        padding 0
+      .price-number
+        //
+      .price-type
+        //
+      .price-per
+        display block
+        margin-top: -.85em;
+        width 100%
+
+  .list-grid-wrapper
+    font-size 1em
+    .grid-list
+      float left
+      margin 0
+      li
+        text-align center
+        border-top 1px solid color-border-gray
+        min-height 8em
+        width 100%
+        h2
+          margin 0
+          span
+            display block
+            
+        & > span
+          width 80%
+          display inline-block
+          padding 1em 1em 0
+          font-size .85em
+    
+        &.first
+          border 0 none
+          margin-top 1em
+        &.last
+          padding-top: 1em;
+
+      &.feature-icons
+        display block
+        width 10%
+        li
+          position relative
+          i
+            position absolute
+            top: .5em;
+            margin-top: 0;
+            font-size: 3em;
+            color color-logo-green
+            
+        .first
+          min-height 4em
+      &.tier1
+        width 45%
+        .first
+          min-height 4em
+      &.tier2
+        width 45%
+        .first
+          min-height 4em
+      // &.tier3
+      //   width 30%
+      //   .first
+      //     min-height 4em
+  #pricing
+    .center
+      margin 1em
+
+  #installs
+    p
+      float left
+      margin 1em 2%
+      width: 29%;
+      border-top: 1px solid color-logo-green;
+      padding: 1em 0 0 0;
+    .contact-wrapper
+      display none //only displays on single-page render
+
+
+  .app-page
+    .header > header
+      width 100%
+
+    .page-heading
+      font-size 2.25em
+
+    
+    .page-heading-small.date
+      font-size 1.5em
+      text-align justify
+
+    &.dashboard .data-module.phase-info .phase-name
+      font-size .9em
+      text-align justify
+
+  /*
+   * Get Started / Thankyou
+   */
+  .landing-page.get-started
+    .main
+      margin: 10em auto 0 auto;
+      width: 95%
+
+    .page-heading
+      width 100%
+      font-size: 3.5em;
+
+  .landing-page.register
+    .main
+      .retail-price
+        margin-top: -1.5em;
+
+  /*
+   * Team Page
+   */
+  .member
+    clear both
+    margin 0 0 1em 0
+
+    img
+      margin: 1.5em 0
+
+  /*
+   * Grow Plans Page
+   */
+  // .grid
+  //   li
+  //     @extends .display-ib
+  //     vertical-align top
+  //     // width: 22em;
+  //     margin .25em .25em 3em 0
+    
+  .idealRanges {
+    li {
+      clearfix()
+      max-width 15em
+    }
+    .hi, .lo {
+      label {
+        @extends .display-ib
+      }
+
+    }
+  }
+
+  /*
+   * App pages
+   */
+  .question
+    float left
+    width 40%
+    margin-right 5%
+
+  .question-wrap-right
+    float right
+    width: 55%;
+    
+    .question
+      width 80%
+
+  .overlay
+    padding 1em 2em 1em

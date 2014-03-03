@@ -1,30 +1,30 @@
 if (settings.env == 'local')
-	link(rel='stylesheet', href='/assets/css/libs/resets.css')
-	link(rel='stylesheet', href='/assets/css/global/breakpoints.css')
-	link(rel='stylesheet', href='/assets/css/global/colors.css')
-	link(rel='stylesheet', href='/assets/css/global/effects.css')
-	link(rel='stylesheet', href='/assets/css/global/fonts.css')
-	link(rel='stylesheet', href='/assets/css/global/icons.css')
-	link(rel='stylesheet', href='/assets/css/global/utils.css')
-	link(rel='stylesheet', href='/assets/css/helpers.css')
-	link(rel='stylesheet', href='/assets/css/forms.css')
-	link(rel='stylesheet', href='/assets/css/typography.css')
-	link(rel='stylesheet', href='/assets/css/base.css')
-	link(rel='stylesheet', href='/assets/css/layout-large.css')
-	link(rel='stylesheet', href='/assets/css/layout-medium.css')
+  link(rel='stylesheet', href='/assets/css/libs/resets.css')
+  link(rel='stylesheet', href='/assets/css/global/breakpoints.css')
+  link(rel='stylesheet', href='/assets/css/global/colors.css')
+  link(rel='stylesheet', href='/assets/css/global/effects.css')
+  link(rel='stylesheet', href='/assets/css/global/fonts.css')
+  link(rel='stylesheet', href='/assets/css/global/icons.css')
+  link(rel='stylesheet', href='/assets/css/global/utils.css')
+  link(rel='stylesheet', href='/assets/css/helpers.css')
+  link(rel='stylesheet', href='/assets/css/forms.css')
+  link(rel='stylesheet', href='/assets/css/typography.css')
+  link(rel='stylesheet', href='/assets/css/base.css')
+  link(rel='stylesheet', href='/assets/css/layout-medium.css')
+  link(rel='stylesheet', href='/assets/css/layout-large.css')
 else
-	!= CDN('/assets/css/all.css')
+  != CDN('/assets/css/all.css')
 
 block css
 
 script
-	bpn = {
-		pages : {},
-		pageData : {}
-	};
+  bpn = {
+    pages : {},
+    pageData : {}
+  };
 - if (typeof user !== 'undefined' && user._id)
-	script
-		bpn.user = !{JSON.stringify(user.toPublicJSON())};
+  script
+    bpn.user = !{JSON.stringify(user.toPublicJSON())};
 
 != CDN('/assets/js/libs/modernizr.js')
 
@@ -32,16 +32,16 @@ script
 - var iconPNGCSS = CDN('/assets/icons/icons.data.png.css', { 'raw' : true }).trim();
 - var iconFALLBACKCSS = CDN('/assets/icons/icons.fallback.css', { 'raw' : true }).trim();
 script
-	/* grunticon Stylesheet Loader | https://github.com/filamentgroup/grunticon | (c) 2012 Scott Jehl, Filament Group, Inc. | MIT license. */
-	window.grunticon=function(e){if(e&&3===e.length){var t=window,n=!!t.document.createElementNS&&!!t.document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect&&!!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1"),A=function(A){var o=t.document.createElement("link"),r=t.document.getElementsByTagName("script")[0];o.rel="stylesheet",o.href=e[A&&n?0:A?1:2],r.parentNode.insertBefore(o,r)},o=new t.Image;o.onerror=function(){A(!1)},o.onload=function(){A(1===o.width&&1===o.height)},o.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="}};
-	grunticon([
-		'#{iconSVGCSS}',
-		'#{iconPNGCSS}',
-		'#{iconFALLBACKCSS}'
-	]);
+  /* grunticon Stylesheet Loader | https://github.com/filamentgroup/grunticon | (c) 2012 Scott Jehl, Filament Group, Inc. | MIT license. */
+  window.grunticon=function(e){if(e&&3===e.length){var t=window,n=!!t.document.createElementNS&&!!t.document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect&&!!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1"),A=function(A){var o=t.document.createElement("link"),r=t.document.getElementsByTagName("script")[0];o.rel="stylesheet",o.href=e[A&&n?0:A?1:2],r.parentNode.insertBefore(o,r)},o=new t.Image;o.onerror=function(){A(!1)},o.onload=function(){A(1===o.width&&1===o.height)},o.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="}};
+  grunticon([
+    '#{iconSVGCSS}',
+    '#{iconPNGCSS}',
+    '#{iconFALLBACKCSS}'
+  ]);
 
 noscript
-	| <link href="#{iconFALLBACKCSS}" rel="stylesheet">
+  | <link href="#{iconFALLBACKCSS}" rel="stylesheet">
 
 
 

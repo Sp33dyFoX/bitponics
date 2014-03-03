@@ -2369,20 +2369,6 @@ body.ngdialog-open {
 .social-icons li div {
   text-indent: 100%;
 }
-.social-icons li a,
-.social-icons li i {
-  font-size: 1.1em;
-}
-.social-icons li i {
-  position: absolute;
-  top: 0.65em;
-  left: 0.225em;
-}
-.social-icons li i.icon-__51_facebook_white {
-  font-size: 1.3em;
-  top: 0.5em;
-  left: 0.125em;
-}
 #how-it-works p {
   text-align: left;
   color: #999;

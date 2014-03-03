@@ -297,6 +297,9 @@
     float: right;
     width: 50%;
   }
+  .header > header {
+    width: 95%;
+  }
   .question {
     width: 30%;
   }
@@ -391,6 +394,9 @@
   }
   .landing-page.buy .shipping-info .custom-checkbox-wrap p {
     width: 100%;
+  }
+  .app-page .header > header {
+    width: 95%;
   }
 }
 @media  screen and (min-width: 65em) {
