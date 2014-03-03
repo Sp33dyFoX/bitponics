@@ -128,7 +128,6 @@ module.exports = {
             if (req.query['where']){
               var queryWhere;
               try {
-                console.log("req.query['where']::", req.query['where']);
                 queryWhere = JSON.parse(req.query['where']);
               } catch(e){
                 winston.error(e);
