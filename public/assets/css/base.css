@@ -2284,26 +2284,28 @@ body.ngdialog-open {
 .header .help-icon,
 .header .menu-icon {
   position: relative;
-  display: inline-block;
+  float: left;
   cursor: pointer;
   width: 1.4em;
   vertical-align: middle;
   height: 1.4em;
+  margin: 0 0.25em;
 }
-.header .notifications-icon .icon-glyph,
-.header .help-icon .icon-glyph,
-.header .menu-icon .icon-glyph,
-.header .notifications-icon .icon-glyph-new,
-.header .help-icon .icon-glyph-new,
-.header .menu-icon .icon-glyph-new {
+.header .icon-glyph,
+.header .icon-glyph-new {
   top: 50%;
   margin: 0;
   position: absolute;
   width: 100%;
   height: 100%;
   left: 0;
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
+}
+.header .app-user > div {
+  display: inline-block;
+}
+.header .app-user .user-name {
+  float: left;
+  margin: 0 0.5em;
 }
 /*
  * Home Page
@@ -4244,13 +4246,6 @@ li
   border-radius: 0;
   -webkit-box-shadow: none;
   box-shadow: none;
-}
-.undefined .icon-glyph-new,
-.app-page .icon-glyph-new {
-  height: 1em;
-  font-size: 1.25em;
-  position: relative;
-  top: -0.25em;
 }
 .undefined [contenteditable],
 .app-page [contenteditable],

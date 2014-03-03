@@ -107,55 +107,34 @@ nav(role="nav", ng-controller="bpn.controllers.nav.Main", class="main-nav")
       if !pageType || pageType == 'app-page'
         if typeof user !== 'undefined' && user.name
           li(class="nav-section app-user")
-            a(href="/account/profile")
-              if user.name.full != ''
-               | #{user.name.full}
-              else
-               | #{user.email}
-            
-            div(
-              class="notifications-icon",
-              ng-dialog="nav-notifications.html",
-              ng-dialog-controller="bpn.controllers.nav.Notifications",
-              ng-dialog-append-to-element="true",
-              ng-dialog-class="ngdialog-theme-menu")
-              | <i class="icon-glyph icon-glyph-new icon_notification_info_textGray" aria-hidden="true" ng-class="getNotificationsIconClass()"></i>
-            
-            div(
-              class="help-icon intercom-trigger",
-              href="mailto:0c40a940658cd131a6d92882bf8fcc7230d93338@incoming.intercom.io"
-              )
-              | <i class="icon-glyph icon-glyph-new icon_help" aria-hidden="true" ng-class="getNotificationsIconClass()"></i>
-
-            
-            div(
-              class="menu-icon",
-              ng-dialog="nav-menu-template",
-              ng-dialog-controller="bpn.controllers.nav.Menu",
-              ng-dialog-append-to-element="true",
-              ng-dialog-class="ngdialog-theme-menu")
-              | <i class="icon-glyph icon-glyph-new icon_menu" aria-hidden="true"></i>
-
-            //- div(class="settings", ng-click="toggleSettings()")
-            //-   | <i class="icon-glyph icon-glyph-new icon-__71_settings_999999" aria-hidden="true"></i>
-            //-   div(class="settings-display", ng-class="{'visible':settingsDisplayVisible}")
-            //-     h2 Settings
-            //-     ul
-            //-       if typeof growPlanInstance !== 'undefined'
-            //-         li
-            //-           a(href, ng-click="openGardenSettingsOverlay()") Garden Settings
-            //-         li
-            //-           a(href="/grow-plans/#{growPlanInstance.growPlan._id}") Grow Plan Details
-            //-       li
-            //-         a(href="/account/profile") My Profile
-            //-       li
-            //-         a(href="/gardens") My Gardens
-            //-       li
-            //-         a(href="/account/devices") My Devices
-            //-       li
-            //-         a(class="intercom-trigger", href="mailto:0c40a940658cd131a6d92882bf8fcc7230d93338@incoming.intercom.io") Help
-            //-       li
-            //-         a(href="/logout") Log out
+            div
+              a(href="/account/profile", class="user-name")
+                if user.name.full != ''
+                 | #{user.name.full}
+                else
+                 | #{user.email}
+              
+              div(
+                class="notifications-icon",
+                ng-dialog="nav-notifications.html",
+                ng-dialog-controller="bpn.controllers.nav.Notifications",
+                ng-dialog-append-to-element="true",
+                ng-dialog-class="ngdialog-theme-menu")
+                | <i class="icon-glyph icon-glyph-new icon_notification_info_textGray" aria-hidden="true" ng-class="getNotificationsIconClass()"></i>
+              
+              div(
+                class="help-icon intercom-trigger",
+                href="mailto:0c40a940658cd131a6d92882bf8fcc7230d93338@incoming.intercom.io"
+                )
+                | <i class="icon-glyph icon-glyph-new icon_help" aria-hidden="true" ng-class="getNotificationsIconClass()"></i>
+              
+              div(
+                class="menu-icon",
+                ng-dialog="nav-menu-template",
+                ng-dialog-controller="bpn.controllers.nav.Menu",
+                ng-dialog-append-to-element="true",
+                ng-dialog-class="ngdialog-theme-menu")
+                | <i class="icon-glyph icon-glyph-new icon_menu" aria-hidden="true"></i>
   
   
   if !!pageType && pageType == 'landing-page'  
