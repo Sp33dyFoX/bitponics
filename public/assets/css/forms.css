@@ -496,7 +496,7 @@ input[type='checkbox']:checked + label.btn {
   height: 0.35em;
   background: transparent;
   top: 50%;
-  right: 0.35em;
+  right: 0.85em;
   margin-top: -0.5em;
   border: 3px solid #fcfff4;
   border-top: none;

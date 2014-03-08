@@ -354,6 +354,7 @@
     position: absolute;
     top: 0;
     text-align: center;
+    left: 0;
   }
   .header .social-icons a i {
     position: absolute;

@@ -1,19 +1,4 @@
-if (settings.env == 'local')
-  link(rel='stylesheet', href='/assets/css/libs/resets.css')
-  link(rel='stylesheet', href='/assets/css/global/breakpoints.css')
-  link(rel='stylesheet', href='/assets/css/global/colors.css')
-  link(rel='stylesheet', href='/assets/css/global/effects.css')
-  link(rel='stylesheet', href='/assets/css/global/fonts.css')
-  link(rel='stylesheet', href='/assets/css/global/icons.css')
-  link(rel='stylesheet', href='/assets/css/global/utils.css')
-  link(rel='stylesheet', href='/assets/css/helpers.css')
-  link(rel='stylesheet', href='/assets/css/forms.css')
-  link(rel='stylesheet', href='/assets/css/typography.css')
-  link(rel='stylesheet', href='/assets/css/base.css')
-  link(rel='stylesheet', href='/assets/css/layout-medium.css')
-  link(rel='stylesheet', href='/assets/css/layout-large.css')
-else
-  != CDN('/assets/css/all.css')
+!= CDN('/assets/css/all.css')
 
 block css
 

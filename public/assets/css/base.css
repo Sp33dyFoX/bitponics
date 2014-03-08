@@ -1603,11 +1603,14 @@ img.page-spinner.spinner {
 }
 .control .icon-glyph-new {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 1.5em;
+  height: 1.5em;
   vertical-align: middle;
-  top: 38%;
+  top: 50%;
   font-size: 1.5em;
+  margin-top: -25%;
+  left: 50%;
+  margin: -0.75em 0 0 -0.75em;
 }
 .notifications .upcoming {
   color: #00e36c;
@@ -3587,7 +3590,7 @@ input[type='checkbox']:checked + label.btn {
   height: 0.35em;
   background: transparent;
   top: 50%;
-  right: 0.35em;
+  right: 0.85em;
   margin-top: -0.5em;
   border: 3px solid #fcfff4;
   border-top: none;
@@ -5984,13 +5987,13 @@ button.close {
 .growplans.app-page .overlay .btn {
   margin: 0;
 }
-.growplans .overlay .custom-checkbox-wrap,
-.growplans.app-page .overlay .custom-checkbox-wrap {
+.growplans .overlay .add-a-plant-overlay .custom-checkbox-wrap,
+.growplans.app-page .overlay .add-a-plant-overlay .custom-checkbox-wrap {
   bottom: 4em;
   text-align: center;
 }
-.growplans .overlay .custom-checkbox-wrap .plant:before,
-.growplans.app-page .overlay .custom-checkbox-wrap .plant:before {
+.growplans .overlay .add-a-plant-overlay .custom-checkbox-wrap .plant:before,
+.growplans.app-page .overlay .add-a-plant-overlay .custom-checkbox-wrap .plant:before {
   right: 0.85em;
 }
 .growplans .overlay .action-overlay .custom-checkbox-wrap,
@@ -6312,6 +6315,7 @@ button.close {
   -o-transition: 0.5s all ease;
   -ms-transition: 0.5s all ease;
   transition: 0.5s all ease;
+  background-position: 0 0;
 }
 .growplans .controls .icon-glyph.has-action,
 .growplans.app-page .controls .icon-glyph.has-action {

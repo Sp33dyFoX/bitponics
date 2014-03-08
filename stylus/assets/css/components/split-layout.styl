@@ -1,143 +1,146 @@
 .dashboard, .grow-plans
-	&.app-page .page-heading 
-			font-size 2.25em
+  &.app-page .page-heading 
+      font-size 2.25em
 
 .data-module
 
-	.main-heading.right 
-		right 0.75em
-		text-align: right
+  .main-heading.right 
+    right 0.75em
+    text-align: right
 
-	&.phase-info
-		height 3.2em
+  &.phase-info
+    height 3.2em
 
-		.phase-name
-			position: absolute;
-			top: 0.5em;
-			font-size: 1em;
-			left: .5em;
-			text-transform: none;
+    .phase-name
+      position: absolute;
+      top: 0.5em;
+      font-size: 1em;
+      left: .5em;
+      text-transform: none;
 
-		.phase-day
-			position: absolute;
-			top: 1.5em;
-			font-size: 1em;
-			left: .5em;
-			text-transform: none;
-		
-	.sensor-value
-		font-size: 3em;
-		// line-height: 2em;
-		// margin: 0 auto;
-		text-align: left;
-		left: 0.25em;
-		position relative
+    .phase-day
+      position: absolute;
+      top: 1.5em;
+      font-size: 1em;
+      left: .5em;
+      text-transform: none;
+    
+  .sensor-value
+    font-size: 3em;
+    // line-height: 2em;
+    // margin: 0 auto;
+    text-align: left;
+    left: 0.25em;
+    position relative
 
-	.sensor-type
-		.icon-glyph
-			width: 40px;
-			height: 40px;
-			position: absolute;
-			top: -.25em;
-			right: -.25em;
+  .sensor-type
+    .icon-glyph
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      top: -.25em;
+      right: -.25em;
 
-			&.icon-air
-				right: -.5em;
+      &.icon-air
+        right: -.5em;
 
 .overlay .overlay-contain .sensor-detail-overlay
-	label
-		.label
-			display block
-			font-size 1em
-		input
-			display inline
-	.custom-checkbox-wrap
-		bottom auto
-		text-align left
+  label
+    .label
+      display block
+      font-size 1em
+    input
+      display inline
+  .custom-checkbox-wrap
+    bottom auto
+    text-align left
 
 
 .page-heading-small
-	color color-text-gray
-	border-bottom 1px solid color-border-gray
-	padding-bottom .5em
+  color color-text-gray
+  border-bottom 1px solid color-border-gray
+  padding-bottom .5em
 
-	&.time 
-		font-size 1em
+  &.time 
+    font-size 1em
 
-	.spinner 
-		float right
+  .spinner 
+    float right
 
 
 .controls
-	.page-heading-small
-			margin-bottom 0
+  .page-heading-small
+      margin-bottom 0
 
 .control
 
-	h3
-		text-align left
-		color color-text-gray
-		font-size .85em
+  h3
+    text-align left
+    color color-text-gray
+    font-size .85em
 
-	.icon-glyph-new
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		vertical-align: middle;
-		top: 38%;
-		font-size: 1.5em;
+  .icon-glyph-new
+    position: absolute;
+    width: 1.5em;
+    height: 1.5em;
+    vertical-align: middle;
+    top: 50%;
+    font-size: 1.5em;
+    margin-top: -25%;
+    left: 50%;
+    margin: -.75em 0 0 -.75em;
 
 .notifications
-	
-	.upcoming
-		color color-logo-green
+  
+  .upcoming
+    color color-logo-green
 
-	.smaller
-		font-size 1em
-		border none
-	.date
-		font-size .75em
-	.title
-		font-size 1em
-		margin 0 0 1em
+  .smaller
+    font-size 1em
+    border none
+  .date
+    font-size .75em
+  .title
+    font-size 1em
+    margin 0 0 1em
 
-	input[type="checkbox"]
-		@extends .display-ib
-		opacity 1
-		margin 1em 1em 0 0
-		height 1em
-		width 1em
-		font-size 1em
-	label
-		@extends .display-ib
-		position relative
-		top .75em
-		margin 0
+  input[type="checkbox"]
+    @extends .display-ib
+    opacity 1
+    margin 1em 1em 0 0
+    height 1em
+    width 1em
+    font-size 1em
+  label
+    @extends .display-ib
+    position relative
+    top .75em
+    margin 0
 
 
 .date
-	margin-bottom 0
-	border 0 none
-	position relative
+  margin-bottom 0
+  border 0 none
+  position relative
 
 /* Large screens */
 @media $mq_larger
-	.split-layout
+  .split-layout
 
-		&.main header
-			clear both
-			overflow hidden
+    &.main header
+      clear both
+      overflow hidden
 
-		.content-module
-			@extends .display-ib
-			&.middle
-				// position relative
-				// padding 100% 0 0 0 //must match container width
-				// height 0
-				width 60%
-				padding: 0 1em;
-			&.side
-				width 20%
-		// h2.page-heading
-		// 	float left
-		// 	width 75%
+    .content-module
+      @extends .display-ib
+      &.middle
+        // position relative
+        // padding 100% 0 0 0 //must match container width
+        // height 0
+        width 60%
+        padding: 0 1em;
+      &.side
+        width 20%
+    // h2.page-heading
+    //   float left
+    //   width 75%

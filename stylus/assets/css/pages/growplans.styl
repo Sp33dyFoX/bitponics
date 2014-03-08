@@ -7,423 +7,425 @@
 .growplans,
 .growplans.app-page
 
-	.plantlist
-		margin-top .5em
-		margin-bottom .5em
-		padding 0
-
-		&.float
-			overflow hidden
-			border 1px dashed color-border-gray
-			li
-				margin 0 auto auto
-				float left
-
-		&.small-float
-			overflow hidden
-			margin 0
-			li
-				font-size .75em
-				float left
-
-				.btn
-					margin 0 0.5em 1em
-
-					&.add
-						border 1px solid color-logo-green
-
-
-
-
-		.grid-cell
-			// max-width 40em
-			margin 0 auto
-		
-		.img-wrapper
-			position relative
-			height 15em
-			overflow hidden
-			max-width 40em
-			margin 0 auto
-
-			img
-				position absolute
-				top 0
-				min-width 100%
-				min-height 100%
-				width auto
-				max-width 135%
-
-	.btn
-		padding .5em
-
-		&.add
-			.icon-glyph-new
-				top 0
-				font-size 1em
-
-	.toggle 
-		padding .2em .5em
-		margin 0 0 1em
-
-		&.filter
-			clear both
-
-		&.advanced
-			margin-left 1em
-
-	.overlay 
-		.btn
-			margin 0
-
-		.custom-checkbox-wrap
-			bottom 4em
-			text-align center
-			.plant
-				&:before
-					right .85em
-
-		.action-overlay
-			.custom-checkbox-wrap
-				bottom auto
-				text-align left
-
-			.action-duration
-				display table
-				margin-top 1em
-
-				>label, >div 
-					display table-cell
-					vertical-align middle
-
-				input[type=number] 
-					display inline
-					margin 0 1em
-
-			.remove
-				margin-top 2em
-
-
-		// .img-wrapper
-		// 	.icon-glyph.icon-glyphlogo-new
-		// 		position absolute
-		// 		top 0
-		// 		left 0
-
-	.edit-btn
-		@extends .display-ib
-		height 1em
-		padding-left 1em
-		position relative
-		margin 0 0 1em
-
-		i
-			position absolute
-			top 0
-			left 0
-
-	.next-step-btn, .phase-tabs .btn
-		background white!important
-		color color-logo-green!important
-		border 3px solid color-logo-green
-		padding .5em 2em
-		display block
-		text-align center
-		width 15em
-
-		.icon-glyph-new
-			color color-logo-green
-
-	.question
-
-		&.plants
-			margin 0
-
-		.question-title
-			margin-top .75em
-			
-		.grid 
-			ul 
-				// clear both
-			li
-				margin 0
-				width auto
-				.btn
-					margin .7em 1em 1em 0
-					width auto
-
-
-		.add
-			float left
-			clear left
-			margin .7em 1em 1em 0
-			// margin-top 0	
-
-
-	// .icon-glyph-new
-	// 	height: 1em;
-	// 	font-size: 1.25em;
-	// 	position: relative;
-	// 	top: 0.15em;
-
-	.header-action
-		@extends .display-ib
-		clear both
-		.spinner
-			margin 0 0 0 .5em
-			width 1em
-
-	.spinner
-		@extends .display-ib
-		width: 2em;
-		margin: 1em;
-
-	.phase-description
-		margin 0 0 2em 0
-	
-	.phase-duration
-		input
-			display inline
-			width 5em
-			margin 0 1em
-
-	.phase-tabs 
-		list-style: none;
-		// margin: 0;
-		// padding: 0;
-		clear: both;
-		overflow: hidden;
-
-		.btn
-			width auto
-
-		div
-			padding-left: 1em;
-
-		.selected
-			background color-logo-green!important
-			color white!important
-
-			.icon-glyph-new
-				color white!important
-
-		li {
-			position: relative;
-			// width: 25%;
-			width auto
-			float: left;
-			padding: .25em .5em;
-			// color: white;
-			//background: green;
-			// cursor: pointer;
-			// height: auto;
-			//text-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
-			// font-weight: bold;
-			margin: 1em .25em 1em 0;
-
-			&.focused {
-				text-decoration: underline;
-			}
-
-			&.inactive {
-				display: block;
-				opacity: 1;
-				background-color: rgba(36, 211, 33, .6);
-			}
-
-			.toggle {
-				text-decoration: none;
-			}
-		}
-
-
-	.idealRanges, .actions {
-		position: relative;
-		clearfix()
-
-		ul {
-			list-style: none;
-			margin: 0;
-			padding: 0;
-		}
-
-		.question {
-			margin: 0 1em 1em 0;
-			border: 1px solid color-border-gray;
-			padding: 2em 1em 1em; 
-			position: relative;
-		}
-
-		.btn {
-			margin-left 0
-			margin-top 0
-
-			&.close {
-				position: absolute;
-				top: 0;
-				right: -.25em;
-				cursor: pointer;
-				background: #fff;
-				color: color-text-gray;
-			}
-
-		}
-
-		input[type=checkbox] {
-			opacity: 1;
-			height: auto;
-			width: auto;
-			margin: auto;
-			display: inline;
-		}
-
-		.separator-top {
-			margin-top: 1em;
-		}
-
-		.hi, .lo {
-
-			label, textarea {
-				display: block;
-				width: 100%;
-			}
-
-			input[type=number] {
-				@extends .display-ib;
-				width: 6em;
-				margin-right: 1em;
-			}
-
-			label {
-				// font-size: 2em;
-			}
-		}
-
-	}
-	.phaseEndDescription
-		margin 2em 0 2em
-		clear both
-
-	
-	div[data-bpn-directives-navigation-phases-graph]
-		width 60%
-
-	.ring-graph
-		.good
-			fill: color-bg-green
-			opacity .7
-		.active
-			fill: color-bg-green
-			opacity 1
-		.add-phase
-			fill: color-light-green
-			opacity: .45
-
-		text
-			font-size 1em
-
-		&.reminder
-			// tried inverting the colors, but looks pretty bad
-			// 	svg
-			// 		background white
-			// 		.on
-			// 			fill white
-			// 		path
-			// 			stroke color-bg-green
-
-	.controls
-		.grid--wrapping > .grid-cell
-			flex 1 5em
-			font-size: .85em;
-			padding: 5em 0 0;
-			line-height: 1;
-			font-weight: normal;
-			margin: 0 0 1em;
-			max-width: 5em;
-
-		.icon-glyph
-			opacity .5
-			transition .5s all ease
-
-			&.has-action
-				opacity 1
-
-	.reminders
-		.btn-compact
-			width 13em
-
-	.grow-systems, .lights, .nutrients, .ideal-ranges
-		.grid--wrapping > .grid-cell
-			flex 1 50%
-			font-size: .85em;
-			padding: 0;
-			line-height: 1;
-			font-weight: normal;
-			margin: 0 0 1em;
-			max-width: 50%;
-
-			.btn
-				margin 0 1em 1em 0
-
-	.side
-		transition opacity .5s linear
-	/*
-	 * Split layout Overrides
-	 */
-	// 
-
-	.grow-plan-customize
-		h2.page-heading
-			@extends .float-l
-			max-width 49%
-			clear left
-			min-height 1.2em
-
-			.garden-name
-				position relative
-
-				
-
-
-
-		ul.plantlist
-			@extends .float-l
-			max-width 80%
-			clear left
-		
-		header 
-			@extends .position-r
-			.header-action
-				@extends .position-a
-				top: 0
-				right: 0;
-				font-size 1em
-				margin 0
-
-		.seamless-input
-			background: color-logo-green
-			color: white;
-			border: none;
-
-		#phases
-			.page-heading-small
-				@extends .text-align-c
-				float none
-			.circle
-				margin-top 0
-				svg
-					max-width 100%
-
-		.sensors
-			.sensor-value
-				font-size 2em
-				top .25em
-
-	@media $mq_larger
-		.page-heading
-			width 90%
-
-	@media $mq_medium
-		.page-heading
-			font-size 2.5em
-			padding-top .2em
+  .plantlist
+    margin-top .5em
+    margin-bottom .5em
+    padding 0
+
+    &.float
+      overflow hidden
+      border 1px dashed color-border-gray
+      li
+        margin 0 auto auto
+        float left
+
+    &.small-float
+      overflow hidden
+      margin 0
+      li
+        font-size .75em
+        float left
+
+        .btn
+          margin 0 0.5em 1em
+
+          &.add
+            border 1px solid color-logo-green
+
+
+
+
+    .grid-cell
+      // max-width 40em
+      margin 0 auto
+    
+    .img-wrapper
+      position relative
+      height 15em
+      overflow hidden
+      max-width 40em
+      margin 0 auto
+
+      img
+        position absolute
+        top 0
+        min-width 100%
+        min-height 100%
+        width auto
+        max-width 135%
+
+  .btn
+    padding .5em
+
+    &.add
+      .icon-glyph-new
+        top 0
+        font-size 1em
+
+  .toggle 
+    padding .2em .5em
+    margin 0 0 1em
+
+    &.filter
+      clear both
+
+    &.advanced
+      margin-left 1em
+
+  .overlay 
+    .btn
+      margin 0
+
+    .add-a-plant-overlay
+      .custom-checkbox-wrap
+        bottom 4em
+        text-align center
+        .plant
+          &:before
+            right .85em
+
+    .action-overlay
+      .custom-checkbox-wrap
+        bottom auto
+        text-align left
+
+      .action-duration
+        display table
+        margin-top 1em
+
+        >label, >div 
+          display table-cell
+          vertical-align middle
+
+        input[type=number] 
+          display inline
+          margin 0 1em
+
+      .remove
+        margin-top 2em
+
+
+    // .img-wrapper
+    //   .icon-glyph.icon-glyphlogo-new
+    //     position absolute
+    //     top 0
+    //     left 0
+
+  .edit-btn
+    @extends .display-ib
+    height 1em
+    padding-left 1em
+    position relative
+    margin 0 0 1em
+
+    i
+      position absolute
+      top 0
+      left 0
+
+  .next-step-btn, .phase-tabs .btn
+    background white!important
+    color color-logo-green!important
+    border 3px solid color-logo-green
+    padding .5em 2em
+    display block
+    text-align center
+    width 15em
+
+    .icon-glyph-new
+      color color-logo-green
+
+  .question
+
+    &.plants
+      margin 0
+
+    .question-title
+      margin-top .75em
+      
+    .grid 
+      ul 
+        // clear both
+      li
+        margin 0
+        width auto
+        .btn
+          margin .7em 1em 1em 0
+          width auto
+
+
+    .add
+      float left
+      clear left
+      margin .7em 1em 1em 0
+      // margin-top 0  
+
+
+  // .icon-glyph-new
+  //   height: 1em;
+  //   font-size: 1.25em;
+  //   position: relative;
+  //   top: 0.15em;
+
+  .header-action
+    @extends .display-ib
+    clear both
+    .spinner
+      margin 0 0 0 .5em
+      width 1em
+
+  .spinner
+    @extends .display-ib
+    width: 2em;
+    margin: 1em;
+
+  .phase-description
+    margin 0 0 2em 0
+  
+  .phase-duration
+    input
+      display inline
+      width 5em
+      margin 0 1em
+
+  .phase-tabs 
+    list-style: none;
+    // margin: 0;
+    // padding: 0;
+    clear: both;
+    overflow: hidden;
+
+    .btn
+      width auto
+
+    div
+      padding-left: 1em;
+
+    .selected
+      background color-logo-green!important
+      color white!important
+
+      .icon-glyph-new
+        color white!important
+
+    li {
+      position: relative;
+      // width: 25%;
+      width auto
+      float: left;
+      padding: .25em .5em;
+      // color: white;
+      //background: green;
+      // cursor: pointer;
+      // height: auto;
+      //text-shadow: 1px 1px 1px rgba(0, 0, 0, .5);
+      // font-weight: bold;
+      margin: 1em .25em 1em 0;
+
+      &.focused {
+        text-decoration: underline;
+      }
+
+      &.inactive {
+        display: block;
+        opacity: 1;
+        background-color: rgba(36, 211, 33, .6);
+      }
+
+      .toggle {
+        text-decoration: none;
+      }
+    }
+
+
+  .idealRanges, .actions {
+    position: relative;
+    clearfix()
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .question {
+      margin: 0 1em 1em 0;
+      border: 1px solid color-border-gray;
+      padding: 2em 1em 1em; 
+      position: relative;
+    }
+
+    .btn {
+      margin-left 0
+      margin-top 0
+
+      &.close {
+        position: absolute;
+        top: 0;
+        right: -.25em;
+        cursor: pointer;
+        background: #fff;
+        color: color-text-gray;
+      }
+
+    }
+
+    input[type=checkbox] {
+      opacity: 1;
+      height: auto;
+      width: auto;
+      margin: auto;
+      display: inline;
+    }
+
+    .separator-top {
+      margin-top: 1em;
+    }
+
+    .hi, .lo {
+
+      label, textarea {
+        display: block;
+        width: 100%;
+      }
+
+      input[type=number] {
+        @extends .display-ib;
+        width: 6em;
+        margin-right: 1em;
+      }
+
+      label {
+        // font-size: 2em;
+      }
+    }
+
+  }
+  .phaseEndDescription
+    margin 2em 0 2em
+    clear both
+
+  
+  div[data-bpn-directives-navigation-phases-graph]
+    width 60%
+
+  .ring-graph
+    .good
+      fill: color-bg-green
+      opacity .7
+    .active
+      fill: color-bg-green
+      opacity 1
+    .add-phase
+      fill: color-light-green
+      opacity: .45
+
+    text
+      font-size 1em
+
+    &.reminder
+      // tried inverting the colors, but looks pretty bad
+      //   svg
+      //     background white
+      //     .on
+      //       fill white
+      //     path
+      //       stroke color-bg-green
+
+  .controls
+    .grid--wrapping > .grid-cell
+      flex 1 5em
+      font-size: .85em;
+      padding: 5em 0 0;
+      line-height: 1;
+      font-weight: normal;
+      margin: 0 0 1em;
+      max-width: 5em;
+
+    .icon-glyph
+      opacity .5
+      transition .5s all ease
+      background-position 0 0
+
+      &.has-action
+        opacity 1
+
+  .reminders
+    .btn-compact
+      width 13em
+
+  .grow-systems, .lights, .nutrients, .ideal-ranges
+    .grid--wrapping > .grid-cell
+      flex 1 50%
+      font-size: .85em;
+      padding: 0;
+      line-height: 1;
+      font-weight: normal;
+      margin: 0 0 1em;
+      max-width: 50%;
+
+      .btn
+        margin 0 1em 1em 0
+
+  .side
+    transition opacity .5s linear
+  /*
+   * Split layout Overrides
+   */
+  // 
+
+  .grow-plan-customize
+    h2.page-heading
+      @extends .float-l
+      max-width 49%
+      clear left
+      min-height 1.2em
+
+      .garden-name
+        position relative
+
+        
+
+
+
+    ul.plantlist
+      @extends .float-l
+      max-width 80%
+      clear left
+    
+    header 
+      @extends .position-r
+      .header-action
+        @extends .position-a
+        top: 0
+        right: 0;
+        font-size 1em
+        margin 0
+
+    .seamless-input
+      background: color-logo-green
+      color: white;
+      border: none;
+
+    #phases
+      .page-heading-small
+        @extends .text-align-c
+        float none
+      .circle
+        margin-top 0
+        svg
+          max-width 100%
+
+    .sensors
+      .sensor-value
+        font-size 2em
+        top .25em
+
+  @media $mq_larger
+    .page-heading
+      width 90%
+
+  @media $mq_medium
+    .page-heading
+      font-size 2.5em
+      padding-top .2em

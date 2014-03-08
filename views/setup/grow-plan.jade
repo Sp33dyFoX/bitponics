@@ -537,7 +537,7 @@ block content
               div(class="close btn", ng-click="close()")
                 | <i class="icon-glyph-new icon-__72_x_999999" aria-hidden="true"></i>
               h3(class="page-heading page-heading-small") Add a Plant
-              div
+              div.add-a-plant-overlay
                 input(class="search no-validate", ng-model="query", ng-change="search()", placeholder="Search...")
                 div(ng-hide="filteredItems.length") 
                   label(href="#", class="add btn", ng-click="addPlant(this)")
