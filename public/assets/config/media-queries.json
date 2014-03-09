@@ -1,0 +1,8 @@
+{
+  "$screen-smaller": "20em",
+  "$screen-small": "30em",
+  "$screen-small-height": "50em",
+  "$screen-medium": "40em",
+  "$screen-large": "50em",
+  "$screen-larger": "65em"
+}
