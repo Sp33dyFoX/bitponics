@@ -206,8 +206,12 @@ block content
               img(ng-src="{{photo.thumbnailUrl}}", bpn-directives-if-thumbnail-404="{{photo.url}}")
           
             li.photo(ng-show="sharedDataService.userCanModify")
-              img.spinner(src="/assets/img/spinner.svg", ng-show="uploadInProgress", ng-animate="{show: 'fade-in', hide:'fade-out'}")
-              lvl-file-upload(
+              //- img.spinner(src="/assets/img/spinner.svg", ng-show="uploadInProgress", ng-animate="{show: 'fade-in', hide:'fade-out'}")
+              bpn-directives-file-upload(
+                upload-url="'/api/gardens/' + sharedDataService.gardenModel._id + '/photos'",
+                shared-data-service="sharedDataService"
+              )
+              //- lvl-file-upload(
                 ng-hide="uploadInProgress",
                 auto-upload='true',
                 choose-file-button-text='',
@@ -218,14 +222,6 @@ block content
                 on-done='done(files, data)',
                 on-progress='progress(percentDone)',
                 on-error='error(files, type, msg)')
-
-              //- https://coderwall.com/p/4etjja
-              //-form.photo-upload(action="/gardens/{{sharedDataService.gardenModel._id}}/photos", method="POST")
-                div upload photo
-                | <i class="icon-glyph-new icon-17_photos" aria-hidden="true"></i>
-                //- http://stackoverflow.com/questions/17922557/angularjs-how-to-check-for-changes-in-file-input-fields
-                input(type="file", name="photo", accept="image/*", onchange="angular.element(this).scope().photoInputChanged(this)")
-                
 
           div
             div(modal="sharedDataService.activeOverlay==('PhotosOverlay')", close="close()", options="modalOptions")

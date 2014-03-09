@@ -17,6 +17,7 @@ mixin requirejs(dataMain)
   - var bpnControllers = CDN('/assets/js/core/controllers.js', { 'raw' : true }).replace(/\.js\r*\n*$/, '').trim();
   - var bpnControllersNav = CDN('/assets/js/controllers/nav.js', { 'raw' : true }).replace(/\.js\r*\n*$/, '').trim();
   - var bpnDirectives = CDN('/assets/js/core/directives.js', { 'raw' : true }).replace(/\.js\r*\n*$/, '').trim();
+  - var bpnDirectivesFileUpload = CDN('/assets/js/directives/file-upload.js', { 'raw' : true }).replace(/\.js\r*\n*$/, '').trim();
   - var bpnDirectivesGraphs = CDN('/assets/js/directives/graphs.js', { 'raw' : true }).replace(/\.js\r*\n*$/, '').trim();
   - var bpnFilters = CDN('/assets/js/core/filters.js', { 'raw' : true }).replace(/\.js\r*\n*$/, '').trim();
   - var bpnServices = CDN('/assets/js/core/services.js', { 'raw' : true }).replace(/\.js\r*\n*$/, '').trim();
@@ -83,6 +84,7 @@ mixin requirejs(dataMain)
         'bpn.controllers.nav' : '#{bpnControllersNav}',
         'bpn.directives' : '#{bpnDirectives}',
         'bpn.directives.graphs' : '#{bpnDirectivesGraphs}',
+        'bpn.directives.fileUpload' : '#{bpnDirectivesFileUpload}',
         'bpn.filters' : '#{bpnFilters}',
         'bpn.services' : '#{bpnServices}',
         'bpn.services.analytics' : '#{bpnServicesAnalytics}',
@@ -157,6 +159,10 @@ mixin requirejs(dataMain)
         // 'facebook' : {
         //   exports: 'FB'
         // },
+        'drop' : {
+          deps: ['tether'],
+          exports: 'Drop'
+        },
         'fileSaver' : {
           exports : 'saveAs'
         },
