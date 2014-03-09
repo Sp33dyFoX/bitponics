@@ -10,7 +10,7 @@ html(class=className + " no-js " + pageClassName)
     include includes/head/head-content
     block head
 
-  body
+  body(data-breakpoints)
     div(class="page", data-role="page")
         div(class="page-wrapper", data-role="content")
             block content

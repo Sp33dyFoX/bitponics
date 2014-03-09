@@ -1,3 +1,5 @@
+@import "../global/breakpoints"
+
 .header
 
   .notifications-icon, .help-icon, .menu-icon
@@ -17,9 +19,20 @@
     height 100%
     left 0
 
+  .toggle-menu
+    i
+      top 0
+      width 2em
+      left 0
+
   .app-user
     & > div
       display inline-block
     .user-name
+      display none
       float left
       margin 0 .5em
+
+@media $mq_medium
+  .header .app-user .user-name
+    display block

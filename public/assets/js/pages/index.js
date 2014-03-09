@@ -10,13 +10,28 @@ require([
   'flexslider',
   'throttle-debounce',
   'angular-flexslider',
-  'bpn'
+  'bpn',
+  'bpn.directives.breakpoints'
 ],
 function (angular, domReady) {
   'use strict';
 
   var homePageApp = angular.module('bpn.apps.homepage', ['bpn', 'angular-flexslider']);
   
+  homePageApp.factory('sharedDataService', 
+      [
+        function(){
+          
+          /**
+           * All the properties this service will expose
+           */ 
+          var sharedData = {};
+
+          return sharedData;
+        }
+      ]
+  );
+
   homePageApp.controller('bpn.controllers.homepage.Main',
     [
       '$scope',

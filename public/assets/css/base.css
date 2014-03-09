@@ -888,7 +888,6 @@ nav li {
   margin: 0;
   padding: 0.25em 0.5em;
   background: none;
-  display: none;
 }
 nav li.first {
   display: block;
@@ -2303,12 +2302,23 @@ body.ngdialog-open {
   height: 100%;
   left: 0;
 }
+.header .toggle-menu i {
+  top: 0;
+  width: 2em;
+  left: 0;
+}
 .header .app-user > div {
   display: inline-block;
 }
 .header .app-user .user-name {
+  display: none;
   float: left;
   margin: 0 0.5em;
+}
+@media  screen and (min-width: 40em) {
+  .header .app-user .user-name {
+    display: block;
+  }
 }
 /*
  * Home Page
@@ -2322,7 +2332,7 @@ body.ngdialog-open {
   margin: 0;
   width: 100%;
   min-height: 100%;
-  padding: 0.5em 4em;
+  padding: 1em 4em;
   font-size: 1em;
   z-index: 1;
 }
@@ -2371,6 +2381,19 @@ body.ngdialog-open {
 }
 .social-icons li div {
   text-indent: 100%;
+}
+.social-icons li i {
+  position: absolute;
+  width: 70% !important;
+  height: 75% !important;
+  top: 50% !important;
+  -webkit-transform: translateY(-50%) translateX(-50%);
+  -webkit-transform: translateY(-50%) translateX(-50%);
+  -moz-transform: translateY(-50%) translateX(-50%);
+  -o-transform: translateY(-50%) translateX(-50%);
+  -ms-transform: translateY(-50%) translateX(-50%);
+  transform: translateY(-50%) translateX(-50%);
+  left: 50% !important;
 }
 #how-it-works p {
   text-align: left;

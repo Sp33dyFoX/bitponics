@@ -1,5 +1,6 @@
 nav(role="nav", ng-controller="bpn.controllers.nav.Main", class="main-nav")
   script(type="text/ng-template", id="nav-notifications.html")
+
     div(class="notifications") 
       h2 Notifications
       
@@ -32,8 +33,8 @@ nav(role="nav", ng-controller="bpn.controllers.nav.Main", class="main-nav")
         li
           a(href="/logout") Log out
   
-  ul
-    li(class="nav-section first")
+  ul  
+    li(class="nav-section first ")
       h1(class="logo icon", role="banner")
         a(href="/", data-page-include="false") 
           | bitponics
@@ -42,12 +43,12 @@ nav(role="nav", ng-controller="bpn.controllers.nav.Main", class="main-nav")
       - var pageType = pageType || null;
       if !!pageType && pageType == 'landing-page'  
 
-          li.nav-section(ng-click="toggleNavMenu()")
+          li.nav-section(ng-click="toggleNavMenu()", ng-hide="!navMenuDisplayVisible")
             ul
               li(class="howitworks", data-name="how-it-works")
                 a(href="/how-it-works") How It Works
 
-          li.nav-section(ng-click="toggleNavMenu()")
+          li.nav-section(ng-click="toggleNavMenu()", ng-hide="!navMenuDisplayVisible")
             ul
               li(class="pricing", data-name="pricing") 
                 a(href="/pricing") Pricing
@@ -57,7 +58,7 @@ nav(role="nav", ng-controller="bpn.controllers.nav.Main", class="main-nav")
           //-     li(class="buy", data-name="buy") 
           //-       a(href="/buy", data-page-include="false") Buy
 
-          li.nav-section(ng-click="toggleNavMenu()")
+          li.nav-section(ng-click="toggleNavMenu()", ng-hide="!navMenuDisplayVisible")
             ul
               li(class="press", data-name="press")
                 a(href="/press") Press
@@ -67,12 +68,12 @@ nav(role="nav", ng-controller="bpn.controllers.nav.Main", class="main-nav")
           //-     li(class="installs", data-name="installs")
           //-       a(href="/installs") Installs
 
-          li.nav-section(ng-click="toggleNavMenu()")
+          li.nav-section(ng-click="toggleNavMenu()", ng-hide="!navMenuDisplayVisible")
             ul
-              li(class="contact", data-name="contact")
+              li(class="contact", data-name="contact", ng-hide="!navMenuDisplayVisible")
                 a(href="/contact") Contact
 
-          li.nav-section(ng-click="toggleNavMenu()")
+          li.nav-section(ng-click="toggleNavMenu()", ng-hide="!navMenuDisplayVisible")
             ul
               li(class="team", data-name="team") 
                 a(href="/team") Our Team
@@ -88,7 +89,7 @@ nav(role="nav", ng-controller="bpn.controllers.nav.Main", class="main-nav")
             //-   li(class="getstarted", data-name="get-started")
             //-     a(href="/get-started", class="btn", data-page-include="false") Get Started
 
-          li(class="nav-section social-icons")
+          li(class="nav-section social-icons", ng-hide="!navMenuDisplayVisible")
             ul
               li 
                 div
@@ -143,7 +144,8 @@ nav(role="nav", ng-controller="bpn.controllers.nav.Main", class="main-nav")
     button.toggle-menu(ng-cloak, ng-click="toggleNavMenu()")
       span Menu
       //- i(class="icon-glyph-new icon-__60_plus_white", aria-hidden="true", ng-hide="navMenuDisplayVisible")
-      i(class="font-style-normal", aria-hidden="true", ng-hide="navMenuDisplayVisible") &#9776;
+      //- i(class="font-style-normal", aria-hidden="true", ng-hide="navMenuDisplayVisible") &#9776;
+      i(class="icon-glyph-new icon_menu", aria-hidden="true", ng-hide="navMenuDisplayVisible")
       i(class="icon-glyph-new icon-__72_x_999999", aria-hidden="true", ng-show="navMenuDisplayVisible")
   
 block footer-scripts

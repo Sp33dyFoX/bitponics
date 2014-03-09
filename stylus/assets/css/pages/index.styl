@@ -2,293 +2,297 @@
 @import "./global/colors"
 
 .headline
-	position absolute
-	top: 0;
-	left: 0;
-	color: white;
-	background: rgba(0,0,0,.25);
-	margin: 0;
-	width: 100%;
-	min-height: 100%;
-	//padding: .5em;
-	padding: 0.5em 4em;
-	font-size: 1em;
-	z-index 1
+  position absolute
+  top: 0;
+  left: 0;
+  color: white;
+  background: rgba(0,0,0,.25);
+  margin: 0;
+  width: 100%;
+  min-height: 100%;
+  //padding: .5em;
+  padding: 1em 4em;
+  font-size: 1em;
+  z-index 1
 
 .headline-about
-	//@extends .headline
-	position static
-	font-size 4em
-	margin .5em 0 .45em 0
-	line-height 1em
+  //@extends .headline
+  position static
+  font-size 4em
+  margin .5em 0 .45em 0
+  line-height 1em
 
 // .btn
 
-// 	&:visited, &:hover, &:active
-// 		color white
+//  &:visited, &:hover, &:active
+//    color white
 
 .featured-press,
 .additional-press
-	// padding 0 1em
-	margin 1.5em 0
-	a
-		@extends .display-ib
+  // padding 0 1em
+  margin 1.5em 0
+  a
+    @extends .display-ib
 
 .featured-press
-	li, p
-		color-text-gray2
+  li, p
+    color-text-gray2
 
 .additional-press
-	a
-		width 100%
-	.last
-		a
-			width auto
+  a
+    width 100%
+  .last
+    a
+      width auto
 
 
 
 .elevated-item
-	// position absolute
-	// top 0
-	// right 0
+  // position absolute
+  // top 0
+  // right 0
 
-	li
-		margin 0
-		padding 0
+  li
+    margin 0
+    padding 0
 
-	.btn
-		padding .5em
-		margin 0 0 0 -.5em
-		background white
-		border 2px solid color-text-gray
+  .btn
+    padding .5em
+    margin 0 0 0 -.5em
+    background white
+    border 2px solid color-text-gray
 
 .social-icons
-	position relative
-	top -.4em
-	right 0
-	
-	li
-		@extends .circle;
-		cursor pointer
-		width 2em
-		height 2em
-		padding .5em 0
-		margin 0 0  0 .25em
-		background color-text-gray
-		color white
-		position relative
-		float left
-		text-align right
+  position relative
+  top -.4em
+  right 0
+  
+  li
+    @extends .circle;
+    cursor pointer
+    width 2em
+    height 2em
+    padding .5em 0
+    margin 0 0  0 .25em
+    background color-text-gray
+    color white
+    position relative
+    float left
+    text-align right
 
-		div
-			@extends .hide-text;
-			text-indent 100%
-		
-		a, i
-			// font-size 1.1em
+    div
+      @extends .hide-text;
+      text-indent 100%
+    
+    a, i
+      // font-size 1.1em
 
-		i
-			// position absolute
-			// top: 0.65em;
-			// left: 0.225em;
+    i
+      position: absolute;
+      width: 70%!important;
+      height: 75%!important;
+      top: 50%!important;
+      -webkit-transform: translateY(-50%) translateX(-50%);
+      transform: translateY(-50%) translateX(-50%);
+      left: 50%!important;
 
-		i.icon-__51_facebook_white
-			// font-size: 1.3em;
-			// top: .5em;
-			// left: .125em;
+    i.icon-__51_facebook_white
+      // font-size: 1.3em;
+      // top: .5em;
+      // left: .125em;
 
 
 
 #how-it-works
-	p
-		text-align left
-		color color-text-gray
-		margin 1em
-	
-	#details
-		.detail-block
-			margin 1em
+  p
+    text-align left
+    color color-text-gray
+    margin 1em
+  
+  #details
+    .detail-block
+      margin 1em
 
-			p
-				float none
-				margin 0
-				width auto
-				border none
-			ul 
-				font-size 0.85em
-				text-align left
-				list-style disc inside
+      p
+        float none
+        margin 0
+        width auto
+        border none
+      ul 
+        font-size 0.85em
+        text-align left
+        list-style disc inside
 
 
 #team, #contact
-	background color-bg-gray
-	div, p, a, h3
-		color white
-		border-color white
+  background color-bg-gray
+  div, p, a, h3
+    color white
+    border-color white
 
 #get-started
-	//display none
+  //display none
 
 
 .page-content-inner-wrapper 
-	padding 0 .5em
+  padding 0 .5em
 
 //Pricing Page
 #pricing 
-	&.content-module
-		min-height auto // TEMP while we are only showing dev-status messaging
-		height auto
+  &.content-module
+    min-height auto // TEMP while we are only showing dev-status messaging
+    height auto
 
-	.page-heading
-		margin-bottom 0
+  .page-heading
+    margin-bottom 0
 
-	.development-status // TEMP while we're only showing dev-status messaging
-		color color-logo-green
-		font-size: 1.5em
-		margin-bottom 0
+  .development-status // TEMP while we're only showing dev-status messaging
+    color color-logo-green
+    font-size: 1.5em
+    margin-bottom 0
 
-	
-	.btn
-		color: color-logo-green
-		border-color: color-logo-green
+  
+  .btn
+    color: color-logo-green
+    border-color: color-logo-green
 
-	.base-station-preorder
-		.btn
-			margin-left 0
-
-
-	h2.price-category
-		color color-logo-green
-		line-height 2em
-		margin-top 0
-		margin-bottom 1em
-
-		&.first 
-			margin 0
-			border-top none
+  .base-station-preorder
+    .btn
+      margin-left 0
 
 
-	.price
-		padding-left 1em
+  h2.price-category
+    color color-logo-green
+    line-height 2em
+    margin-top 0
+    margin-bottom 1em
 
-		&.base-station-price 
-			display block
-			margin 0 auto
-			span
-				color color-logo-green
+    &.first 
+      margin 0
+      border-top none
 
-		span
-			&.price-number
-				font-size 3.5em
-				position relative
-		
-				.price-currency
-					font-size .5em
-					position absolute
-					top .1em
-					left -.7em
-			&.price-type
-				//
-			&.price-per
-				//
+
+  .price
+    padding-left 1em
+
+    &.base-station-price 
+      display block
+      margin 0 auto
+      span
+        color color-logo-green
+
+    span
+      &.price-number
+        font-size 3.5em
+        position relative
+    
+        .price-currency
+          font-size .5em
+          position absolute
+          top .1em
+          left -.7em
+      &.price-type
+        //
+      &.price-per
+        //
 
 .list-grid-wrapper
-	font-size: 0.75em;
-	.grid-list
-		// width 20%
-		// margin 0 2.6
-		li
-			font-size 1em
-			h2
-				margin 1em 0 0
-				line-height 1em
-				font-size 1.5em
-			
-			&.first
-				//
-			&.last
-				//
-		&.feature-icons
-			display none
-			li
-				div
-					display none
-		&.tier1
-			h2 span, .price span
-				color color-light-green
-		&.tier2
-			h2 span, .price span
-				color color-logo-green
-		&.tier3
-			h2 span, .price span
-				color color-blue-green
+  font-size: 0.75em;
+  .grid-list
+    // width 20%
+    // margin 0 2.6
+    li
+      font-size 1em
+      h2
+        margin 1em 0 0
+        line-height 1em
+        font-size 1.5em
+      
+      &.first
+        //
+      &.last
+        //
+    &.feature-icons
+      display none
+      li
+        div
+          display none
+    &.tier1
+      h2 span, .price span
+        color color-light-green
+    &.tier2
+      h2 span, .price span
+        color color-logo-green
+    &.tier3
+      h2 span, .price span
+        color color-blue-green
 
 //Team Page
 .member
-	clear both
-	margin 0 0 1em 0
+  clear both
+  margin 0 0 1em 0
 
-	h3
-		border-bottom 1px solid white
-		// float right
-		// width 50%
-	img
-		// float left
-		// width 40%
-		// margin: 1.5em 10% 5em 0;
-		border: 4px solid white;
+  h3
+    border-bottom 1px solid white
+    // float right
+    // width 50%
+  img
+    // float left
+    // width 40%
+    // margin: 1.5em 10% 5em 0;
+    border: 4px solid white;
 
-	p
-		// float right
-		// width 50%
+  p
+    // float right
+    // width 50%
 
 
 .landing-page
-	//landing page overrides here...
-	.flexslider
-		ul
-			margin 0
-			padding 0
-		img
-			width 100%
-			height auto
-			display inline
-			
+  //landing page overrides here...
+  .flexslider
+    ul
+      margin 0
+      padding 0
+    img
+      width 100%
+      height auto
+      display inline
+      
 
-	.slides
-		li
-			position relative
-			overflow hidden
-			background linear-gradient(top, 45% #A4A4A4, 70% #CACECF);
+  .slides
+    li
+      position relative
+      overflow hidden
+      background linear-gradient(top, 45% #A4A4A4, 70% #CACECF);
 
-	.flex-direction-nav
-		// position absolute
-		// top 0
-		position relative
-		top -8em
-		color white
-		z-index 3
-		width 100%
+  .flex-direction-nav
+    // position absolute
+    // top 0
+    position relative
+    top -8em
+    color white
+    z-index 3
+    width 100%
 
-		li
-			position absolute
-			width 100%
+    li
+      position absolute
+      width 100%
 
-		a
-			color white
-			display block
-			position absolute
+    a
+      color white
+      display block
+      position absolute
 
-		.flex-prev
-			left 1em
+    .flex-prev
+      left 1em
 
-		.flex-next
-			right 1em
+    .flex-next
+      right 1em
 
-		i
-			color white
-			font-size 3em
+    i
+      color white
+      font-size 3em
 
-	.footer
-		a
-			color #fff
+  .footer
+    a
+      color #fff

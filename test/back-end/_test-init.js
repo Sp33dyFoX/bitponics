@@ -7,8 +7,8 @@
  * http://visionmedia.github.com/mocha/, search for '“root” level hooks'
  */
 var mongooseConnection = require('../../config/mongoose-connection').open('test'),
-	  exec = require('child_process').exec,
- 	  winston = require('winston'),
+    exec = require('child_process').exec,
+    winston = require('winston'),
     sinon = require('sinon');
 
 /*
@@ -18,7 +18,7 @@ var mongooseConnection = require('../../config/mongoose-connection').open('test'
  * code will not run every time an individual test is run.
  */
  before(function(done){
-  	// Stub email sender
+    // Stub email sender
     var stub = sinon.stub(require("nodemailer"), "createTransport", function(){
       console.log('returning mock nodemailer.createTransport')
       return {
@@ -30,13 +30,13 @@ var mongooseConnection = require('../../config/mongoose-connection').open('test'
     });
 
     // Connecting to a local test database or creating it on the fly
-  	exec('db_init test clear', 
-  		function (error, stdout, stderr){
-  			if (error) { console.log(error); return done(new Error(error));}
-  			if (stderr) { console.log(stderr); return done(new Error(stderr));}
-  			return done();
-  		}
-	  );
+    exec('db_init test clear', 
+      function (error, stdout, stderr){
+        // if (error) { console.log(error); return done(new Error(error));}
+        // if (stderr) { console.log(stderr); return done(new Error(stderr));}
+        return done();
+      }
+    );
   }
 );
 
@@ -47,6 +47,6 @@ var mongooseConnection = require('../../config/mongoose-connection').open('test'
  * running its queue.
  */
  after(function(done){
- 	mongooseConnection.close();
- 	done();
+  mongooseConnection.close();
+  done();
  });
