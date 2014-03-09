@@ -1,0 +1,175 @@
+
+.drop-element,
+.drop-element:after,
+.drop-element:before,
+.drop-element *,
+.drop-element *:after,
+.drop-element *:before
+  box-sizing: border-box
+
+.drop-element
+  position: absolute
+  display: none
+
+  &.drop-open
+    display: block
+
+  &.drop-theme-arrows
+    max-width: 100%
+    max-height: 100%
+
+    .drop-content
+      position: relative
+      font-family: inherit
+      background: #fff
+      color: color-text-gray
+      text-align: center
+      padding: 1em
+      font-size: 1.1em
+      line-height: 1.5em
+      transform: translateZ(0)
+      -webkit-filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))
+      -moz-filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))
+
+      &:before
+        content: ""
+        display: block
+        position: absolute
+        width: 0
+        height: 0
+        border-color: transparent
+        border-width: 16px
+        border-style: solid
+
+    &.drop-element-attached-bottom.drop-element-attached-center .drop-content
+      margin-bottom: 16px
+
+    &.drop-element-attached-bottom.drop-element-attached-center .drop-content:before
+      top: 100%
+      left: 50%
+      margin-left: -16px
+      border-top-color: #fff
+
+    &.drop-element-attached-top.drop-element-attached-center .drop-content
+      margin-top: 16px
+
+    &.drop-element-attached-top.drop-element-attached-center .drop-content:before
+      bottom: 100%
+      left: 50%
+      margin-left: -16px
+      border-bottom-color: #fff
+
+    &.drop-element-attached-right.drop-element-attached-middle .drop-content
+      margin-right: 16px
+
+    &.drop-element-attached-right.drop-element-attached-middle .drop-content:before
+      left: 100%
+      top: 50%
+      margin-top: -16px
+      border-left-color: #fff
+
+    &.drop-element-attached-left.drop-element-attached-middle .drop-content
+      margin-left: 16px
+
+    &.drop-element-attached-left.drop-element-attached-middle .drop-content:before
+      right: 100%
+      top: 50%
+      margin-top: -16px
+      border-right-color: #fff
+
+    &.drop-element-attached-top.drop-element-attached-left.drop-target-attached-bottom .drop-content
+      margin-top: 16px
+
+    &.drop-element-attached-top.drop-element-attached-left.drop-target-attached-bottom .drop-content:before
+      bottom: 100%
+      left: 16px
+      border-bottom-color: #fff
+
+    &.drop-element-attached-top.drop-element-attached-right.drop-target-attached-bottom .drop-content
+      margin-top: 16px
+
+    &.drop-element-attached-top.drop-element-attached-right.drop-target-attached-bottom .drop-content:before
+      bottom: 100%
+      right: 16px
+      border-bottom-color: #fff
+
+    &.drop-element-attached-bottom.drop-element-attached-left.drop-target-attached-top .drop-content
+      margin-bottom: 16px
+
+    &.drop-element-attached-bottom.drop-element-attached-left.drop-target-attached-top .drop-content:before,
+    
+      top: 100%
+      left: 16px
+      border-top-color: #fff
+
+    &.drop-element-attached-bottom.drop-element-attached-right.drop-target-attached-top .drop-content
+      margin-bottom: 16px
+
+    &.drop-element-attached-bottom.drop-element-attached-right.drop-target-attached-top .drop-content:before
+      top: 100%
+      right: 16px
+      border-top-color: #fff
+
+    &.drop-element-attached-top.drop-element-attached-right.drop-target-attached-left .drop-content
+      margin-right: 16px
+
+    &.drop-element-attached-top.drop-element-attached-right.drop-target-attached-left .drop-content:before
+      top: 16px
+      left: 100%
+      border-left-color: #fff
+
+    &.drop-element-attached-top.drop-element-attached-left.drop-target-attached-right .drop-content
+      margin-left: 16px
+
+    &.drop-element-attached-top.drop-element-attached-left.drop-target-attached-right .drop-content:before
+      top: 16px
+      right: 100%
+      border-right-color: #fff
+
+    &.drop-element-attached-bottom.drop-element-attached-right.drop-target-attached-left .drop-content
+      margin-right: 16px
+
+    &.drop-element-attached-bottom.drop-element-attached-right.drop-target-attached-left .drop-content:before
+      bottom: 16px
+      left: 100%
+      border-left-color: #fff
+
+    &.drop-element-attached-bottom.drop-element-attached-left.drop-target-attached-right .drop-content
+      margin-left: 16px
+
+    &.drop-element-attached-bottom.drop-element-attached-left.drop-target-attached-right .drop-content:before
+      bottom: 16px
+      right: 100%
+      border-right-color: #fff
+
+
+  &.drop-theme-arrows.drop-theme-error
+    .drop-content
+      background: color-bg-orange  
+      color: #fff
+      max-width:15em
+      
+    &.drop-element-attached-bottom.drop-element-attached-center .drop-content:before
+      border-top-color: color-bg-orange
+    &.drop-element-attached-top.drop-element-attached-center .drop-content:before
+      border-bottom-color: color-bg-orange  
+    &.drop-element-attached-right.drop-element-attached-middle .drop-content:before
+      border-left-color: color-bg-orange
+    &.drop-element-attached-left.drop-element-attached-middle .drop-content:before
+      border-right-color: color-bg-orange
+    &.drop-element-attached-top.drop-element-attached-left.drop-target-attached-bottom .drop-content:before,
+    &.drop-element-attached-top.drop-element-attached-right.drop-target-attached-bottom .drop-content:before
+      border-bottom-color: color-bg-orange
+    &.drop-element-attached-bottom.drop-element-attached-left.drop-target-attached-top .drop-content:before
+      border-top-color: color-bg-orange
+    &.drop-element-attached-bottom.drop-element-attached-right.drop-target-attached-top .drop-content:before
+      border-top-color: color-bg-orange
+    &.drop-element-attached-top.drop-element-attached-right.drop-target-attached-left .drop-content:before
+      border-left-color: color-bg-orange
+    &.drop-element-attached-top.drop-element-attached-left.drop-target-attached-right .drop-content:before
+      border-right-color color-bg-orange
+    &.drop-element-attached-bottom.drop-element-attached-right.drop-target-attached-left .drop-content:before
+      border-left-color color-bg-orange
+    &.drop-element-attached-bottom.drop-element-attached-left.drop-target-attached-right .drop-content:before
+      border-right-color color-bg-orange

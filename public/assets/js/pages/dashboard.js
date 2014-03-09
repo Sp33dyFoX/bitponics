@@ -32,6 +32,7 @@ require([
   'flexslider',
   'angular-flexslider',
   'throttle-debounce',
+  'bpn.directives.fileUpload',
   'lvl.directives.fileUpload',
   'ngFacebook',
   'bpn.services.user'
@@ -597,8 +598,6 @@ require([
             console.log("responseData: " + JSON.stringify(responseData));
             if (responseData.data.length)
             var completedPhotos = responseData.data[0].filter(function(item){ return typeof item === 'object'; });
-            //writeFiles(files);
-            //completedPhotos.forEach();
             completedPhotos.forEach(function(photo){
               viewModels.initPhotoViewModel(photo);
               sharedDataService.photos.push(photo);
@@ -620,15 +619,16 @@ require([
 
             switch(type) {
               case "TOO_MANY_FILES":
-                errorMessage = "Sorry, we can't process that many files at a time. 5 files max please!";
+                errorMessage = "Sorry, we can only process 5 files at a time. Please try again with fewer files.";
                 break;
               case "MAX_SIZE_EXCEEDED":
                 errorMessage = "Sorry, we can't process a file that large. Max file size is 5mb.";
                 break;
               default:
-              errorMessage = "Sorry, there was an error uploading your photo' + we can't process that many files at a time. 5 files max please!";
+                errorMessage = "Sorry, there was an error uploading your photo. If you see this error again, please let us know so we can track down the cause.";
             }
-            writeFiles(files);
+            $scope.logFiles(files);
+
           };
 
           $scope.sharePhoto = function(photo) {
@@ -667,7 +667,7 @@ require([
             }
           };
      
-          function writeFiles(files) 
+          $scope.logFiles = function(files) 
           {
             console.log('Files')
             for (var i = 0; i < files.length; i++) {
