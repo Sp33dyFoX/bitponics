@@ -2937,9 +2937,9 @@ img.page-spinner.spinner {
 .overlay.dead-end .close {
   display: none;
 }
-@media  screen and (min-width: 50em) {
+@media screen and (min-width: 50em) {
 }
-@media  screen and (max-height: 50em) {
+@media screen and (min-height: 50em) {
 }
 .grid {
   display: -webkit-box;
@@ -3067,7 +3067,7 @@ img.page-spinner.spinner {
   -ms-flex: 0 0 25%;
   flex: 0 0 25%;
 }
-@media  screen and (min-width: 20em) {
+@media screen and (min-width: 20em) {
   .small-grid--fit > .grid-cell {
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
@@ -3123,7 +3123,7 @@ img.page-spinner.spinner {
     flex: 0 0 25%;
   }
 }
-@media  screen and (min-width: 40em) {
+@media screen and (min-width: 40em) {
   .medium-grid--fit > .grid-cell {
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
@@ -3179,7 +3179,7 @@ img.page-spinner.spinner {
     flex: 0 0 25%;
   }
 }
-@media  screen and (min-width: 50em) {
+@media screen and (min-width: 50em) {
   .large-grid--fit > .grid-cell {
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
@@ -3241,17 +3241,17 @@ img.page-spinner.spinner {
 .no-flexbox .grid-cell {
   margin: 1em -4px 1em 0;
 }
-@media  screen and (min-width: 30em) {
+@media screen and (min-width: 30em) {
   .no-flexbox .small-no-flexbox-grid--1of2 > .grid-cell {
     width: 49%;
   }
 }
-@media  screen and (min-width: 40em) {
+@media screen and (min-width: 40em) {
   .no-flexbox .medium-no-flexbox-grid--1of3 > .grid-cell {
     width: 32.3333%;
   }
 }
-@media  screen and (min-width: 50em) {
+@media screen and (min-width: 50em) {
   .no-flexbox .large-no-flexbox-grid--1of4 > .grid-cell {
     width: 24%;
   }
@@ -3371,7 +3371,7 @@ img.page-spinner.spinner {
   border: 0 none;
   position: relative;
 }
-@media  screen and (min-width: 65em) {
+@media screen and (min-width: 65em) {
   .split-layout.main header {
     clear: both;
     overflow: hidden;
@@ -3772,7 +3772,7 @@ body.ngdialog-open {
 .ngdialog.ngdialog-theme-overlay-message .ngdialog-content {
   padding: 2em;
 }
-@media  screen and (min-width: 50em) {
+@media screen and (min-width: 50em) {
   .ngdialog.ngdialog-theme-overlay-message .ngdialog-content {
     left: 20%;
     width: 60%;
@@ -4166,7 +4166,7 @@ bpn-directives-file-upload input[type="file"],
   float: left;
   margin: 0 0.5em;
 }
-@media  screen and (min-width: 40em) {
+@media screen and (min-width: 40em) {
   .header .app-user .user-name {
     display: block;
   }
@@ -5817,13 +5817,13 @@ label.newsletter.inline {
 .circle {
   margin: 1.5em 0;
 }
-@media  screen and (min-width: 40em) {
+@media screen and (min-width: 40em) {
   .dashboard .overlay {
     left: 5%;
     width: 90%;
   }
 }
-@media  screen and (min-width: 65em) {
+@media screen and (min-width: 65em) {
   .dashboard .overlay {
     left: 25%;
     width: 50%;
@@ -8294,13 +8294,13 @@ button.close {
   font-size: 2em;
   top: 0.25em;
 }
-@media  screen and (min-width: 65em) {
+@media screen and (min-width: 65em) {
   .growplans .page-heading,
   .growplans.app-page .page-heading {
     width: 90%;
   }
 }
-@media  screen and (min-width: 40em) {
+@media screen and (min-width: 40em) {
   .growplans .page-heading,
   .growplans.app-page .page-heading {
     font-size: 2.5em;
@@ -8743,7 +8743,7 @@ form .ng-invalid.ng-dirty {
 .ww-break-word {
   word-wrap: break-word;
 }
-@media  screen and (min-width: 40em) {
+@media screen and (min-width: 40em) {
   .content-module {
     float: left;
   }
@@ -9415,7 +9415,7 @@ form .ng-invalid.ng-dirty {
 .ww-break-word {
   word-wrap: break-word;
 }
-@media  screen and (min-width: 50em) {
+@media screen and (min-width: 50em) {
   .landing-page .main,
   .landing-page .header {
     padding: 0;
@@ -9580,7 +9580,7 @@ form .ng-invalid.ng-dirty {
     width: 95%;
   }
 }
-@media  screen and (min-width: 65em) {
+@media screen and (min-width: 65em) {
   .page-content-inner-wrapper {
     width: 84%;
     float: right;

@@ -234,7 +234,7 @@
 .ww-break-word {
   word-wrap: break-word;
 }
-@media  screen and (min-width: 50em) {
+@media screen and (min-width: 50em) {
   .landing-page .main,
   .landing-page .header {
     padding: 0;
@@ -399,7 +399,7 @@
     width: 95%;
   }
 }
-@media  screen and (min-width: 65em) {
+@media screen and (min-width: 65em) {
   .page-content-inner-wrapper {
     width: 84%;
     float: right;

@@ -1,8 +1,8 @@
 {
-  "$screen-smaller": "20em",
-  "$screen-small": "30em",
-  "$screen-small-height": "50em",
-  "$screen-medium": "40em",
-  "$screen-large": "50em",
-  "$screen-larger": "65em"
+  "$mq_smaller": "screen and (min-width: 20em)",
+  "$mq_small": "screen and (min-width: 30em)",
+  "$mq_small_height": "screen and (min-height: 50em)",
+  "$mq_medium": "screen and (min-width: 40em)",
+  "$mq_large": "screen and (min-width: 50em)",
+  "$mq_larger": "screen and (min-width: 65em)"
 }

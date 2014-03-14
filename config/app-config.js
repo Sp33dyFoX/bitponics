@@ -18,7 +18,8 @@ var connect    = require('connect'),
   cookie  = require('express/node_modules/cookie'),
   s3Config = require('../config/s3-config'),
   intercomConfig = require('../config/intercom-config'),
-  crypto = require('crypto');
+  crypto = require('crypto'),
+  breakpoints = require('../public/assets/config/media-queries');
   
 
 module.exports = function(app){
@@ -46,7 +47,7 @@ module.exports = function(app){
     );
 
     app.set('view engine', 'jade');
-    app.locals({ basedir: path.join(__dirname, '/../views') });
+    app.locals({ basedir: path.join(__dirname, '/../views'), breakpoints: breakpoints });
 
     app.use(express.logger(':method :url :status'));
 
@@ -126,23 +127,23 @@ module.exports = function(app){
 
       winston.info('Finished mongoose config');
 
-	    app.config.mongooseConnection = mongooseConnection;
+      app.config.mongooseConnection = mongooseConnection;
 
       app.config.session = {
-	      secret : 'somethingrandom',
-	      key : 'express.sid',
-	      store : new MongoStore({
-	        //mongoose_connection : app.config.mongooseConnection
+        secret : 'somethingrandom',
+        key : 'express.sid',
+        store : new MongoStore({
+          //mongoose_connection : app.config.mongooseConnection
           db : app.config.mongooseConnection.db
-	      })
-	    };	
+        })
+      };  
 
-	    // cookieParser and session handling are needed for everyauth (inside mongooseAuth) to work  (https://github.com/bnoguchi/everyauth/issues/27)
-	    app.use(express.cookieParser());
-	    app.use(express.session(app.config.session));
+      // cookieParser and session handling are needed for everyauth (inside mongooseAuth) to work  (https://github.com/bnoguchi/everyauth/issues/27)
+      app.use(express.cookieParser());
+      app.use(express.session(app.config.session));
 
-	    app.use(passport.initialize());
-	    app.use(passport.session());
+      app.use(passport.initialize());
+      app.use(passport.session());
 
       winston.info('Finished session config');
     });
@@ -152,7 +153,7 @@ module.exports = function(app){
     //flash messages are separate as of express 3
     app.use(flash());
     //  app.use(function(req, res, next){
-    //  	res.locals.flashMessages = req.flash();
+    //    res.locals.flashMessages = req.flash();
     // });
 
 
@@ -232,7 +233,7 @@ module.exports = function(app){
       //we probably want to do something like this on heroku:
       //redirect to https
       // app.use(function(req, res, next) {
-      // 		//this is only present on heroku
+      //    //this is only present on heroku
       //     var schema = req.headers["x-forwarded-proto"];
 
       //     if (schema === "https")
@@ -265,10 +266,10 @@ module.exports = function(app){
     app.enable('view cache');
 
     app.socketIOs.forEach(function(io){
-    	io.enable('browser client minification');  // send minified client
-	    io.enable('browser client etag');          // apply etag caching logic based on version number
-	    io.enable('browser client gzip');          // gzip the file
-	    io.set('log level', 1);
+      io.enable('browser client minification');  // send minified client
+      io.enable('browser client etag');          // apply etag caching logic based on version number
+      io.enable('browser client gzip');          // gzip the file
+      io.set('log level', 1);
     });
   });
 

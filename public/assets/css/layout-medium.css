@@ -211,7 +211,7 @@
 .ww-break-word {
   word-wrap: break-word;
 }
-@media  screen and (min-width: 40em) {
+@media screen and (min-width: 40em) {
   .content-module {
     float: left;
   }

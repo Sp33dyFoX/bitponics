@@ -1385,9 +1385,9 @@ img.page-spinner.spinner {
 .overlay.dead-end .close {
   display: none;
 }
-@media  screen and (min-width: 50em) {
+@media screen and (min-width: 50em) {
 }
-@media  screen and (max-height: 50em) {
+@media screen and (min-height: 50em) {
 }
 /*
  * Grid
@@ -1445,7 +1445,7 @@ img.page-spinner.spinner {
 .grid--1of4 > .grid-cell {
   flex: 0 0 25%;
 }
-@media  screen and (min-width: 20em) {
+@media screen and (min-width: 20em) {
   .small-grid--fit > .grid-cell {
     flex: 1;
   }
@@ -1465,7 +1465,7 @@ img.page-spinner.spinner {
     flex: 0 0 25%;
   }
 }
-@media  screen and (min-width: 40em) {
+@media screen and (min-width: 40em) {
   .medium-grid--fit > .grid-cell {
     flex: 1;
   }
@@ -1485,7 +1485,7 @@ img.page-spinner.spinner {
     flex: 0 0 25%;
   }
 }
-@media  screen and (min-width: 50em) {
+@media screen and (min-width: 50em) {
   .large-grid--fit > .grid-cell {
     flex: 1;
   }
@@ -1511,17 +1511,17 @@ img.page-spinner.spinner {
 .no-flexbox .grid-cell {
   margin: 1em -4px 1em 0;
 }
-@media  screen and (min-width: 30em) {
+@media screen and (min-width: 30em) {
   .no-flexbox .small-no-flexbox-grid--1of2 > .grid-cell {
     width: 49%;
   }
 }
-@media  screen and (min-width: 40em) {
+@media screen and (min-width: 40em) {
   .no-flexbox .medium-no-flexbox-grid--1of3 > .grid-cell {
     width: 32.3333%;
   }
 }
-@media  screen and (min-width: 50em) {
+@media screen and (min-width: 50em) {
   .no-flexbox .large-no-flexbox-grid--1of4 > .grid-cell {
     width: 24%;
   }
@@ -1642,7 +1642,7 @@ img.page-spinner.spinner {
   border: 0 none;
   position: relative;
 }
-@media  screen and (min-width: 65em) {
+@media screen and (min-width: 65em) {
   .split-layout.main header {
     clear: both;
     overflow: hidden;
@@ -1963,7 +1963,7 @@ body.ngdialog-open {
 .ngdialog.ngdialog-theme-overlay-message .ngdialog-content {
   padding: 2em;
 }
-@media  screen and (min-width: 50em) {
+@media screen and (min-width: 50em) {
   .ngdialog.ngdialog-theme-overlay-message .ngdialog-content {
     left: 20%;
     width: 60%;
@@ -1986,7 +1986,7 @@ body.ngdialog-open {
   color: #fac400;
 }
 /*
- * Drop
+ * Drop/Tooltip
  */
 .drop-element,
 .drop-element:after,
@@ -1994,8 +1994,6 @@ body.ngdialog-open {
 .drop-element *,
 .drop-element *:after,
 .drop-element *:before {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 .drop-element {
@@ -2010,26 +2008,18 @@ body.ngdialog-open {
   max-height: 100%;
 }
 .drop-element.drop-theme-arrows .drop-content {
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px;
   position: relative;
   font-family: inherit;
-  background: #eee;
-  color: #444;
+  background: #fff;
+  color: #999;
+  text-align: center;
   padding: 1em;
   font-size: 1.1em;
   line-height: 1.5em;
-  -webkit-transform: translateZ(0);
-  -moz-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  -o-transform: translateZ(0);
   transform: translateZ(0);
-  -webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
-  -moz-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
-  filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+  -webkit-filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+  -moz-filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
 }
 .drop-element.drop-theme-arrows .drop-content:before {
   content: "";
@@ -2048,7 +2038,7 @@ body.ngdialog-open {
   top: 100%;
   left: 50%;
   margin-left: -16px;
-  border-top-color: #eee;
+  border-top-color: #fff;
 }
 .drop-element.drop-theme-arrows.drop-element-attached-top.drop-element-attached-center .drop-content {
   margin-top: 16px;
@@ -2057,7 +2047,7 @@ body.ngdialog-open {
   bottom: 100%;
   left: 50%;
   margin-left: -16px;
-  border-bottom-color: #eee;
+  border-bottom-color: #fff;
 }
 .drop-element.drop-theme-arrows.drop-element-attached-right.drop-element-attached-middle .drop-content {
   margin-right: 16px;
@@ -2066,7 +2056,7 @@ body.ngdialog-open {
   left: 100%;
   top: 50%;
   margin-top: -16px;
-  border-left-color: #eee;
+  border-left-color: #fff;
 }
 .drop-element.drop-theme-arrows.drop-element-attached-left.drop-element-attached-middle .drop-content {
   margin-left: 16px;
@@ -2075,7 +2065,7 @@ body.ngdialog-open {
   right: 100%;
   top: 50%;
   margin-top: -16px;
-  border-right-color: #eee;
+  border-right-color: #fff;
 }
 .drop-element.drop-theme-arrows.drop-element-attached-top.drop-element-attached-left.drop-target-attached-bottom .drop-content {
   margin-top: 16px;
@@ -2083,7 +2073,7 @@ body.ngdialog-open {
 .drop-element.drop-theme-arrows.drop-element-attached-top.drop-element-attached-left.drop-target-attached-bottom .drop-content:before {
   bottom: 100%;
   left: 16px;
-  border-bottom-color: #eee;
+  border-bottom-color: #fff;
 }
 .drop-element.drop-theme-arrows.drop-element-attached-top.drop-element-attached-right.drop-target-attached-bottom .drop-content {
   margin-top: 16px;
@@ -2091,15 +2081,15 @@ body.ngdialog-open {
 .drop-element.drop-theme-arrows.drop-element-attached-top.drop-element-attached-right.drop-target-attached-bottom .drop-content:before {
   bottom: 100%;
   right: 16px;
-  border-bottom-color: #eee;
+  border-bottom-color: #fff;
 }
 .drop-element.drop-theme-arrows.drop-element-attached-bottom.drop-element-attached-left.drop-target-attached-top .drop-content {
   margin-bottom: 16px;
 }
-.drop-element.drop-theme-arrows.drop-element-attached-bottom.drop-element-attached-left.drop-target-attached-top .drop-content:before {
-  top: 100%;
+.drop-element.drop-theme-arrows.drop-element-attached-bottom.drop-element-attached-left.drop-target-attached-top .drop-content:before,
+.drop-element.drop-theme-arrows top: 100% {
   left: 16px;
-  border-top-color: #eee;
+  border-top-color: #fff;
 }
 .drop-element.drop-theme-arrows.drop-element-attached-bottom.drop-element-attached-right.drop-target-attached-top .drop-content {
   margin-bottom: 16px;
@@ -2107,7 +2097,7 @@ body.ngdialog-open {
 .drop-element.drop-theme-arrows.drop-element-attached-bottom.drop-element-attached-right.drop-target-attached-top .drop-content:before {
   top: 100%;
   right: 16px;
-  border-top-color: #eee;
+  border-top-color: #fff;
 }
 .drop-element.drop-theme-arrows.drop-element-attached-top.drop-element-attached-right.drop-target-attached-left .drop-content {
   margin-right: 16px;
@@ -2115,7 +2105,7 @@ body.ngdialog-open {
 .drop-element.drop-theme-arrows.drop-element-attached-top.drop-element-attached-right.drop-target-attached-left .drop-content:before {
   top: 16px;
   left: 100%;
-  border-left-color: #eee;
+  border-left-color: #fff;
 }
 .drop-element.drop-theme-arrows.drop-element-attached-top.drop-element-attached-left.drop-target-attached-right .drop-content {
   margin-left: 16px;
@@ -2123,7 +2113,7 @@ body.ngdialog-open {
 .drop-element.drop-theme-arrows.drop-element-attached-top.drop-element-attached-left.drop-target-attached-right .drop-content:before {
   top: 16px;
   right: 100%;
-  border-right-color: #eee;
+  border-right-color: #fff;
 }
 .drop-element.drop-theme-arrows.drop-element-attached-bottom.drop-element-attached-right.drop-target-attached-left .drop-content {
   margin-right: 16px;
@@ -2131,7 +2121,7 @@ body.ngdialog-open {
 .drop-element.drop-theme-arrows.drop-element-attached-bottom.drop-element-attached-right.drop-target-attached-left .drop-content:before {
   bottom: 16px;
   left: 100%;
-  border-left-color: #eee;
+  border-left-color: #fff;
 }
 .drop-element.drop-theme-arrows.drop-element-attached-bottom.drop-element-attached-left.drop-target-attached-right .drop-content {
   margin-left: 16px;
@@ -2139,163 +2129,62 @@ body.ngdialog-open {
 .drop-element.drop-theme-arrows.drop-element-attached-bottom.drop-element-attached-left.drop-target-attached-right .drop-content:before {
   bottom: 16px;
   right: 100%;
-  border-right-color: #eee;
+  border-right-color: #fff;
+}
+.drop-element.drop-theme-arrows.drop-theme-error .drop-content {
+  background: #fac400;
+  color: #fff;
+  max-width: 15em;
+}
+.drop-element.drop-theme-arrows.drop-theme-error.drop-element-attached-bottom.drop-element-attached-center .drop-content:before {
+  border-top-color: #fac400;
+}
+.drop-element.drop-theme-arrows.drop-theme-error.drop-element-attached-top.drop-element-attached-center .drop-content:before {
+  border-bottom-color: #fac400;
+}
+.drop-element.drop-theme-arrows.drop-theme-error.drop-element-attached-right.drop-element-attached-middle .drop-content:before {
+  border-left-color: #fac400;
+}
+.drop-element.drop-theme-arrows.drop-theme-error.drop-element-attached-left.drop-element-attached-middle .drop-content:before {
+  border-right-color: #fac400;
+}
+.drop-element.drop-theme-arrows.drop-theme-error.drop-element-attached-top.drop-element-attached-left.drop-target-attached-bottom .drop-content:before,
+.drop-element.drop-theme-arrows.drop-theme-error.drop-element-attached-top.drop-element-attached-right.drop-target-attached-bottom .drop-content:before {
+  border-bottom-color: #fac400;
+}
+.drop-element.drop-theme-arrows.drop-theme-error.drop-element-attached-bottom.drop-element-attached-left.drop-target-attached-top .drop-content:before {
+  border-top-color: #fac400;
+}
+.drop-element.drop-theme-arrows.drop-theme-error.drop-element-attached-bottom.drop-element-attached-right.drop-target-attached-top .drop-content:before {
+  border-top-color: #fac400;
+}
+.drop-element.drop-theme-arrows.drop-theme-error.drop-element-attached-top.drop-element-attached-right.drop-target-attached-left .drop-content:before {
+  border-left-color: #fac400;
+}
+.drop-element.drop-theme-arrows.drop-theme-error.drop-element-attached-top.drop-element-attached-left.drop-target-attached-right .drop-content:before {
+  border-right-color: #fac400;
+}
+.drop-element.drop-theme-arrows.drop-theme-error.drop-element-attached-bottom.drop-element-attached-right.drop-target-attached-left .drop-content:before {
+  border-left-color: #fac400;
+}
+.drop-element.drop-theme-arrows.drop-theme-error.drop-element-attached-bottom.drop-element-attached-left.drop-target-attached-right .drop-content:before {
+  border-right-color: #fac400;
 }
 /*
  * Tooltip
  */
-.tooltip-element,
-.tooltip-element:after,
-.tooltip-element:before,
-.tooltip-element *,
-.tooltip-element *:after,
-.tooltip-element *:before {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+/*
+ * Tooltip
+ */
+bpn-directives-file-upload label,
+.bpn-directives-file-upload label {
+  margin: 0;
 }
-.tooltip-element {
-  position: absolute;
-  display: none;
-}
-.tooltip-element.tooltip-open {
-  display: block;
-}
-.tooltip-element.tooltip-theme-arrows {
-  max-width: 100%;
-  max-height: 100%;
-}
-.tooltip-element.tooltip-theme-arrows .tooltip-content {
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-  border-radius: 5px;
-  position: relative;
-  font-family: inherit;
-  background: #000;
-  color: #eee;
-  padding: 1em;
-  font-size: 1.1em;
-  line-height: 1.5em;
-}
-.tooltip-element.tooltip-theme-arrows .tooltip-content:before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-width: 8px;
-  border-style: solid;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-bottom.tooltip-element-attached-center .tooltip-content {
-  margin-bottom: 8px;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-bottom.tooltip-element-attached-center .tooltip-content:before {
-  top: 100%;
-  left: 50%;
-  margin-left: -8px;
-  border-top-color: #000;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-top.tooltip-element-attached-center .tooltip-content {
-  margin-top: 8px;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-top.tooltip-element-attached-center .tooltip-content:before {
-  bottom: 100%;
-  left: 50%;
-  margin-left: -8px;
-  border-bottom-color: #000;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-right.tooltip-element-attached-middle .tooltip-content {
-  margin-right: 8px;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-right.tooltip-element-attached-middle .tooltip-content:before {
-  left: 100%;
-  top: 50%;
-  margin-top: -8px;
-  border-left-color: #000;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-left.tooltip-element-attached-middle .tooltip-content {
-  margin-left: 8px;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-left.tooltip-element-attached-middle .tooltip-content:before {
-  right: 100%;
-  top: 50%;
-  margin-top: -8px;
-  border-right-color: #000;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-top.tooltip-element-attached-left.tooltip-target-attached-bottom .tooltip-content {
-  margin-top: 8px;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-top.tooltip-element-attached-left.tooltip-target-attached-bottom .tooltip-content:before {
-  bottom: 100%;
-  left: 8px;
-  border-bottom-color: #000;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-top.tooltip-element-attached-right.tooltip-target-attached-bottom .tooltip-content {
-  margin-top: 8px;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-top.tooltip-element-attached-right.tooltip-target-attached-bottom .tooltip-content:before {
-  bottom: 100%;
-  right: 8px;
-  border-bottom-color: #000;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-bottom.tooltip-element-attached-left.tooltip-target-attached-top .tooltip-content {
-  margin-bottom: 8px;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-bottom.tooltip-element-attached-left.tooltip-target-attached-top .tooltip-content:before {
-  top: 100%;
-  left: 8px;
-  border-top-color: #000;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-bottom.tooltip-element-attached-right.tooltip-target-attached-top .tooltip-content {
-  margin-bottom: 8px;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-bottom.tooltip-element-attached-right.tooltip-target-attached-top .tooltip-content:before {
-  top: 100%;
-  right: 8px;
-  border-top-color: #000;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-top.tooltip-element-attached-right.tooltip-target-attached-left .tooltip-content {
-  margin-right: 8px;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-top.tooltip-element-attached-right.tooltip-target-attached-left .tooltip-content:before {
-  top: 8px;
-  left: 100%;
-  border-left-color: #000;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-top.tooltip-element-attached-left.tooltip-target-attached-right .tooltip-content {
-  margin-left: 8px;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-top.tooltip-element-attached-left.tooltip-target-attached-right .tooltip-content:before {
-  top: 8px;
-  right: 100%;
-  border-right-color: #000;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-bottom.tooltip-element-attached-right.tooltip-target-attached-left .tooltip-content {
-  margin-right: 8px;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-bottom.tooltip-element-attached-right.tooltip-target-attached-left .tooltip-content:before {
-  bottom: 8px;
-  left: 100%;
-  border-left-color: #000;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-bottom.tooltip-element-attached-left.tooltip-target-attached-right .tooltip-content {
-  margin-left: 8px;
-}
-.tooltip-element.tooltip-theme-arrows.tooltip-element-attached-bottom.tooltip-element-attached-left.tooltip-target-attached-right .tooltip-content:before {
-  bottom: 8px;
-  right: 100%;
-  border-right-color: #000;
-}
-.tooltip-element.tooltip-theme-arrows {
-  -webkit-pointer-events: none;
-  -moz-pointer-events: none;
-  pointer-events: none;
-}
-.tooltip-element.tooltip-theme-arrows .tooltip-content {
-  padding: 0.5em 1em;
+bpn-directives-file-upload input[type="file"],
+.bpn-directives-file-upload input[type="file"] {
+  width: 100% !important;
+  height: 100%;
+  margin: 0;
 }
 /*
  * Grow Plan List
@@ -2471,7 +2360,7 @@ body.ngdialog-open {
   float: left;
   margin: 0 0.5em;
 }
-@media  screen and (min-width: 40em) {
+@media screen and (min-width: 40em) {
   .header .app-user .user-name {
     display: block;
   }
@@ -4099,13 +3988,13 @@ label.newsletter.inline {
 .circle {
   margin: 1.5em 0;
 }
-@media  screen and (min-width: 40em) {
+@media screen and (min-width: 40em) {
   .dashboard .overlay {
     left: 5%;
     width: 90%;
   }
 }
-@media  screen and (min-width: 65em) {
+@media screen and (min-width: 65em) {
   .dashboard .overlay {
     left: 25%;
     width: 50%;
@@ -6591,13 +6480,13 @@ button.close {
   font-size: 2em;
   top: 0.25em;
 }
-@media  screen and (min-width: 65em) {
+@media screen and (min-width: 65em) {
   .growplans .page-heading,
   .growplans.app-page .page-heading {
     width: 90%;
   }
 }
-@media  screen and (min-width: 40em) {
+@media screen and (min-width: 40em) {
   .growplans .page-heading,
   .growplans.app-page .page-heading {
     font-size: 2.5em;
