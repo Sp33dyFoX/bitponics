@@ -19,6 +19,8 @@ block content
         
         img.page-spinner.spinner(src="/assets/img/spinner.svg", ng-hide="true")
 
+        a(href="/guides/bitponics-open-hardware") Bitponics Open Hardware Guide
+
         if (userOwnedDevices.length > 0)
           ul.device-list(ng-cloak)
             each device in userOwnedDevices
