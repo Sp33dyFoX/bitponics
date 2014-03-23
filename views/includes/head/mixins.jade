@@ -37,6 +37,7 @@ mixin requirejs(dataMain)
   - var domReady = CDN('/assets/js/libs/requirejs/domReady.js', { 'raw' : true }).replace(/\.js\r*\n*$/, '').trim();
   - var drop = CDN('/assets/js/libs/drop.js', { 'raw' : true }).replace(/\.js\r*\n*$/, '').trim();
   - var es5shim = CDN('/assets/js/libs/es5-shim.min.js', { 'raw' : true }).replace(/\.js\r*\n*$/, '').trim();
+  - var enquire = CDN('/assets/js/libs/enquire.js', { 'raw' : true }).replace(/\.js\r*\n*$/, '').trim();
   - var feBeUtils = CDN('/assets/js/fe-be/fe-be-utils.js', { 'raw' : true }).replace(/\.js\r*\n*$/, '').trim();
   - var fileSaver = CDN('/assets/js/libs/FileSaver.js', { 'raw' : true }).replace(/\.js\r*\n*$/, '').trim();
   - var flexslider = CDN('/assets/js/libs/flexslider/jquery.flexslider-min.js', { 'raw' : true }).replace(/\.js\r*\n*$/, '').trim();
@@ -104,6 +105,7 @@ mixin requirejs(dataMain)
         'domReady': '#{domReady}',
         'drop': '#{drop}',
         'es5shim': '#{es5shim}',
+        'enquire': '#{enquire}',
         // 'facebook' : '//connect.facebook.net/en_US/all',
         'fileSaver' : '#{fileSaver}',
         'fe-be-utils': '#{feBeUtils}',

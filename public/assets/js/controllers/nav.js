@@ -94,7 +94,15 @@ define(
         function ($scope, $filter, $compile, NavService, UserModel, ngDialog, socket) {
           // init
           $scope.settingsDisplayVisible = false;
-          $scope.navMenuDisplayVisible = document.documentElement.clientWidth < 640 ? false : true; //temp hack
+          $scope.navMenuDisplayVisible = false;
+
+          //set show/hide of nav based on $mq_medium
+          $scope.$on('match', function(event, mq) {
+            if (mq === '$mq_medium') $scope.navMenuDisplayVisible = true;
+          });
+          $scope.$on('unmatch', function(event, mq) {
+            if (mq === '$mq_medium') $scope.navMenuDisplayVisible = false;
+          });
 
           $scope.socket = socket;
           $scope.NavService = NavService;

@@ -1,9 +1,9 @@
-define(['bpn.directives'],
+define(['bpn.directives', 'enquire'],
   function (bpnDirectives) {
    
    /*
     * Breakpoints
-    * - Find media queries defined in page CSS
+    * - Fire events based on breakpoint matching/unmatching
     *
     *
     * Depends on following globals:
@@ -18,30 +18,57 @@ define(['bpn.directives'],
             controller: function ($scope, $element, $attrs) {
               $scope.sharedDataService = sharedDataService;
               $scope.sharedDataService.breakpoints = bpn.breakpoints;
-              // $scope.regex = {
-              //     media: /@media[^\{]+\{([^\{\}]*\{[^\}\{]*\})+/gi
-              // }; //from scott jehl https://github.com/scottjehl/Respond/blob/master/src/respond.js
+              $scope.sharedDataService.enquireBreakpoints = {};
             },
             link: function (scope, element, attrs) {
-              // var ss = document.styleSheets,
-              //     mediaQuery,
-              //     added = {};
-                  
-              // for (var i = 0; i < ss.length; i++){
-              //   for (var j = 0; j < ss[i].cssRules.length; j++) {
-              //     console.log(ss[i].cssRules[j].cssText.match(scope.regex.media));
-              //     debugger;
-              //     if (ss[i].cssRules[j].cssText.match(scope.regex.media)) {
-              //         mediaQuery = ss[i].cssRules[j].cssText.match(scope.regex.media)[0].split('{')[0].trim();
-              //         debugger;
-              //         if (!added[mediaQuery]) {
-              //           added[mediaQuery] = true;
-              //           // scope.breakpoints.push(mediaQuery);
-              //           scope.sharedDataService.breakpoints.push(mediaQuery);
-              //         }
-              //     }
-              //   }
-              // }
+              var breakpoints = scope.sharedDataService.breakpoints;
+              var keys = Object.keys(breakpoints);
+              
+              for (var i = 0; i < keys.length; i++) {
+                
+                scope.sharedDataService.enquireBreakpoints[keys[i]] = (function(i) {
+                  return enquire.register(breakpoints[keys[i]], {
+
+                    // OPTIONAL
+                    // If supplied, triggered when a media query matches.
+                    match : function() {
+                      console.log('matching in directive', keys[i]);
+                      scope.$broadcast('match', keys[i]);
+                    },
+                                                
+                    // OPTIONAL
+                    // If supplied, triggered when the media query transitions 
+                    // *from a matched state to an unmatched state*.
+                    unmatch : function() {
+                      console.log('un-matching in directive', keys[i]);
+                      scope.$broadcast('unmatch', keys[i]);
+                    },
+
+                    // OPTIONAL
+                    // If supplied, triggered once, when the handler is registered.
+                    setup : function() {
+                      console.log('setup in directive', keys[i]);
+                      scope.$broadcast('setup', keys[i]);
+                    },
+                                                
+                    // OPTIONAL, defaults to false
+                    // If set to true, defers execution of the setup function 
+                    // until the first time the media query is matched
+                    deferSetup : true,
+                                                
+                    // OPTIONAL
+                    // If supplied, triggered when handler is unregistered. 
+                    // Place cleanup code here
+                    destroy : function() {
+                      console.log('destroy in directive', keys[i]);
+                      scope.$broadcast('destroy', keys[i]);
+                    }
+                    
+                  });
+
+                })(i);
+
+              }
             }
           }
         }

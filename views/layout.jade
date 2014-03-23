@@ -10,9 +10,14 @@ html(class=className + " no-js " + pageClassName)
     include includes/head/head-content
     block head
 
-  body(data-breakpoints)
+  body(data-breakpoints, data-bpn-directives-pixels-to-ems="{{ems}}")
     div(class="page", data-role="page")
         div(class="page-wrapper", data-role="content")
+
+            section.header
+              header
+                include includes/nav/main
+                
             block content
             
             include includes/footer/main

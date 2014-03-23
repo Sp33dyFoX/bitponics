@@ -4,9 +4,9 @@
  * Include common shared directives
  */
 define(['angular', 'jquery', 'throttle-debounce'], 
-	function(angular, $) { 
-		'use strict'; 
-		var bpnDirectives = angular.module('bpn.directives', []);
+  function(angular, $) { 
+    'use strict'; 
+    var bpnDirectives = angular.module('bpn.directives', []);
 
 
     // http://stackoverflow.com/a/15253892/117331
@@ -29,8 +29,41 @@ define(['angular', 'jquery', 'throttle-debounce'],
       };
     });
 
+    bpnDirectives.directive('bpnDirectivesPixelsToEms',
+      [
+        '$window',
+        // 'sharedDataService',
+        // function($window, sharedDataService) {
+        function($window) {
+          return {
+            controller: [
+              '$scope',
+              function ($scope){
+                // $scope.sharedDataService = sharedDataService;
+              }
+            ],
+            link: function(scope, element) {
+              var win = angular.element($window);
+              var pixels = element[0].clientWidth;
+              var scopeTest = angular.element('<div style="display: none; font-size: 1em; margin: 0; padding:0; height: auto; line-height: 1; border:0;">&nbsp;</div>').appendTo(element);
+              var scopeVal = scopeTest.height();
+              
+              scopeTest.remove();
+              // scope.sharedDataService.ems = scope.ems = (pixels / scopeVal).toFixed(8);
+              scope.ems = (pixels / scopeVal).toFixed(8);
+              
+              win.bind('resize', function(){
+                // scope.sharedDataService.ems = scope.ems = (element[0].clientWidth / scopeVal).toFixed(8);
+                scope.ems = (element[0].clientWidth / scopeVal).toFixed(8);
+                scope.$apply();
+              });
+            }
+          };
+        }
+      ]
+    );
 
-     bpnDirectives.directive('bpnDirectivesSelectOnClick', function () {
+    bpnDirectives.directive('bpnDirectivesSelectOnClick', function () {
       return function (scope, element, attrs) {
           element.click(function () {
               element.select();
@@ -244,5 +277,5 @@ define(['angular', 'jquery', 'throttle-debounce'],
 
 
     return bpnDirectives;
-	}
+  }
 );

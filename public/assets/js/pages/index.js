@@ -35,8 +35,13 @@ function (angular, domReady) {
   homePageApp.controller('bpn.controllers.homepage.Main',
     [
       '$scope',
-      function ($scope) {
-        // 
+      'sharedDataService',
+      function ($scope, sharedDataService) {
+        $scope.sharedDataService = sharedDataService;
+        // $scope.$on('match', function(event, data) {
+        //   console.log('$on data =>', event);
+        //   console.log(data);
+        // });
       }
     ]
   );
