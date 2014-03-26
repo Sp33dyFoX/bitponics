@@ -15,7 +15,7 @@ block content
 
   section#main(role="main", class="main", ng-controller="bpn.controllers.growPlans.Main")
     h2.page-heading My Grow Plans
-    div.separator-top
+    div
       img.page-spinner.spinner(src="/assets/img/spinner.svg", ng-hide="true")
       ul(ng-cloak, class="grow-plan-list grid grid--top grid--wrapping grid--gutters grid--full medium-grid--1of3 small-no-flexbox-grid--1of2 medium-no-flexbox-grid--1of3 block-info-set sortlist photos separator-top")
         li(ng-repeat="growPlan in userGrowPlans | orderBy:'-activeGardenCount'", class="grow-plan-list-item grid-cell", style="")
@@ -36,7 +36,7 @@ block content
         a.btn.set-up-garden(href="/setup/grow-plan") Create your own grow plan
 
     h2.page-heading.clear-b Community Grow Plans
-    div.separator-top
+    div
       img.page-spinner.spinner(src="/assets/img/spinner.svg", ng-hide="true")
       ul(ng-cloak, class="grow-plan-list grid grid--top grid--wrapping grid--gutters grid--full medium-grid--1of3 small-no-flexbox-grid--1of2 medium-no-flexbox-grid--1of3 block-info-set sortlist photos separator-top")
         li(ng-repeat="growPlan in communityGrowPlans | orderBy:'-activeGardenCount'", class="grow-plan-list-item grid-cell", style="")
