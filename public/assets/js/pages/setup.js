@@ -33,6 +33,10 @@ function (angular, domReady) {
           $scope.maskedSerial = $('#serial')[0].value.substring(0, 11);
         });
 
+        $scope.getStarted = function(){
+          $scope.getStartedClicked = true;
+        };
+
         $scope.sendSerialToServer = function() {
           $http.post(
             "/setup", 
