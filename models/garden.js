@@ -4,13 +4,13 @@
  */
 
 var mongoose = require('mongoose'),
-	mongoosePlugins = require('../lib/mongoose-plugins'),
+  mongoosePlugins = require('../lib/mongoose-plugins'),
   useTimestamps = mongoosePlugins.useTimestamps,
-	Schema = mongoose.Schema,
-	ObjectIdSchema = Schema.ObjectId,
-	GrowPlanModel = require('./growPlan').growPlan.model,
-	User = require('./user').model,
-	GrowPlanInstanceModel,
+  Schema = mongoose.Schema,
+  ObjectIdSchema = Schema.ObjectId,
+  GrowPlanModel = require('./growPlan').growPlan.model,
+  User = require('./user').model,
+  GrowPlanInstanceModel,
   async = require('async'),
   winston = require('winston'),
   tz = require('../lib/timezone-wrapper'),
@@ -70,19 +70,19 @@ var PhaseDaySummarySchema = new Schema({
  */
 var GrowPlanInstanceSchema = new Schema({
 
-	users : [{ type: ObjectIdSchema, ref: 'User' }],
-	
-	owner : { type: ObjectIdSchema, ref: 'User', required: true },
+  users : [{ type: ObjectIdSchema, ref: 'User' }],
+  
+  owner : { type: ObjectIdSchema, ref: 'User', required: true },
 
-	growPlan : { type : ObjectIdSchema, ref : 'GrowPlan', required: true },
-	
-	device : { type : String, ref : 'Device', match: /^([a-z0-9_-]){12}$/, required: false }, //the bitponics device
-	
-	name : { type : String },
+  growPlan : { type : ObjectIdSchema, ref : 'GrowPlan', required: true },
+  
+  device : { type : String, ref : 'Device', match: /^([a-z0-9_-]){12}$/, required: false }, //the bitponics device
+  
+  name : { type : String },
 
   startDate: { type: Date },
 
-	endDate: { type: Date },
+  endDate: { type: Date },
 
   active: { type: Boolean },
 
@@ -163,8 +163,8 @@ var GrowPlanInstanceSchema = new Schema({
   ],
 
 
-	settings : {
-		visibleSensors : [],
+  settings : {
+    visibleSensors : [],
     units: {
       FULL: { type: String, enum: [ feBeUtils.UNITS.FULL.units[0].id ], default : feBeUtils.UNITS.FULL.units[0].id },
       HUM: { type: String, enum: [ feBeUtils.UNITS.HUM.units[0].id ], default : feBeUtils.UNITS.HUM.units[0].id },
@@ -175,9 +175,9 @@ var GrowPlanInstanceSchema = new Schema({
       WATER: { type: String, enum: [ feBeUtils.UNITS.AIR.units[0].id, feBeUtils.UNITS.AIR.units[1].id], default: feBeUtils.UNITS.AIR.units[0].id },
       LUX: { type: String, enum: [ feBeUtils.UNITS.LUX.units[0].id ], default: feBeUtils.UNITS.LUX.units[0].id }
     }
-	},
-	
-	visibility : { 
+  },
+  
+  visibility : { 
     type: String, 
     enum: [
       feBeUtils.VISIBILITY_OPTIONS.PUBLIC,
@@ -203,6 +203,15 @@ GrowPlanInstanceSchema.plugin(mongoosePlugins.recoverableRemove, {
     var ids = removedDocumentResults.map(function(doc) { return doc._id; });
 
     async.parallel([
+      function clearDeviceAssociations(innerCallback){
+        DeviceModel.update(
+          { 
+            "activeGrowPlanInstance": { $in : ids }
+          }, 
+          { "$unset": { "activeGrowPlanInstance": 1 } },
+          innerCallback
+        );
+      },
       function removeSensorLogs(innerCallback){
         SensorLogModel.remove({'gpi' : { $in: ids }}, innerCallback);
       },
@@ -287,7 +296,7 @@ GrowPlanInstanceSchema.static('create', function(options, callback) {
           if (options.name){
             gpi.name = options.name;
           } else {
-          	gpi.name = growPlan.name + " Garden";
+            gpi.name = growPlan.name + " Garden";
           }
 
           if (!options.activePhaseId){
@@ -531,13 +540,13 @@ GrowPlanInstanceSchema.method('unpairDevice', function(callback) {
  * @param {function(err, gpi)} callback
  */
 GrowPlanInstanceSchema.method('activate', function(options, callback) {
-	var gpi = this,
+  var gpi = this,
       now = new Date(),
       activePhaseId = options.activePhaseId || gpi.phases[0].phase;
 
-	  gpi.active = true;
-	  gpi.startDate = now;
-	  
+    gpi.active = true;
+    gpi.startDate = now;
+    
     gpi.save(function (err){
       if (err) { return callback(err);}
 
@@ -1152,13 +1161,13 @@ GrowPlanInstanceSchema.method("migrateToGrowPlan", function(options, callback){
  * Remove old recentXLogs
  */
 GrowPlanInstanceSchema.pre('save', true, function(next, done){
-	next();
+  next();
 
-	var now = Date.now(),
-		cutoff = now - (1000 * 60 * 2), // now - 2 hours
-		logsToRemove = [];
-	
-	done();
+  var now = Date.now(),
+    cutoff = now - (1000 * 60 * 2), // now - 2 hours
+    logsToRemove = [];
+  
+  done();
 });
 
 /***************** END MIDDLEWARE **********************/
