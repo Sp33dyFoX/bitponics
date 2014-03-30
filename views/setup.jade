@@ -16,7 +16,14 @@ block content
     div.content-module.middle(ng-controller="bpn.controllers.setup.Main")
       form(id="serial-form", name="setup", data-ajax="false", novalidate, ng-submit="sendSerialToServer()")
         h1.page-heading Setting up your Bitponics Base Station
-        div(ng-show="key == undefined", class="separator-top")
+        
+        p
+          iframe(id="ytplayer", type="text/html", src="https://www.youtube.com/embed/duIVXx-FtSQ", width="800", height="450", frameborder="0")
+
+
+        button(ng-show="!getStartedClicked", type='button', class="btn next-step-btn", ng-click="getStarted()") Get Started
+
+        div(ng-show="getStartedClicked && key == undefined", class="separator-top")
           h4.page-heading-small Device Serial
           label(for='wifi-manual-ssid') Enter the serial number from the sticker on the back of your Bitponics device.
           input#serial(autofocus="autofocus", ng-model="serial", name="serial", bpn-directives-uppercase, ui-mask="{{serialMask}}")  

@@ -1,0 +1,34 @@
+extends ../layout
+
+block css
+
+block content
+
+  section.header
+      header
+        include ../includes/nav/main
+
+  section#main(role="main", class="main")
+    div(class="content-module middle")
+      h1(class="page-heading separator-bottom") Bitponics Open Hardware Device
+      h2#faq FAQ
+        ul
+          li What are these pieces?
+            p The pH probe includes a small capsule containing storage solution that screws onto the tip of the probe. When you first receive the probe, you must unscrew the storage solution capsule from the probe before you insert it into the probe floatation disk or dip the probe in your tank. You can keep the cap separate in case you ever need to store the probe outside your system's tank at any point. The neck of the storage cap remaining on the probe can be pushed to the top of the probe so that it allows the probe to be inserted into the floatation disk. This storage solution helps keep the probe from going bad over time. It is composed of KCl in solution. Occasionally, the liquid of the solution will partially or fully evaporate, leaving a salty residue. In this case, a small amount of water can be added back into the capsule and shaken to redissolve the salts.
+
+            p Your temperature sensor (labeled "temp") plugs into your Bitponic's unit at the corresponding connector. This tip of this sensor is then placed inside your system's tank using floatation disk or another method. The air temperature and humidity is measured by a sensor internal to the Bitponic's device.
+
+            p You may remove the cap of the EC/TDS sensor from the tip and save in case the need for later storage.
+
+            p For the light sensor, make sure that the sensor is tightly screwed into it's connection on the device. The readings can take up to five minutes to register, so if you keep a constant source of light on the device, a value should display. If don't see anything after a period of time (only 0), let us know and we'll look into a replacement .
+
+            p The foam plug is the floatation disk used to float the pH, TDS, and water temperature probes in your system's tank. You can insert the pH and TDS probes until the disk so that the top wider sleeve rests on the top of the disk. The temperature probe must be inserted into the disk so that the metal tip is submerged.
+
+          li#wifi-compatibility What Wifi network are compatible with the device?
+            p The device is compatible with WPA/WPA2 security.
+
+          li#factory-reset How do I do a factory reset?
+            ol
+              li Unplug device's power cord from power supply (leave the cord plugged into the device, but disconnect from the wall outlet/power strip).
+              li Press and hold the reset button on the top of the device (the small black button near the air temp/humidity sensor). 
+              li While still holding the reset button, plug the power cord back in to power supply and wait about 20 seconds until you see the status light flash blue.
