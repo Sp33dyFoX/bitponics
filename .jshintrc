@@ -1,0 +1,17 @@
+{
+  "undef": true,
+  "unused": true,
+  "globals": {
+    "define": false,
+    "console": false,
+    "enquire": false,
+    "bpn": false,
+    /* MOCHA */
+    "describe": false,
+    "it": false,
+    "before": false,
+    "beforeEach": false,
+    "after": false,
+    "afterEach": false
+  }
+}

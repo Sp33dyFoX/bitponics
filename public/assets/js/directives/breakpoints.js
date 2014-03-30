@@ -1,26 +1,32 @@
 define(['bpn.directives', 'enquire'],
   function (bpnDirectives) {
-   
+   'use strict';
+
    /*
     * Breakpoints
     * - Fire events based on breakpoint matching/unmatching
     *
     *
     * Depends on following globals:
+    * bpn
+    * enquire
     * 
     */
-    bpnDirectives.directive('breakpoints', 
+    bpnDirectives.directive('breakpoints',
       [
         'sharedDataService',
         function(sharedDataService) {
           return {
             restrict:'EA',
-            controller: function ($scope, $element, $attrs) {
-              $scope.sharedDataService = sharedDataService;
-              $scope.sharedDataService.breakpoints = bpn.breakpoints;
-              $scope.sharedDataService.enquireBreakpoints = {};
-            },
-            link: function (scope, element, attrs) {
+            controller: [
+              '$scope', '$element', '$attrs',
+              function ($scope){
+                $scope.sharedDataService = sharedDataService;
+                $scope.sharedDataService.breakpoints = bpn.breakpoints;
+                $scope.sharedDataService.enquireBreakpoints = {};
+              }
+            ],
+            link: function (scope) {
               var breakpoints = scope.sharedDataService.breakpoints;
               var keys = Object.keys(breakpoints);
               
@@ -70,7 +76,7 @@ define(['bpn.directives', 'enquire'],
 
               }
             }
-          }
+          };
         }
       ]
     );
