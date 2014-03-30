@@ -642,7 +642,7 @@ module.exports.checkDeviceConnections = function(callback){
       cutOffDate = new Date(nowAsMilliseconds - (20 * 60 * 1000)); // 20 minutes
 
   DeviceModel.find({
-    activeGrowPlanInstance : { $exists : true },
+    activeGrowPlanInstance : { $ne : null },
     $or : [ 
       {
         lastConnectionAt : { $exists : false }
@@ -659,7 +659,10 @@ module.exports.checkDeviceConnections = function(callback){
     
     async.eachLimit(deviceResults, 10,
       function iterator(device, iteratorCallback){
-        if (!device.activeGrowPlanInstance.active) { return iteratorCallback(); }
+        if (!device.activeGrowPlanInstance) { 
+          winston.error("ModelUtils.checkDeviceConnections retrieved device with not null activeGrowPlanInstance but could not populate activeGrowPlanInstance " + device._id)
+        }
+        if (!device.activeGrowPlanInstance || !device.activeGrowPlanInstance.active) { return iteratorCallback(); }
         
         var usersToNotify = [];
         if (device.users && device.users.length){
