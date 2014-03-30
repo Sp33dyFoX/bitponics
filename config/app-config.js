@@ -123,7 +123,9 @@ module.exports = function(app){
 
 
     require('./mongoose-connection').open(app.settings.env, function(err, mongooseConnection){
-      if (err) { winston.error(err.toString()); }
+      if (err) { 
+        winston.error(JSON.stringify(err, ['message', 'arguments', 'type', 'name', 'stack'])); 
+      }
 
       winston.info('Finished mongoose config');
 

@@ -3,10 +3,10 @@
  */
 
 var mongoose = require('mongoose'),
-	Schema = mongoose.Schema,
-	mongoosePlugins = require('../lib/mongoose-plugins'),
-	useTimestamps = mongoosePlugins.useTimestamps,
-	ObjectIdSchema = Schema.ObjectId,
+  Schema = mongoose.Schema,
+  mongoosePlugins = require('../lib/mongoose-plugins'),
+  useTimestamps = mongoosePlugins.useTimestamps,
+  ObjectIdSchema = Schema.ObjectId,
   ObjectId = mongoose.Types.ObjectId,
   requirejs = require('../lib/requirejs-wrapper'),
   async = require('async'),
@@ -14,10 +14,10 @@ var mongoose = require('mongoose'),
   mongooseConnection = require('../config/mongoose-connection').defaultConnection;
 
 var LightBulbSchema = new Schema({
-	type: { type : String },
-	watts: { type : Number },
-	brand : { type : String },
-	name : { type : String },
+  type: { type : String },
+  watts: { type : Number },
+  brand : { type : String },
+  name : { type : String },
   createdBy : { type : ObjectIdSchema, ref: 'User' },
   visibility : { 
     type: String, 
@@ -101,7 +101,9 @@ LightBulbSchema.static('createNewIfUserDefinedPropertiesModified', function(opti
       ],
       function(err, validatedLightBulb){
         if (silentValidationFail){
-          if (err) { winston.error(JSON.stringify(err)); }
+          if (err) { 
+            winston.error(JSON.stringify(err, ['message', 'arguments', 'type', 'name', 'stack'])); 
+          }
           return callback(null, validatedLightBulb);
         }
         return callback(err, validatedLightBulb);

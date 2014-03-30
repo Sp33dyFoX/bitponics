@@ -3,10 +3,10 @@
  */
 
 var mongoose = require('mongoose'),
-	Schema = mongoose.Schema,
-	mongoosePlugins = require('../lib/mongoose-plugins'),
-	useTimestamps = mongoosePlugins.useTimestamps,
-	ObjectIdSchema = Schema.ObjectId,
+  Schema = mongoose.Schema,
+  mongoosePlugins = require('../lib/mongoose-plugins'),
+  useTimestamps = mongoosePlugins.useTimestamps,
+  ObjectIdSchema = Schema.ObjectId,
   ObjectId = mongoose.Types.ObjectId,
   requirejs = require('../lib/requirejs-wrapper'),
   async = require('async'),
@@ -15,30 +15,30 @@ var mongoose = require('mongoose'),
   winston = require('winston');
 
 var GrowSystemSchema = new Schema({
-	
-	name: { type: String, required: true },
-	 
-	description: { type: String, required: false },
+  
+  name: { type: String, required: true },
+   
+  description: { type: String, required: false },
 
-	createdBy: { type: ObjectIdSchema, ref: 'User'},
-	
-	type: { type: String},
-	
-	/**
-	 * reservoirSize is number of gallons
-	 */
-	reservoirSize: { type: Number },
-	
-	plantCapacity: { type: Number },
+  createdBy: { type: ObjectIdSchema, ref: 'User'},
+  
+  type: { type: String},
+  
+  /**
+   * reservoirSize is number of gallons
+   */
+  reservoirSize: { type: Number },
+  
+  plantCapacity: { type: Number },
 
-	// Numbers in feet
+  // Numbers in feet
   overallSize: {
-		w: { type: Number },
-		h: { type: Number },
-		d: { type: Number }
-	},
+    w: { type: Number },
+    h: { type: Number },
+    d: { type: Number }
+  },
 
-	visibility : { 
+  visibility : { 
     type: String, 
     enum: [
       feBeUtils.VISIBILITY_OPTIONS.PUBLIC, 
@@ -55,21 +55,21 @@ GrowSystemSchema.plugin(mongoosePlugins.photos);
 
 
 GrowSystemSchema.virtual('reservoirSizeWithUnits')
-	/**
-	 * Setter takes an object of the form { value: Number, unit: String}
-	 * unit must be 'liters' or 'gallons'
-	 */
-	.set(function(reservoirSizeWithUnits){
-		var unit = reservoirSizeWithUnits.unit || 'gallons',
-			value = reservoirSizeWithUnits.value;
+  /**
+   * Setter takes an object of the form { value: Number, unit: String}
+   * unit must be 'liters' or 'gallons'
+   */
+  .set(function(reservoirSizeWithUnits){
+    var unit = reservoirSizeWithUnits.unit || 'gallons',
+      value = reservoirSizeWithUnits.value;
 
-		if (unit === 'liters'){
-			// 1 liter = 0.264172052 gallons
-			this.set('reservoirSize', value * 0.264172052);
-		} else {
-			this.set('reservoirSize', value);
-		}
-	});
+    if (unit === 'liters'){
+      // 1 liter = 0.264172052 gallons
+      this.set('reservoirSize', value * 0.264172052);
+    } else {
+      this.set('reservoirSize', value);
+    }
+  });
 
 
 
@@ -150,7 +150,9 @@ GrowSystemSchema.static('createNewIfUserDefinedPropertiesModified', function(opt
       ],
       function(err, validatedGrowSystem){
         if (silentValidationFail){
-          if (err) { winston.error(JSON.stringify(err)); }
+          if (err) { 
+            winston.error(JSON.stringify(err, ['message', 'arguments', 'type', 'name', 'stack'])); 
+          }
           return callback(null, validatedGrowSystem);
         }
         return callback(err, validatedGrowSystem);

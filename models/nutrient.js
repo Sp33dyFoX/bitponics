@@ -3,10 +3,10 @@
  */
 
 var mongoose = require('mongoose'),
-	Schema = mongoose.Schema,
-	mongoosePlugins = require('../lib/mongoose-plugins'),
-	useTimestamps = mongoosePlugins.useTimestamps,
-	ObjectIdSchema = Schema.ObjectId,
+  Schema = mongoose.Schema,
+  mongoosePlugins = require('../lib/mongoose-plugins'),
+  useTimestamps = mongoosePlugins.useTimestamps,
+  ObjectIdSchema = Schema.ObjectId,
   ObjectId = mongoose.Types.ObjectId,
   async = require('async'),
   requirejs = require('../lib/requirejs-wrapper'),
@@ -14,8 +14,8 @@ var mongoose = require('mongoose'),
   mongooseConnection = require('../config/mongoose-connection').defaultConnection;
 
 var NutrientSchema = new Schema({
-	brand: { type: String },
-	name: { type: String, required: true },
+  brand: { type: String },
+  name: { type: String, required: true },
   createdBy: { type: ObjectIdSchema, ref: 'User'},
   visibility : { 
     type: String, 
@@ -94,7 +94,9 @@ NutrientSchema.static('createNewIfUserDefinedPropertiesModified', function(optio
       ],
       function(err, validatedNutrient){
         if (silentValidationFail){
-          if (err) { winston.error(JSON.stringify(err)); }
+          if (err) { 
+            winston.error(JSON.stringify(err, ['message', 'arguments', 'type', 'name', 'stack'])); 
+          }
           return callback(null, validatedNutrient);
         }
         return callback(err, validatedNutrient);

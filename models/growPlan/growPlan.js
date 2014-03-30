@@ -3,16 +3,16 @@
  */
 
 var mongoose = require('mongoose'),
-	mongoosePlugins = require('../../lib/mongoose-plugins'),
-	useTimestamps = mongoosePlugins.useTimestamps,
-	Schema = mongoose.Schema,
-	ObjectIdSchema = Schema.ObjectId,
+  mongoosePlugins = require('../../lib/mongoose-plugins'),
+  useTimestamps = mongoosePlugins.useTimestamps,
+  Schema = mongoose.Schema,
+  ObjectIdSchema = Schema.ObjectId,
   ObjectId = mongoose.Types.ObjectId,
-	PhaseSchema = require('./phase').schema,
-	Phase = require('./phase').model,
-	async = require('async'),
+  PhaseSchema = require('./phase').schema,
+  Phase = require('./phase').model,
+  async = require('async'),
   ModelUtils = require('../utils'),
-	getObjectId = ModelUtils.getObjectId,
+  getObjectId = ModelUtils.getObjectId,
   requirejs = require('../../lib/requirejs-wrapper'),
   feBeUtils = requirejs('fe-be-utils'),
   PlantModel = require('../plant').model,
@@ -22,14 +22,14 @@ var mongoose = require('mongoose'),
   
 
 var GrowPlanModel,
-	
+  
 GrowPlanSchema = new Schema({
-	
+  
   /**
    * The GrowPlan from which this GrowPlan was branched and customized
    */
   parentGrowPlanId: { type: ObjectIdSchema, ref: 'GrowPlan' },
-	
+  
 
   /**
    * User that created this GP
@@ -46,18 +46,18 @@ GrowPlanSchema = new Schema({
    * Name
    */
   name: { type: String, required: true },
-	
+  
 
   description: { type: String, required: false },
-	
+  
 
   plants: [{ type: ObjectIdSchema, ref: 'Plant' }],
-	
+  
 
   phases: [PhaseSchema],
 
   activeGardenCount : { type : Number, default : 0 },
-	
+  
   completedGardenCount : { type : Number, default : 0 },
   
   visibility : { 
@@ -147,22 +147,22 @@ GrowPlanSchema.virtual('controls')
  *
  */
 GrowPlanSchema.pre('save', function(next){
-	var phases = this.phases;
-	// Ensure unique names across phases
-	for (var i = 0, length = phases.length; i < length; i++){
-		var phaseName = phases[i].name;
+  var phases = this.phases;
+  // Ensure unique names across phases
+  for (var i = 0, length = phases.length; i < length; i++){
+    var phaseName = phases[i].name;
 
     if (!phaseName){
       phases[i].name = feBeUtils.getOrdinal(i);
     }
 
-		for (var j = i+1; j < length; j++){
-			if (phaseName === phases[j].name){
-				return next(new Error("Duplicate phase name \"" + phaseName + "\". Phases in a grow plan must have unique names."));
-			}
-		}
-	}
-	return next();
+    for (var j = i+1; j < length; j++){
+      if (phaseName === phases[j].name){
+        return next(new Error("Duplicate phase name \"" + phaseName + "\". Phases in a grow plan must have unique names."));
+      }
+    }
+  }
+  return next();
 });
 
 /************************** END MIDDLEWARE ***************************/
@@ -183,28 +183,28 @@ GrowPlanSchema.pre('save', function(next){
  *
  */
 GrowPlanSchema.method('getPhaseAndDayFromStartDay', function(numberOfDays){
-	var phases = this.phases,
-		i = 0,
-		length = phases.length,
-		remainder = numberOfDays,
-		phaseDays;
+  var phases = this.phases,
+    i = 0,
+    length = phases.length,
+    remainder = numberOfDays,
+    phaseDays;
 
-	for (; i < length; i++){
-		phaseDays = phases[i].expectedNumberOfDays;
-		if (remainder < phaseDays){
-			return {
-				phaseId : phases[i]._id,
-				day : remainder
-			};
-		} else {
-			remainder -= phaseDays;
-		}
-	}
+  for (; i < length; i++){
+    phaseDays = phases[i].expectedNumberOfDays;
+    if (remainder < phaseDays){
+      return {
+        phaseId : phases[i]._id,
+        day : remainder
+      };
+    } else {
+      remainder -= phaseDays;
+    }
+  }
 
-	return {
-		phaseId : phases[length - 1]._id,
-		day : phases[length - 1].expectedNumberOfDays
-	};
+  return {
+    phaseId : phases[length - 1]._id,
+    day : phases[length - 1].expectedNumberOfDays
+  };
 });
 
 
@@ -220,73 +220,73 @@ GrowPlanSchema.method('getPhaseAndDayFromStartDay', function(numberOfDays){
  * @param source {GrowPlan}. Fully populated, POJO GrowPlan model object. Retrieved using ModelUtils.getFullyPopulatedGrowPlan
  * @param other {GrowPlan}. Fully populated, POJO GrowPlan model object.
  * @param callback {function(err, bool)} : to be called with result. result is a boolean,
- * 					true if the objects are equivalent, false if not
+ *          true if the objects are equivalent, false if not
  *
  */
 GrowPlanSchema.static('isEquivalentTo', function(source, other, callback){
-	// compare name
-	if (source.name !== other.name) { return callback(null, false); }
+  // compare name
+  if (source.name !== other.name) { return callback(null, false); }
 
 
-	// compare description
-	if (source.description !== other.description) { return callback(null, false); }
+  // compare description
+  if (source.description !== other.description) { return callback(null, false); }
 
 
-	// compare plants
+  // compare plants
 
-	if (source.plants.length !== other.plants.length) { return callback(null, false); }
-	// TODO : this loop can probably be optimized
-	var allPlantsFound = true;
-	for (var i = 0, length = source.plants.length; i < length; i++){
-		var plantId = getObjectId(source.plants[i]),
-			plantFound = false;
-		for (var j = 0; j < length; j++){
-			if (plantId.equals(getObjectId(other.plants[j]))) {
-				plantFound = true;
-				break;
-			}
-		}
-		if (!plantFound) { 
-			allPlantsFound = false;
-			break;
-		}
-	}
-	if (!allPlantsFound){
-		return callback(null, false);
-	}
-	
-	
-	// compare phases, shallow
-	if (source.phases.length !== other.phases.length) { return callback(null, false); }
-	
-	// Now that we've passed all of the shallow comparisons, 
-	// we need to do all of the async comparisons
-	async.parallel(
-		[
-			function phasesComparison(innerCallback){
-				var allPhasesAreEquivalent = true;
-				async.forEach(source.phases, 
-					function phaseIterator(phase, phaseCallback){
-						var otherPhase = other.phases[source.phases.indexOf(phase)];
-						return PhaseSchema.statics.isEquivalentTo(phase, otherPhase, function(err, isEquivalent){
-							if (!isEquivalent){
-								allPhasesAreEquivalent = false;
-								// TODO : short-circuit the async loop by calling callback with an error? or is that too dirty
-							}
-							return phaseCallback();
-						});
-					},
-					function phaseLoopEnd(err){
-						return innerCallback(err, allPhasesAreEquivalent);
-					}
-				);
-			}
-		],
-		function parallelComparisonEnd(err, results){
-			var allAsyncEquivalenceChecksPassed = results.every(function(result){ return result; });
-			return callback(err, allAsyncEquivalenceChecksPassed)
-		}
-	);
+  if (source.plants.length !== other.plants.length) { return callback(null, false); }
+  // TODO : this loop can probably be optimized
+  var allPlantsFound = true;
+  for (var i = 0, length = source.plants.length; i < length; i++){
+    var plantId = getObjectId(source.plants[i]),
+      plantFound = false;
+    for (var j = 0; j < length; j++){
+      if (plantId.equals(getObjectId(other.plants[j]))) {
+        plantFound = true;
+        break;
+      }
+    }
+    if (!plantFound) { 
+      allPlantsFound = false;
+      break;
+    }
+  }
+  if (!allPlantsFound){
+    return callback(null, false);
+  }
+  
+  
+  // compare phases, shallow
+  if (source.phases.length !== other.phases.length) { return callback(null, false); }
+  
+  // Now that we've passed all of the shallow comparisons, 
+  // we need to do all of the async comparisons
+  async.parallel(
+    [
+      function phasesComparison(innerCallback){
+        var allPhasesAreEquivalent = true;
+        async.forEach(source.phases, 
+          function phaseIterator(phase, phaseCallback){
+            var otherPhase = other.phases[source.phases.indexOf(phase)];
+            return PhaseSchema.statics.isEquivalentTo(phase, otherPhase, function(err, isEquivalent){
+              if (!isEquivalent){
+                allPhasesAreEquivalent = false;
+                // TODO : short-circuit the async loop by calling callback with an error? or is that too dirty
+              }
+              return phaseCallback();
+            });
+          },
+          function phaseLoopEnd(err){
+            return innerCallback(err, allPhasesAreEquivalent);
+          }
+        );
+      }
+    ],
+    function parallelComparisonEnd(err, results){
+      var allAsyncEquivalenceChecksPassed = results.every(function(result){ return result; });
+      return callback(err, allAsyncEquivalenceChecksPassed)
+    }
+  );
 });
 
 
@@ -407,7 +407,7 @@ GrowPlanSchema.static('createNewIfUserDefinedPropertiesModified', function(optio
                     validatedPlants.push(validatedPlant);    
                   }
                   if (silentValidationFail){
-                    if (err) { winston.error(JSON.stringify(err)); }
+                    if (err) { winston.error(JSON.stringify(err, ['message', 'arguments', 'type', 'name', 'stack'])); }
                     return plantCallback();  
                   }
                   return plantCallback(err);

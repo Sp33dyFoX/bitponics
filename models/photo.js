@@ -3,8 +3,8 @@
  */
 
 const mongoose = require('mongoose'),
-	Schema = mongoose.Schema,
-	ObjectIdSchema = Schema.ObjectId,
+  Schema = mongoose.Schema,
+  ObjectIdSchema = Schema.ObjectId,
   ObjectId = mongoose.Types.ObjectId,
   requirejs = require('../lib/requirejs-wrapper'),
   feBeUtils = requirejs('fe-be-utils'),
@@ -26,12 +26,12 @@ var PhotoModel;
  * Photo
  */
 var PhotoSchema = new Schema({
-	
+  
   /**
-	 * The GrowPlanInstance. Optional. 
+   * The GrowPlanInstance. Optional. 
    * 
    */
-	//gpi : { type: ObjectIdSchema, ref: 'GrowPlanInstance', required: false},
+  //gpi : { type: ObjectIdSchema, ref: 'GrowPlanInstance', required: false},
 
   
   /**
@@ -274,7 +274,7 @@ PhotoSchema.static("createAndStorePhoto",  function(options, callback){
                   fs.unlink(thumbnailFilePath);
 
                   if (err) { 
-                    winston.error(JSON.stringify(err));
+                    winston.error(JSON.stringify(err, ['message', 'arguments', 'type', 'name', 'stack']));
                     return innerCallback(err);  
                   }
                 

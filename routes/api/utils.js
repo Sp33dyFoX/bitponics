@@ -1,26 +1,26 @@
 var async = require('async'),
-		routeUtils = require('../route-utils.js'),
-		requirejs = require('../../lib/requirejs-wrapper'),
+    routeUtils = require('../route-utils.js'),
+    requirejs = require('../../lib/requirejs-wrapper'),
     feBeUtils = requirejs('fe-be-utils');
 
 module.exports = {
-	
-	/**
-	 * Attach a GET query handler
-	 * 
-	 * @param {Model} options.model
-	 * @param {Model=} [options.parentModel]
-	 * @param {string=} [options.parentModelFieldName = "ref.documentId"] - if parentModel is defined, used to query for parent id. 
-	 * @param {string=} [options.dateFieldName] - document field to use for start-date/end-date query filters
-	 * @param {string=} [options.defaultSort] - "fieldName" for ascending or "-fieldName" for descending
+  
+  /**
+   * Attach a GET query handler
+   * 
+   * @param {Model} options.model
+   * @param {Model=} [options.parentModel]
+   * @param {string=} [options.parentModelFieldName = "ref.documentId"] - if parentModel is defined, used to query for parent id. 
+   * @param {string=} [options.dateFieldName] - document field to use for start-date/end-date query filters
+   * @param {string=} [options.defaultSort] - "fieldName" for ascending or "-fieldName" for descending
    * @param {object|function} [options.defaultWhere] - default query for filtering results. Can be overridden by request "where" param. If a function, the function is invoked and should return an object
    * @param {object} [options.defaultLimit=200] - default limit for number of results returned
    * @param {bool=} [options.restrictByVisibility = false] - optionally add a conditional clause to the query to limit to the documents the user has read-access to
-	 * 
-	 * @return {[function(req, res, next)]}
-	 * 
-	 * Request:
-	 * @param {Date} [req.params.start-date] - Should be something parse-able by moment.js
+   * 
+   * @return {[function(req, res, next)]}
+   * 
+   * Request:
+   * @param {Date} [req.params.start-date] - Should be something parse-able by moment.js
    * @param {Date} [req.params.end-date] - Should be something parse-able by moment.js
    * @param {Number} [req.params.skip=0] - Number of results to skip (used for pagination)
    * @param {Number} [req.params.limit=200] - Number of results to return per page. Hard limit of 200.
@@ -34,30 +34,30 @@ module.exports = {
    * @param {Number} count
    * @param {Number} skip
    * @param {Number} limit
-	 */
- 	query : function(options){
-	 	
-	 	var Model = options.model,
-	 		ParentModel = options.parentModel, 
-	 		parentModelFieldName = options.parentModelFieldName;
+   */
+  query : function(options){
+    
+    var Model = options.model,
+      ParentModel = options.parentModel, 
+      parentModelFieldName = options.parentModelFieldName;
 
-	 	
-	 	return [
-	 		// routeUtils.middleware.ensureLoggedIn,
-	 		function(req, res, next){
+    
+    return [
+      // routeUtils.middleware.ensureLoggedIn,
+      function(req, res, next){
 
-		 		var response = {
-		 			statusCode : 200,
-		 			body : {}
-		 		},
+        var response = {
+          statusCode : 200,
+          body : {}
+        },
 
         startDate = req.query['start-date'],
-		    endDate = req.query['end-date'],
-		    limit = req.query['limit'] || 200,
-		    skip = req.query['skip'] || 0,
+        endDate = req.query['end-date'],
+        limit = req.query['limit'] || 200,
+        skip = req.query['skip'] || 0,
         sort = req.query['sort'],
         select = req.query['select'],
-		    where,
+        where,
         query;
 
         // cap the limit at 200
@@ -66,39 +66,39 @@ module.exports = {
 
         skip = parseInt(skip, 10);
 
-		 		async.series([
-					function checkIfParentModel(innerCallback){
-						if (!ParentModel){ return innerCallback(); }
+        async.series([
+          function checkIfParentModel(innerCallback){
+            if (!ParentModel){ return innerCallback(); }
 
-  		 			ParentModel.findById(req.params.id)
-  			 			.select('owner users createdBy visibility')
-  			 			.exec(function(err, parentModelResult){
+            ParentModel.findById(req.params.id)
+              .select('owner users createdBy visibility')
+              .exec(function(err, parentModelResult){
                 if (!routeUtils.checkResourceReadAccess(parentModelResult, req.user)){
-  				        response = {
-  				        	statusCode : 401,
-  				        	body : "The parent resource is private and only the owner may access its data."
-  				        }
-  				      } 
-  			        return innerCallback();
-  			 			});
-			 		},
-					function countResults(innerCallback){
-						if (response.statusCode !== 200){
-							return innerCallback();
-						}
+                  response = {
+                    statusCode : 401,
+                    body : "The parent resource is private and only the owner may access its data."
+                  }
+                } 
+                return innerCallback();
+              });
+          },
+          function countResults(innerCallback){
+            if (response.statusCode !== 200){
+              return innerCallback();
+            }
 
-		        query = Model.find();
+            query = Model.find();
 
-		        if (ParentModel){
-		        	var parentQuery = {};
-		        	//ParentModel.collection.name;
-		        	if (parentModelFieldName){
-		        		parentQuery[parentModelFieldName] = req.params.id;	
-		        	} else {
-		        		parentQuery["ref.documentId"] = req.params.id;
-		        	}
-		        	query.where(parentQuery);
-		      	}
+            if (ParentModel){
+              var parentQuery = {};
+              //ParentModel.collection.name;
+              if (parentModelFieldName){
+                parentQuery[parentModelFieldName] = req.params.id;  
+              } else {
+                parentQuery["ref.documentId"] = req.params.id;
+              }
+              query.where(parentQuery);
+            }
 
             
             if (options.restrictByVisibility){
@@ -130,7 +130,7 @@ module.exports = {
               try {
                 queryWhere = JSON.parse(req.query['where']);
               } catch(e){
-                winston.error(e);
+                winston.error(JSON.stringify(e, ['message', 'arguments', 'type', 'name', 'stack']));
               }
 
               if (queryWhere){
@@ -145,37 +145,37 @@ module.exports = {
             if (where){
               query.where(where);
             }
-			      
-			      // TODO : Localize start/end date based on owner's timezone if there's no tz embedded in the date?
-			      if (startDate){
-			        startDate = moment(startDate).toDate();
-			        query.where('date').gte(startDate);
-			      }
-			      if (endDate){
-			        endDate = moment(endDate).toDate();
-			        query.where('date').lt(endDate);
-			      }
+            
+            // TODO : Localize start/end date based on owner's timezone if there's no tz embedded in the date?
+            if (startDate){
+              startDate = moment(startDate).toDate();
+              query.where('date').gte(startDate);
+            }
+            if (endDate){
+              endDate = moment(endDate).toDate();
+              query.where('date').lt(endDate);
+            }
 
 
-			      query.count(function(err, count){
-			      	response.body.count = count;
+            query.count(function(err, count){
+              response.body.count = count;
 
-			      	return innerCallback(err);
-			      });
-					},
+              return innerCallback(err);
+            });
+          },
 
-					function getResults(innerCallback){
-						// Cast the query back to a find() operation so we can limit/skip/sort/select.
-						// TODO: Expecting that this retains the prior .where clauses, but need to verify
-        		query.find();
+          function getResults(innerCallback){
+            // Cast the query back to a find() operation so we can limit/skip/sort/select.
+            // TODO: Expecting that this retains the prior .where clauses, but need to verify
+            query.find();
 
-						query.limit(limit);
-						
+            query.limit(limit);
+            
             if (skip){
-							query.skip(skip);
-						}
+              query.skip(skip);
+            }
 
-						if (sort){
+            if (sort){
               query.sort(sort);
             } else if (options.defaultSort){
               query.sort(options.defaultSort);
@@ -218,86 +218,86 @@ module.exports = {
               });
             }            
 
-						query.exec(function(err, queryResults){
-							if (err){ return innerCallback(err); }
+            query.exec(function(err, queryResults){
+              if (err){ return innerCallback(err); }
 
-							response.body.data = queryResults;
-							response.body.limit = limit;
-							response.body.skip = skip;
+              response.body.data = queryResults;
+              response.body.limit = limit;
+              response.body.skip = skip;
 
-							return innerCallback();
-						});
-					}
-				], function seriesEnd(err, result){
-					if (err) { return next(err); }
+              return innerCallback();
+            });
+          }
+        ], function seriesEnd(err, result){
+          if (err) { return next(err); }
 
-					return routeUtils.sendJSONResponse(res, response.statusCode, response.body);
-				});
-			}
-	 	];
- 	},
-
- 
-	get: function(Model, ParentModel){
-		return function(req, res, next){
-
-		};
-	},
-
-
- 	save : function(Model, ParentModel){
- 		return function(req, res, next){
-
- 		};
- 	},
+          return routeUtils.sendJSONResponse(res, response.statusCode, response.body);
+        });
+      }
+    ];
+  },
 
  
+  get: function(Model, ParentModel){
+    return function(req, res, next){
 
- 	delete: function(Model, ParentModel){
- 		return function(req, res, next){
-
- 		}
-	},
+    };
+  },
 
 
-	/**
-	 * Upload a photo and associate it to the referenced document
-	 * 
-	 * @param {Model=} [options.ref]
-	 * @param {string=} [options.parentModelFieldName] - must be defined if parentModel is defined
-	 * @param {string=} [options.dateFieldName] - document field to use for start-date/end-date query filters
-	 * @param {string=} [options.defaultSort]  "fieldName" for ascending or "-fieldName" for descending
-	 * 
-	 * @return {[function(req, res, next)]}
-	 * 
-	 */
-	photoPost : function(options){
-		var ReferenceModel = options.refModel;
+  save : function(Model, ParentModel){
+    return function(req, res, next){
 
-		return function(req, res, next){
-	    ReferenceModel.findById(req.params.id)
-	    .exec(function (err, refModelResult) {
-	      if (err) { return next(err); }
-	      if (!refModelResult){ return next(new Error('Invalid reference resource'));}
-	      
-	      if (!routeUtils.checkResourceModifyAccess(refModelResult, req.user)){
-	        return res.send(401, "Inadequate permissions to modify the resource.");
-	      }
+    };
+  },
 
-	      // prepare the req.body to have the props expected of routeUtils.processPhotoUpload
-	      req.body.ref = {
-	      	collectionName : ReferenceModel.collection.name,
-	      	documentId : req.params.id
-      	};
+ 
 
-	      // Unless otherwise specified, photo should use same visibility settings as reference, with public as default
-	      req.body.visibility = req.body.visibility || refModelResult.visibility || feBeUtils.VISIBILITY_OPTIONS.PUBLIC;
+  delete: function(Model, ParentModel){
+    return function(req, res, next){
 
-	      return routeUtils.processPhotoUpload(req, res, next);
-	    });
-	  }
-	}
+    }
+  },
+
+
+  /**
+   * Upload a photo and associate it to the referenced document
+   * 
+   * @param {Model=} [options.ref]
+   * @param {string=} [options.parentModelFieldName] - must be defined if parentModel is defined
+   * @param {string=} [options.dateFieldName] - document field to use for start-date/end-date query filters
+   * @param {string=} [options.defaultSort]  "fieldName" for ascending or "-fieldName" for descending
+   * 
+   * @return {[function(req, res, next)]}
+   * 
+   */
+  photoPost : function(options){
+    var ReferenceModel = options.refModel;
+
+    return function(req, res, next){
+      ReferenceModel.findById(req.params.id)
+      .exec(function (err, refModelResult) {
+        if (err) { return next(err); }
+        if (!refModelResult){ return next(new Error('Invalid reference resource'));}
+        
+        if (!routeUtils.checkResourceModifyAccess(refModelResult, req.user)){
+          return res.send(401, "Inadequate permissions to modify the resource.");
+        }
+
+        // prepare the req.body to have the props expected of routeUtils.processPhotoUpload
+        req.body.ref = {
+          collectionName : ReferenceModel.collection.name,
+          documentId : req.params.id
+        };
+
+        // Unless otherwise specified, photo should use same visibility settings as reference, with public as default
+        req.body.visibility = req.body.visibility || refModelResult.visibility || feBeUtils.VISIBILITY_OPTIONS.PUBLIC;
+
+        return routeUtils.processPhotoUpload(req, res, next);
+      });
+    }
+  }
 };
 
 
-	
+  

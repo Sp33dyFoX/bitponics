@@ -3,10 +3,10 @@
  */
 
 var mongoose = require('mongoose'),
-	Schema = mongoose.Schema,
-	mongoosePlugins = require('../lib/mongoose-plugins'),
-	useTimestamps = mongoosePlugins.useTimestamps,
-	ObjectIdSchema = Schema.ObjectId,
+  Schema = mongoose.Schema,
+  mongoosePlugins = require('../lib/mongoose-plugins'),
+  useTimestamps = mongoosePlugins.useTimestamps,
+  ObjectIdSchema = Schema.ObjectId,
   ObjectId = mongoose.Types.ObjectId,
   requirejs = require('../lib/requirejs-wrapper'),
   async = require('async'),
@@ -15,7 +15,7 @@ var mongoose = require('mongoose'),
   winston = require('winston');
 
 var PlantSchema = new Schema({
-	name: { type: String, required: true },
+  name: { type: String, required: true },
   createdBy: { type: ObjectIdSchema, ref: 'User'},
   visibility : { 
     type: String, 
@@ -91,7 +91,9 @@ PlantSchema.static('createNewIfUserDefinedPropertiesModified', function(options,
       ],
       function(err, validatedPlant){
         if (silentValidationFail){
-          if (err) { winston.error(JSON.stringify(err)); }
+          if (err) { 
+            winston.error(JSON.stringify(err, ['message', 'arguments', 'type', 'name', 'stack']));
+          }
           return callback(null, validatedPlant);
         }
         return callback(err, validatedPlant);

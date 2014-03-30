@@ -3,13 +3,13 @@
  */
 
 var mongoose = require('mongoose'),
-	mongoosePlugins = require('../../lib/mongoose-plugins'),
-	Schema = mongoose.Schema,
-	ObjectIdSchema = Schema.ObjectId,
+  mongoosePlugins = require('../../lib/mongoose-plugins'),
+  Schema = mongoose.Schema,
+  ObjectIdSchema = Schema.ObjectId,
   ObjectId = mongoose.Types.ObjectId,
-	IdealRangeSchema = require('./idealRange').schema,
-	async = require('async'),
-	ActionModel = require('../action').model,
+  IdealRangeSchema = require('./idealRange').schema,
+  async = require('async'),
+  ActionModel = require('../action').model,
   GrowSystemModel = require('../growSystem').model,
   NutrientModel = require('../nutrient').model,
   LightModel = require('../light').model,
@@ -18,34 +18,34 @@ var mongoose = require('mongoose'),
   feBeUtils = requirejs('fe-be-utils');
 
 var PhaseSchema = new Schema({
-	
-	name: { type: String, required: false },
-	
-	description: { type: String },
+  
+  name: { type: String, required: false },
+  
+  description: { type: String },
 
-	/**
-	 * expectedNumberOfDays. undefined means infinite.
-	 */
-	expectedNumberOfDays: { type: Number, default : 0 },
-	
-	/**
-	 * Light definition. Optional. Defines fixtures, bulbs, and quantities.
-	 */
-	light: { type : ObjectIdSchema, ref: 'Light'	},
+  /**
+   * expectedNumberOfDays. undefined means infinite.
+   */
+  expectedNumberOfDays: { type: Number, default : 0 },
+  
+  /**
+   * Light definition. Optional. Defines fixtures, bulbs, and quantities.
+   */
+  light: { type : ObjectIdSchema, ref: 'Light'  },
 
-	growSystem: { type: ObjectIdSchema, ref: 'GrowSystem' },
-	
-	growMedium: { type: String },
+  growSystem: { type: ObjectIdSchema, ref: 'GrowSystem' },
+  
+  growMedium: { type: String },
 
-	actions: [{ type: ObjectIdSchema, ref: 'Action' }],
-	
-	phaseEndActions : [{ type: ObjectIdSchema, ref: 'Action'}],
+  actions: [{ type: ObjectIdSchema, ref: 'Action' }],
+  
+  phaseEndActions : [{ type: ObjectIdSchema, ref: 'Action'}],
 
-	phaseEndDescription : { type : String },
+  phaseEndDescription : { type : String },
 
-	idealRanges: [IdealRangeSchema],
+  idealRanges: [IdealRangeSchema],
 
-	nutrients : [{ type: ObjectIdSchema, ref: 'Nutrient' }],
+  nutrients : [{ type: ObjectIdSchema, ref: 'Nutrient' }],
 },
 { id : false });
 
@@ -70,25 +70,25 @@ var PhaseSchema = new Schema({
  * @param {Phase} source : Fully-populated Phase object
  * @param {Phase} other : Fully-populated Phase object
  * @param {function(err, bool)} callback : Function to be called with result. Passed a boolean argument,
- * 					true if the objects are equivalent, false if not
+ *          true if the objects are equivalent, false if not
  *
  */
 PhaseSchema.static('isEquivalentTo', function(source, other, callback){
-	// compare name
-	if (source.name !== other.name) { return callback(null, false); }
+  // compare name
+  if (source.name !== other.name) { return callback(null, false); }
 
-	// compare description
-	if (source.description !== other.description) { return callback(null, false); }
+  // compare description
+  if (source.description !== other.description) { return callback(null, false); }
 
-	// compare expectedNumberOfDays
-	if (source.expectedNumberOfDays !== other.expectedNumberOfDays) { return callback(null, false); }
+  // compare expectedNumberOfDays
+  if (source.expectedNumberOfDays !== other.expectedNumberOfDays) { return callback(null, false); }
 
-	// compare growMedium
-	if (source.growMedium !== other.growMedium) { return callback(null, false); }	
+  // compare growMedium
+  if (source.growMedium !== other.growMedium) { return callback(null, false); } 
 
 
-	// compare phaseEndDescription
-	if (source.phaseEndDescription !== other.phaseEndDescription) { return callback(null, false); }		
+  // compare phaseEndDescription
+  if (source.phaseEndDescription !== other.phaseEndDescription) { return callback(null, false); }   
 
   // compare growSystem, shallow
   if ( !(
@@ -107,213 +107,213 @@ PhaseSchema.static('isEquivalentTo', function(source, other, callback){
       return callback(null, false);
     }
   }
-	// compare light, shallow
-	if (!(
-		(source.light && other.light)
-		||
-		(!source.light && !other.light)
-		)){ 
-		return callback(null, false); 
-	}
-	if (source.light){
-		if ( !(
-			(source.light.fixture && other.light.fixture) ||
-			(!source.light.fixture && !other.light.fixture)
-		 )
-		){ 
-			return callback(null, false); 
-		}
-		if ( !(
-			(source.light.bulb && other.light.bulb) ||
-			(!source.light.bulb && !other.light.bulb)
-		 )
-		){ 
-			return callback(null, false); 
-		}
-		if ( source.light.fixtureQuantity !== other.light.fixtureQuantity)
-		{ 
-			return callback(null, false); 
-		}
-	}
+  // compare light, shallow
+  if (!(
+    (source.light && other.light)
+    ||
+    (!source.light && !other.light)
+    )){ 
+    return callback(null, false); 
+  }
+  if (source.light){
+    if ( !(
+      (source.light.fixture && other.light.fixture) ||
+      (!source.light.fixture && !other.light.fixture)
+     )
+    ){ 
+      return callback(null, false); 
+    }
+    if ( !(
+      (source.light.bulb && other.light.bulb) ||
+      (!source.light.bulb && !other.light.bulb)
+     )
+    ){ 
+      return callback(null, false); 
+    }
+    if ( source.light.fixtureQuantity !== other.light.fixtureQuantity)
+    { 
+      return callback(null, false); 
+    }
+  }
 
-	// compare actions, shallow
-	if ( !(
-			(source.actions && other.actions) ||
-			(!source.actions && !other.actions)
-		 )
-		){ 
-		return callback(null, false); 
-	}
-	if (source.actions && other.actions && (source.actions.length !== other.actions.length)){
-		return callback(null, false);
-	}
+  // compare actions, shallow
+  if ( !(
+      (source.actions && other.actions) ||
+      (!source.actions && !other.actions)
+     )
+    ){ 
+    return callback(null, false); 
+  }
+  if (source.actions && other.actions && (source.actions.length !== other.actions.length)){
+    return callback(null, false);
+  }
 
-	// compare phaseEndActions, shallow
-	if ( !(
-			(source.phaseEndActions && other.phaseEndActions) ||
-			(!source.phaseEndActions && !other.phaseEndActions)
-		 )
-		){ 
-		return callback(null, false); 
-	}
-	if (source.phaseEndActions && other.phaseEndActions && (source.phaseEndActions.length !== other.phaseEndActions.length)){
-		return callback(null, false);
-	}
+  // compare phaseEndActions, shallow
+  if ( !(
+      (source.phaseEndActions && other.phaseEndActions) ||
+      (!source.phaseEndActions && !other.phaseEndActions)
+     )
+    ){ 
+    return callback(null, false); 
+  }
+  if (source.phaseEndActions && other.phaseEndActions && (source.phaseEndActions.length !== other.phaseEndActions.length)){
+    return callback(null, false);
+  }
 
 
-	// compare idealRanges, shallow
-	if ( !(
-			(source.idealRanges && other.idealRanges) ||
-			(!source.idealRanges && !other.idealRanges)
-		 )
-		){ 
-		return callback(null, false); 
-	}
-	if (source.idealRanges && other.idealRanges && (source.idealRanges.length !== other.idealRanges.length)){
-		return callback(null, false);
-	}
-	
+  // compare idealRanges, shallow
+  if ( !(
+      (source.idealRanges && other.idealRanges) ||
+      (!source.idealRanges && !other.idealRanges)
+     )
+    ){ 
+    return callback(null, false); 
+  }
+  if (source.idealRanges && other.idealRanges && (source.idealRanges.length !== other.idealRanges.length)){
+    return callback(null, false);
+  }
+  
 
-	// compare nutrients, shallow
-	if ( !(
-			(source.nutrients && other.nutrients) ||
-			(!source.nutrients && !other.nutrients)
-		 )
-		){ 
-		return callback(null, false); 
-	}
-	if (source.nutrients && other.nutrients && (source.nutrients.length !== other.nutrients.length)){
-		return callback(null, false);
-	}
-	
-	async.parallel(
-		[
+  // compare nutrients, shallow
+  if ( !(
+      (source.nutrients && other.nutrients) ||
+      (!source.nutrients && !other.nutrients)
+     )
+    ){ 
+    return callback(null, false); 
+  }
+  if (source.nutrients && other.nutrients && (source.nutrients.length !== other.nutrients.length)){
+    return callback(null, false);
+  }
+  
+  async.parallel(
+    [
       function growSystemComparison(innerCallback){
         if (!source.growSystem){ return innerCallback(null, true); }
         return innerCallback(null, GrowSystemModel.isEquivalentTo(source.growSystem, other.growSystem));
       },
       function lightComparison(innerCallback){
-				if (!source.light){ return innerCallback(null, true); }
+        if (!source.light){ return innerCallback(null, true); }
 
-				if (source.light.fixture){
-					var sourceLightFixtureId = getObjectId(source.light.fixture),
-						otherLightFixtureId = getObjectId(other.light.fixture);
-					if (!sourceLightFixtureId.equals(otherLightFixtureId)){
-						return innerCallback(null, false);
-					}
-				}
-				if (source.light.fixtureQuantity !== other.light.fixtureQuantity){
-					return innerCallback(null, false);
-				}
-				if (source.light.bulb){
-					var sourceLightBulbId = getObjectId(source.light.bulb),
-						otherLightBulbId = getObjectId(other.light.bulb);
-					if (!sourceLightBulbId.equals(otherLightBulbId)){
-						return innerCallback(null, false);
-					}
-				}
-				return innerCallback(null, true);
-			},
-			function actionsComparison(innerCallback){
-				if (!source.actions || !source.actions.length) { return innerCallback(null, true); }
+        if (source.light.fixture){
+          var sourceLightFixtureId = getObjectId(source.light.fixture),
+            otherLightFixtureId = getObjectId(other.light.fixture);
+          if (!sourceLightFixtureId.equals(otherLightFixtureId)){
+            return innerCallback(null, false);
+          }
+        }
+        if (source.light.fixtureQuantity !== other.light.fixtureQuantity){
+          return innerCallback(null, false);
+        }
+        if (source.light.bulb){
+          var sourceLightBulbId = getObjectId(source.light.bulb),
+            otherLightBulbId = getObjectId(other.light.bulb);
+          if (!sourceLightBulbId.equals(otherLightBulbId)){
+            return innerCallback(null, false);
+          }
+        }
+        return innerCallback(null, true);
+      },
+      function actionsComparison(innerCallback){
+        if (!source.actions || !source.actions.length) { return innerCallback(null, true); }
 
-				var allActionsFound = true;
-				for (var i = 0, length = source.actions.length; i < length; i++){
-					var action = source.actions[i],
-						actionFound = false;
-					for (var j = 0; j < length; j++){
-						var otherAction = other.actions[j];
-						if (ActionModel.isEquivalentTo(action, otherAction)) {
-							actionFound = true;
-							break;
-						}
-					}
-					if (!actionFound) { 
-						allActionsFound = false;
-						break;
-					}
-				}
-				if (!allActionsFound){
-					return innerCallback(null, false);
-				}
-				return innerCallback(null, true);
-			},
-			function phaseEndActionsComparison(innerCallback){
-				if (!source.phaseEndActions || !source.phaseEndActions.length) { return innerCallback(null, true); }
+        var allActionsFound = true;
+        for (var i = 0, length = source.actions.length; i < length; i++){
+          var action = source.actions[i],
+            actionFound = false;
+          for (var j = 0; j < length; j++){
+            var otherAction = other.actions[j];
+            if (ActionModel.isEquivalentTo(action, otherAction)) {
+              actionFound = true;
+              break;
+            }
+          }
+          if (!actionFound) { 
+            allActionsFound = false;
+            break;
+          }
+        }
+        if (!allActionsFound){
+          return innerCallback(null, false);
+        }
+        return innerCallback(null, true);
+      },
+      function phaseEndActionsComparison(innerCallback){
+        if (!source.phaseEndActions || !source.phaseEndActions.length) { return innerCallback(null, true); }
 
-				var allActionsFound = true;
-				for (var i = 0, length = source.phaseEndActions.length; i < length; i++){
-					var action = source.phaseEndActions[i],
-						actionFound = false;
-					for (var j = 0; j < length; j++){
-						var otherAction = other.phaseEndActions[j];
-						if (ActionModel.isEquivalentTo(action, otherAction)){
-							actionFound = true;
-							break;
-						}
-					}
-					if (!actionFound) { 
-						allActionsFound = false;
-						break;
-					}
-				}
-				if (!allActionsFound){
-					return innerCallback(null, false);
-				}
-				return innerCallback(null, true);	
-			},
-			function idealRangesComparison(innerCallback){
-				if (!source.idealRanges || !source.idealRanges.length) { return innerCallback(null, true); }
+        var allActionsFound = true;
+        for (var i = 0, length = source.phaseEndActions.length; i < length; i++){
+          var action = source.phaseEndActions[i],
+            actionFound = false;
+          for (var j = 0; j < length; j++){
+            var otherAction = other.phaseEndActions[j];
+            if (ActionModel.isEquivalentTo(action, otherAction)){
+              actionFound = true;
+              break;
+            }
+          }
+          if (!actionFound) { 
+            allActionsFound = false;
+            break;
+          }
+        }
+        if (!allActionsFound){
+          return innerCallback(null, false);
+        }
+        return innerCallback(null, true); 
+      },
+      function idealRangesComparison(innerCallback){
+        if (!source.idealRanges || !source.idealRanges.length) { return innerCallback(null, true); }
 
-				var allIdealRangesFound = true;
-				for (var i = 0, length = source.idealRanges.length; i < length; i++){
-					var idealRangeFound = false;
-					for (var j = 0; j < length; j++){
-						if (IdealRangeSchema.statics.isEquivalentTo(source.idealRanges[i], other.idealRanges[j])){
-							idealRangeFound = true;
-							break;
-						}
-					}
-					if (!idealRangeFound) { 
-						allIdealRangesFound = false;
-						break;
-					}
-				}
-				if (!allIdealRangesFound){
-					return innerCallback(null, false);
-				}
-				return innerCallback(null, true);
-			},
-			function nutrientsComparison(innerCallback){
-				if (!source.nutrients || !source.nutrients.length) { return innerCallback(null, true); }
+        var allIdealRangesFound = true;
+        for (var i = 0, length = source.idealRanges.length; i < length; i++){
+          var idealRangeFound = false;
+          for (var j = 0; j < length; j++){
+            if (IdealRangeSchema.statics.isEquivalentTo(source.idealRanges[i], other.idealRanges[j])){
+              idealRangeFound = true;
+              break;
+            }
+          }
+          if (!idealRangeFound) { 
+            allIdealRangesFound = false;
+            break;
+          }
+        }
+        if (!allIdealRangesFound){
+          return innerCallback(null, false);
+        }
+        return innerCallback(null, true);
+      },
+      function nutrientsComparison(innerCallback){
+        if (!source.nutrients || !source.nutrients.length) { return innerCallback(null, true); }
 
-				var allNutrientsFound = true;
-				for (var i = 0, length = source.nutrients.length; i < length; i++){
-					var nutrientId = getObjectId(source.nutrients[i]),
-						nutrientFound = false;
-					for (var j = 0; j < length; j++){
-						var otherNutrientId = getObjectId(other.nutrients[j]);
-						if (nutrientId.equals(otherNutrientId)){
-							nutrientFound = true;
-							break;
-						}
-					}
-					if (!nutrientFound) { 
-						allNutrientsFound = false;
-						break;
-					}
-				}
-				if (!allNutrientsFound){
-					return innerCallback(null, false);
-				}
-				return innerCallback(null, true);	
-			}
-		],
-		function parallelComparisonEnd(err, results){
+        var allNutrientsFound = true;
+        for (var i = 0, length = source.nutrients.length; i < length; i++){
+          var nutrientId = getObjectId(source.nutrients[i]),
+            nutrientFound = false;
+          for (var j = 0; j < length; j++){
+            var otherNutrientId = getObjectId(other.nutrients[j]);
+            if (nutrientId.equals(otherNutrientId)){
+              nutrientFound = true;
+              break;
+            }
+          }
+          if (!nutrientFound) { 
+            allNutrientsFound = false;
+            break;
+          }
+        }
+        if (!allNutrientsFound){
+          return innerCallback(null, false);
+        }
+        return innerCallback(null, true); 
+      }
+    ],
+    function parallelComparisonEnd(err, results){
       var allAsyncEquivalenceChecksPassed = results.every(function(result){ return result; });
-			return callback(err, allAsyncEquivalenceChecksPassed);
-		}
-	);
+      return callback(err, allAsyncEquivalenceChecksPassed);
+    }
+  );
 });
 
 
@@ -359,7 +359,7 @@ PhaseSchema.static('createNewIfUserDefinedPropertiesModified', function(options,
                 validatedActions.push(validatedAction._id);
               }
               if (silentValidationFail){
-                if (err) { winston.error(JSON.stringify(err)); }
+                if (err) { winston.error(JSON.stringify(err, ['message', 'arguments', 'type', 'name', 'stack'])); }
                 return actionCallback();  
               }
               return actionCallback(err);
@@ -387,7 +387,7 @@ PhaseSchema.static('createNewIfUserDefinedPropertiesModified', function(options,
                 validatedActions.push(validatedAction._id);  
               }
               if (silentValidationFail){
-                if (err) { winston.error(JSON.stringify(err)); }
+                if (err) { winston.error(JSON.stringify(err, ['message', 'arguments', 'type', 'name', 'stack'])); }
                 return actionCallback();  
               }
               return actionCallback(err);
@@ -414,7 +414,7 @@ PhaseSchema.static('createNewIfUserDefinedPropertiesModified', function(options,
               submittedPhase.growSystem = validatedGrowSystem._id;  
             }
             if (silentValidationFail){
-              if (err) { winston.error(JSON.stringify(err)); }
+              if (err) { winston.error(JSON.stringify(err, ['message', 'arguments', 'type', 'name', 'stack'])); }
               return innerCallback();   
             }
             return innerCallback(err);
@@ -439,7 +439,7 @@ PhaseSchema.static('createNewIfUserDefinedPropertiesModified', function(options,
                 validatedNutrients.push(validatedNutrient._id);
               }
               if (silentValidationFail){
-                if (err) { winston.error(JSON.stringify(err)); }
+                if (err) { winston.error(JSON.stringify(err, ['message', 'arguments', 'type', 'name', 'stack'])); }
                 return nutrientCallback();  
               }
               return nutrientCallback(err);
@@ -466,7 +466,7 @@ PhaseSchema.static('createNewIfUserDefinedPropertiesModified', function(options,
               submittedPhase.light = validatedLight._id;  
             }
             if (silentValidationFail){
-              if (err) { winston.error(JSON.stringify(err)); }
+              if (err) { winston.error(JSON.stringify(err, ['message', 'arguments', 'type', 'name', 'stack'])); }
               return innerCallback();  
             }
             return innerCallback(err);
@@ -490,7 +490,7 @@ PhaseSchema.static('createNewIfUserDefinedPropertiesModified', function(options,
                   validatedIdealRanges.push(validatedIdealRange);
                 }
                 if (silentValidationFail){
-                  if (err) { winston.error(JSON.stringify(err)); }
+                  if (err) { winston.error(JSON.stringify(err, ['message', 'arguments', 'type', 'name', 'stack'])); }
                   return idealRangeCallback();
                 }
                 return idealRangeCallback(err);  
@@ -513,7 +513,7 @@ PhaseSchema.static('createNewIfUserDefinedPropertiesModified', function(options,
       }
       
       if (silentValidationFail && err){
-        winston.error(JSON.stringify(err));
+        winston.error(JSON.stringify(err, ['message', 'arguments', 'type', 'name', 'stack']));
         return (null, null);
       } 
       return callback(err, submittedPhase);

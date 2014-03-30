@@ -3,10 +3,10 @@
  */
 
 var mongoose = require('mongoose'),
-	Schema = mongoose.Schema,
-	mongoosePlugins = require('../lib/mongoose-plugins'),
+  Schema = mongoose.Schema,
+  mongoosePlugins = require('../lib/mongoose-plugins'),
   useTimestamps = mongoosePlugins.useTimestamps,
-	ObjectIdSchema = Schema.ObjectId,
+  ObjectIdSchema = Schema.ObjectId,
   ObjectId = mongoose.Types.ObjectId,
   async = require('async'),
   requirejs = require('../lib/requirejs-wrapper'),
@@ -14,14 +14,14 @@ var mongoose = require('mongoose'),
   mongooseConnection = require('../config/mongoose-connection').defaultConnection;
 
 var LightFixtureSchema = new Schema({
-	brand : { type : String },
-	name : { type : String },
-	type : { type : String },
-	watts : { type : Number },
-	/**
-	 * Number of bulbs the fixture holds
-	 */
-	bulbCapacity : { type : Number, default:  1 },
+  brand : { type : String },
+  name : { type : String },
+  type : { type : String },
+  watts : { type : Number },
+  /**
+   * Number of bulbs the fixture holds
+   */
+  bulbCapacity : { type : Number, default:  1 },
   createdBy : { type : ObjectIdSchema, ref: 'User' },
   visibility : { 
     type: String, 
@@ -110,7 +110,9 @@ LightFixtureSchema.static('createNewIfUserDefinedPropertiesModified', function(o
       ],
       function(err, validatedLightFixture){
         if (silentValidationFail){
-          if (err) { winston.error(JSON.stringify(err)); }
+          if (err) { 
+            winston.error(JSON.stringify(err, ['message', 'arguments', 'type', 'name', 'stack'])); 
+          }
           return callback(null, validatedLightFixture);
         }
         return callback(err, validatedLightFixture);

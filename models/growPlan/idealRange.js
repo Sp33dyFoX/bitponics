@@ -3,28 +3,28 @@
  */
 
 var mongoose = require('mongoose'),
-	Schema = mongoose.Schema,
-	ObjectId = Schema.ObjectId,
-	ActionModel = require('../action').model,
-	getObjectId = require('../utils').getObjectId,
+  Schema = mongoose.Schema,
+  ObjectId = Schema.ObjectId,
+  ActionModel = require('../action').model,
+  getObjectId = require('../utils').getObjectId,
   async = require('async'),
   winston = require('winston');
 
 var IdealRangeSchema = new Schema({
 
-	/**
-	 * sCode references Sensor.code
-	 */
-	sCode: { type: String, ref: 'Sensor', required: true },
+  /**
+   * sCode references Sensor.code
+   */
+  sCode: { type: String, ref: 'Sensor', required: true },
 
 
-	valueRange: {
+  valueRange: {
 
-		/**
+    /**
      * Minimum end of the ideal range of values for this sensor
      */
     min: { type: Number, required: true },
-		
+    
     /**
      * Maximum end of the ideal range of values for this sensor
      */
@@ -34,27 +34,27 @@ var IdealRangeSchema = new Schema({
      * Optimum value
      */
     opt : { type : Number, required : false }
-	},
+  },
 
-	actionBelowMin: { type: ObjectId, ref: 'Action', required: false },
+  actionBelowMin: { type: ObjectId, ref: 'Action', required: false },
 
-	actionAboveMax: { type: ObjectId, ref: 'Action', required: false },
+  actionAboveMax: { type: ObjectId, ref: 'Action', required: false },
 
 
-	/**
-	 * applicableTimeSpan. optional. Describes the portion of a 24-hour day
-	 * during which this idealRange is operational.
-	 *
-	 * Values are milliseconds since 00:00.
-	 *
-	 * If startTime is greater than endTime, it will be parsed as an "overnight" span.
-	 *
-	 * If undefined, idealRange is always operational.
-	 */
-	applicableTimeSpan: {
-		startTime: { type: Number },
-		endTime: { type: Number }
-	},
+  /**
+   * applicableTimeSpan. optional. Describes the portion of a 24-hour day
+   * during which this idealRange is operational.
+   *
+   * Values are milliseconds since 00:00.
+   *
+   * If startTime is greater than endTime, it will be parsed as an "overnight" span.
+   *
+   * If undefined, idealRange is always operational.
+   */
+  applicableTimeSpan: {
+    startTime: { type: Number },
+    endTime: { type: Number }
+  },
 
 
   /**
@@ -72,14 +72,14 @@ var IdealRangeSchema = new Schema({
 /************************** INSTANCE METHODS  ***************************/
 
 IdealRangeSchema.method('checkIfWithinTimespan', function(userTimezone, date){
-	var tz = require('../../lib/timezone-wrapper'),
+  var tz = require('../../lib/timezone-wrapper'),
     applicableTimeSpan = this.applicableTimeSpan;
-	
+  
   // Not sure of exact reason for this, but Mongoose is storing an empty object for applicableTimeSpan
   // instead of undefined, so we need to check properties as well
   if (!applicableTimeSpan || !applicableTimeSpan.startTime || !applicableTimeSpan.endTime){ return true; }
-	
-	var dateParts = tz(date, userTimezone, '%T').split(':'),
+  
+  var dateParts = tz(date, userTimezone, '%T').split(':'),
       millisecondsIntoDay = (dateParts[0] * 60 * 60 * 1000) + (dateParts[1] * 60 * 1000) + (dateParts[2] * 1000);
 
     if (applicableTimeSpan.startTime < applicableTimeSpan.endTime){
@@ -111,38 +111,38 @@ IdealRangeSchema.method('checkIfWithinTimespan', function(userTimezone, date){
  * @return {boolean}. true if the objects are equivalent, false if not
  */
 IdealRangeSchema.static('isEquivalentTo', function(source, other){
-	if (source.sCode !== other.sCode) { return false;}
-	if (source.valueRange.min !== other.valueRange.min) { return false;}
-	if (source.valueRange.max !== other.valueRange.max) { return false;}
-	
-	if (!((source.actionBelowMin && other.actionBelowMin) || (!source.actionBelowMin && !other.actionBelowMin))) {
-		return false;
-	}
-	if (source.actionBelowMin){
-		if (!ActionModel.isEquivalentTo(source.actionBelowMin, other.actionBelowMin)) { return false;}
-	}
+  if (source.sCode !== other.sCode) { return false;}
+  if (source.valueRange.min !== other.valueRange.min) { return false;}
+  if (source.valueRange.max !== other.valueRange.max) { return false;}
+  
+  if (!((source.actionBelowMin && other.actionBelowMin) || (!source.actionBelowMin && !other.actionBelowMin))) {
+    return false;
+  }
+  if (source.actionBelowMin){
+    if (!ActionModel.isEquivalentTo(source.actionBelowMin, other.actionBelowMin)) { return false;}
+  }
 
-	if (!((source.actionAboveMax && other.actionAboveMax) || (!source.actionAboveMax && !other.actionAboveMax))) {
-		return false;
-	}
-	if (source.actionAboveMax){
-		if (!ActionModel.isEquivalentTo(source.actionAboveMax, other.actionAboveMax)) { return false;}
-	}
+  if (!((source.actionAboveMax && other.actionAboveMax) || (!source.actionAboveMax && !other.actionAboveMax))) {
+    return false;
+  }
+  if (source.actionAboveMax){
+    if (!ActionModel.isEquivalentTo(source.actionAboveMax, other.actionAboveMax)) { return false;}
+  }
 
-	if (!((source.applicableTimeSpan && other.applicableTimeSpan) || (!source.applicableTimeSpan && !other.applicableTimeSpan))) {
-		return false;
-	}
-	if (source.applicableTimeSpan){
-		if (!
-			(source.applicableTimeSpan.startTime == other.applicableTimeSpan.startTime)
-			&&
-			(source.applicableTimeSpan.endTime == other.applicableTimeSpan.endTime)
-			){
-			return false;
-		}
-	}
+  if (!((source.applicableTimeSpan && other.applicableTimeSpan) || (!source.applicableTimeSpan && !other.applicableTimeSpan))) {
+    return false;
+  }
+  if (source.applicableTimeSpan){
+    if (!
+      (source.applicableTimeSpan.startTime == other.applicableTimeSpan.startTime)
+      &&
+      (source.applicableTimeSpan.endTime == other.applicableTimeSpan.endTime)
+      ){
+      return false;
+    }
+  }
 
-	return true;
+  return true;
 });
 
 
@@ -211,7 +211,7 @@ IdealRangeSchema.static('createNewIfUserDefinedPropertiesModified', function(opt
             !submittedIdealRange.valueRange.min || 
             !submittedIdealRange.valueRange.max
           ){
-          if (err) { winston.error(JSON.stringify(err)); }
+          if (err) { winston.error(JSON.stringify(err, ['message', 'arguments', 'type', 'name', 'stack']));}
           return callback();
         }
         return callback(null, submittedIdealRange);

@@ -342,7 +342,7 @@ module.exports = function(app) {
                   try{
                     pendingDeviceLogs[key] = parseFloat(tempDeviceLogs[key]);
                   } catch(e){
-                    winston.error(JSON.stringify(e));
+                    winston.error(JSON.stringify(e, ['message', 'arguments', 'type', 'name', 'stack']));
                     delete pendingDeviceLogs[key];
                   }
                 }

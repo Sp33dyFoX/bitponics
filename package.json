@@ -50,7 +50,7 @@
     "stylus": ">=0.37.0",
     "time": "0.10.0",
     "timezone": "=0.0.23",
-    "winston": ">= 0.6.2",
+    "winston": "0.7.3",
     "winston-loggly": ">= 0.6",
     "winston-nodemailer": "0.0.4"
   },

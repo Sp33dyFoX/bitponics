@@ -272,7 +272,9 @@ ActionSchema.static('createNewIfUserDefinedPropertiesModified', function(options
       ],
       function(err, validatedAction){
         if (silentValidationFail){
-          if (err) { winston.error(JSON.stringify(err)); }
+          if (err) { 
+            winston.error(JSON.stringify(err, ['message', 'arguments', 'type', 'name', 'stack'])); 
+          }
           return callback(null, validatedAction);
         }
         return callback(err, validatedAction);

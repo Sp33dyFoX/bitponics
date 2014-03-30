@@ -3,10 +3,10 @@
  */
 
 var mongoose = require('mongoose'),
-	Schema = mongoose.Schema,
-	mongoosePlugins = require('../lib/mongoose-plugins'),
+  Schema = mongoose.Schema,
+  mongoosePlugins = require('../lib/mongoose-plugins'),
   useTimestamps = mongoosePlugins.useTimestamps,
-	ObjectIdSchema = Schema.ObjectId,
+  ObjectIdSchema = Schema.ObjectId,
   ObjectId = mongoose.Types.ObjectId,
   LightBulbModel = require('./lightBulb').model,
   LightFixtureModel = require('./lightFixture').model,
@@ -16,7 +16,7 @@ var mongoose = require('mongoose'),
   mongooseConnection = require('../config/mongoose-connection').defaultConnection;
 
 var LightSchema = new Schema({
-	fixture: { type: ObjectIdSchema, ref: 'LightFixture'},
+  fixture: { type: ObjectIdSchema, ref: 'LightFixture'},
   fixtureQuantity: { type : Number, default: 1 },
   bulb: { type : ObjectIdSchema, ref: 'LightBulb'},
   createdBy : { type : ObjectIdSchema, ref: 'User' },
@@ -137,7 +137,9 @@ LightSchema.static('createNewIfUserDefinedPropertiesModified', function(options,
                 function(err, validatedFixture){
                   if (validatedFixture){ submittedLight.fixture = validatedFixture; }
                   if (silentValidationFail){
-                    if (err) { winston.error(JSON.stringify(err)); }
+                    if (err) { 
+                      winston.error(JSON.stringify(err, ['message', 'arguments', 'type', 'name', 'stack'])); 
+                    }
                     return innerInnerCallback();
                   } 
                   return innerInnerCallback(err);
@@ -157,7 +159,9 @@ LightSchema.static('createNewIfUserDefinedPropertiesModified', function(options,
                 function(err, validatedBulb){
                   if (validatedBulb){ submittedLight.bulb = validatedBulb; }
                   if (silentValidationFail){
-                    if (err) { winston.error(JSON.stringify(err)); }
+                    if (err) { 
+                      winston.error(JSON.stringify(err, ['message', 'arguments', 'type', 'name', 'stack'])); 
+                    }
                     return innerInnerCallback();
                   } 
                   return innerInnerCallback(err);
@@ -173,7 +177,9 @@ LightSchema.static('createNewIfUserDefinedPropertiesModified', function(options,
     ],
     function(err, validatedLight){
       if (silentValidationFail){
-        if (err) { winston.error(JSON.stringify(err)); }
+        if (err) { 
+          winston.error(JSON.stringify(err, ['message', 'arguments', 'type', 'name', 'stack'])); 
+        }
         return callback(null, validatedLight);
       }
       return callback(err, validatedLight);
