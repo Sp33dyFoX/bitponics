@@ -1,7 +1,7 @@
 var winston = require('winston'),
   nodemailer = require('nodemailer'),
-
-	loggly = {
+  getenv = require('getenv'),
+  loggly = {
       subdomain : 'bitponics',
       tokens : {
         local : 'c8593ee1-8a09-426f-acd6-871b70b91fd0',
@@ -14,24 +14,26 @@ var winston = require('winston'),
     };
 
 module.exports = function(env){
-	winston.cli();
-	winston.exitOnError = false;
+  winston.cli();
+  winston.exitOnError = false;
 
   
-  winston.add(require('winston-nodemailer'), {
-    to: "engineering@bitponics.com",
-    from: "notifications@bitponics.com",
-    level: 'error',
-    handleExceptions : true,
-    transport : nodemailer.createTransport("SES", require('./email-config').amazonSES.api)
-  });
+  if (getenv.bool('BPN_EMAIL_ON_ERRORS')){
+    winston.add(require('winston-nodemailer'), {
+      to: "engineering@bitponics.com",
+      from: "notifications@bitponics.com",
+      level: 'error',
+      handleExceptions : true,
+      transport : nodemailer.createTransport("SES", require('./email-config').amazonSES.api)
+    });
+  }
 
-	winston.add(require('winston-loggly').Loggly, {
+  winston.add(require('winston-loggly').Loggly, {
     subdomain : loggly.subdomain,
     inputToken : loggly.tokens[env],
     level : 'error',
     handleExceptions: true
-	});
+  });
 
-	return winston;
+  return winston;
 };
