@@ -909,6 +909,13 @@ NotificationSchema.static('clearPendingNotifications', function (options, callba
                   return user.notificationPreferences.email;
                 });
 
+                
+                // If no users want email, skip
+                if (!filteredUsers.length){
+                  return iteratorCallback();
+                }
+
+
                 // TEMP HACK : special alert for hyatt device
                 try {
                   if (NotificationModel.db.name.indexOf('prod') >= 0){
