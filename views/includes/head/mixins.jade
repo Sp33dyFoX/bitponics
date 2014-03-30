@@ -64,11 +64,8 @@ mixin requirejs(dataMain)
   //- //var spin = '/assets/js/libs/spin.min.js'
   //- //var socketIO = '/socket.io/socket.io.js'
 
-  //- Dynamic data cannot be passed to CDN() as far as I can tell, so keep requirejs local for now
-  // != CDN('/assets/js/libs/require.js', { 'data-main' : '#{dataMainVar}' })
-  script(src="#{requirejs}", data-main="#{dataMainVar}")
   script
-    require.config({
+    var requirejs = {
       paths: {
         // 'angular': '#{angular}',
         'angular': '//ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular',
@@ -215,7 +212,11 @@ mixin requirejs(dataMain)
           exports: 'Tooltip'
         }
       }
-    });
+    };
+
+  //- Dynamic data cannot be passed to CDN() as far as I can tell, so keep requirejs local for now
+  // != CDN('/assets/js/libs/require.js', { 'data-main' : '#{dataMainVar}' })
+  script(src="#{requirejs}", data-main="#{dataMainVar}")
 
 
 //- //TODO: work in progress, not used yet
