@@ -3,12 +3,12 @@
  */
 
 var mongoose = require('mongoose'),
-	Schema = mongoose.Schema,
-	mongoosePlugins = require('../lib/mongoose-plugins'),
-	useTimestamps = mongoosePlugins.useTimestamps,
+  Schema = mongoose.Schema,
+  mongoosePlugins = require('../lib/mongoose-plugins'),
+  useTimestamps = mongoosePlugins.useTimestamps,
   requirejs = require('../lib/requirejs-wrapper'),
   feBeUtils = requirejs('fe-be-utils'),
-	ObjectIdSchema = Schema.ObjectId,
+  ObjectIdSchema = Schema.ObjectId,
   ObjectId = mongoose.Types.ObjectId,
   mongooseConnection = require('../config/mongoose-connection').defaultConnection,
   async = require('async'),
@@ -122,9 +122,9 @@ NotificationSentLogSchema.virtual('checked')
  * - GrowPlan was updated but we couldn't automatically update your garden. Come select which phase of the new Grow Plan to use
  */
 var NotificationSchema = new Schema({
-	
+  
 
-	/**
+  /**
    * users
    * Users to send the notification to.
    * Will usually be a copy of a GPI's or Device's users
@@ -132,51 +132,51 @@ var NotificationSchema = new Schema({
   u : [{ type: ObjectIdSchema, ref: 'User', required: true }],
 
 
-	/**
-	 * GrowPlanInstance. Optional.
-	 */
-	gpi: { type: ObjectIdSchema, ref: 'GrowPlanInstance', required: false },
+  /**
+   * GrowPlanInstance. Optional.
+   */
+  gpi: { type: ObjectIdSchema, ref: 'GrowPlanInstance', required: false },
 
 
-	/**
-	 * timeToSend
+  /**
+   * timeToSend
    * The time to send the notification. 
-	 * Once a notification is sent and has no further repeats, this is set to null. 
-	 * To clear pending notifications, this field is queried for values <= now
-	 */ 
-	tts : { type: Date, validate: dateValidationFns },
+   * Once a notification is sent and has no further repeats, this is set to null. 
+   * To clear pending notifications, this field is queried for values <= now
+   */ 
+  tts : { type: Date, validate: dateValidationFns },
 
 
-	/**
-	 * repeat
+  /**
+   * repeat
    * If present, defines a repeat schedule for a notification.
-	 * Once the notification is sent, it's used to update the 
-	 * "timeToSend" field to the next time the notification should be sent
-	 */
-	r : {
+   * Once the notification is sent, it's used to update the 
+   * "timeToSend" field to the next time the notification should be sent
+   */
+  r : {
     /**
      * durationType
      */
-	 	durationType : { type: String, enum: feBeUtils.DURATION_TYPES },
-		
+    durationType : { type: String, enum: feBeUtils.DURATION_TYPES },
+    
     /**
      * duration
      */
     duration : { type : Number },
-		
+    
     /*
-		 * timezone
-		 */
-		timezone : String
-	},
-	
+     * timezone
+     */
+    timezone : String
+  },
+  
 
 
 
   /**
    * sentLogs
    */
-	sl : [ NotificationSentLogSchema ],
+  sl : [ NotificationSentLogSchema ],
 
   
   /**
@@ -254,7 +254,7 @@ var NotificationSchema = new Schema({
   /**
    * type
    */
-	type : { 
+  type : { 
     type: String, 
     enum: [
       feBeUtils.NOTIFICATION_TYPES.INFO,
@@ -264,7 +264,7 @@ var NotificationSchema = new Schema({
     required : true,
     default : feBeUtils.NOTIFICATION_TYPES.INFO
   },
-	
+  
 
   /**
    * hash
@@ -867,7 +867,9 @@ NotificationSchema.static('clearPendingNotifications', function (options, callba
                 (notification.trigger === feBeUtils.NOTIFICATION_TRIGGERS.PHASE_ACTION && typeof notification.triggerDetails.cycleStateIndex !== 'undefined') ||
                 (feBeUtils.isLessThanOneDay(notification.repeat.duration, notification.repeat.durationType))
             };
+
             winston.info("EMAIL NOTIFICATION?");
+            
             if (shouldNotSendEmailNotification(notification)) {
               winston.info("DID NOT SEND EMAIL NOTIFICATION " + notification._id.toString());
               winston.info("notification.repeat.duration: " + notification.repeat.duration);
@@ -875,6 +877,7 @@ NotificationSchema.static('clearPendingNotifications', function (options, callba
               console.log(feBeUtils.isLessThanOneDay(notification.repeat.duration, notification.repeat.durationType));
               return iteratorCallback();
             }
+
             winston.info("YES");
 
             // Populate trigger details
@@ -887,6 +890,12 @@ NotificationSchema.static('clearPendingNotifications', function (options, callba
                 if (err) { return iteratorCallback(err); }
 
                 winston.info("PROCESSING NOTIFICATION " + notification._id.toString() + " GOT NOTIFICATION DISPLAY " + now);
+
+                // 
+                if (!notificationDisplays.email){
+                  winston.error("ERROR CREATING EMAIL FOR NOTIFICATION " + notification._id.toString());
+                  return iteratorCallback(new Error("ERROR CREATING EMAIL FOR NOTIFICATION " + notification._id.toString()));
+                }
 
                 var emailTemplateLocals = {
                   emailSubject : notificationDisplays.email.subject,
