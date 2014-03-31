@@ -18,7 +18,7 @@ module.exports = function(env){
   winston.exitOnError = false;
 
   
-  if (getenv.bool('BPN_EMAIL_ON_ERRORS')){
+  if (getenv.bool('BPN_EMAIL_ON_ERRORS', false)){
     winston.add(require('winston-nodemailer'), {
       to: "engineering@bitponics.com",
       from: "notifications@bitponics.com",
