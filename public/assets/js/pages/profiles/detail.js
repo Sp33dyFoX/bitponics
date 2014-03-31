@@ -35,7 +35,13 @@ function (angular, domReady, viewModels, moment, feBeUtils) {
     'GardenModel',
     'GrowPlanModel',
     function($scope, $route, UserModel, GardenModel, GrowPlanModel){
-      console.log('$route.current', $route.current)
+        
+      $scope.plants = bpn.plants;
+      $scope.plantsById = {};
+      $scope.plants.forEach(function(plant){
+        $scope.plantsById[plant._id] = plant;
+      });
+
       $scope.user = UserModel.get( { id : bpn.pageData.profileId }, 
         function (user) {
         }, 
@@ -46,7 +52,7 @@ function (angular, domReady, viewModels, moment, feBeUtils) {
       $scope.userGardenResults = GardenModel.query(
         { 
           where : JSON.stringify({ 'users' : bpn.pageData.profileId }),
-          select : 'name,startDate'
+          select : 'name,startDate,growPlan.name,growPlan.plants'
         },
         function success(data){
           console.log(data);
@@ -56,7 +62,7 @@ function (angular, domReady, viewModels, moment, feBeUtils) {
       $scope.userGrowPlanResults = GrowPlanModel.query(
         { 
           where : JSON.stringify({ 'createdBy' : bpn.pageData.profileId }),
-          select : 'name,createdAt,activeGardenCount'
+          select : 'name,createdAt,plants,activeGardenCount'
         },
         function success(data){
           console.log(data);
