@@ -28,15 +28,15 @@ var createInstance = function(callback){
  * your code should be done executing so Mocha runs to test properly.
  */
  describe('Device', function(){
- 	
+  
   /*
    * beforeEach Method
    *
-	 * Run before each test.
-	 */
-	 beforeEach(function(done){
-	 	done();
-	 });
+   * Run before each test.
+   */
+   beforeEach(function(done){
+    done();
+   });
 
 
    /*
@@ -46,7 +46,7 @@ var createInstance = function(callback){
     * Remove the test user.
     */
     afterEach(function(done){
-    	done();
+      done();
     });
 
     
@@ -163,7 +163,7 @@ var createInstance = function(callback){
             }, 
             function(err, statusResponse){
               should.not.exist(err);
-              statusResponse.states["1"].should.equal(1);
+              JSON.parse(statusResponse).states["1"].should.equal(1);
               return done();
             }
           );
@@ -197,7 +197,7 @@ var createInstance = function(callback){
             }, 
             function(err, statusResponse){
               should.not.exist(err);
-              statusResponse.states["1"].should.equal(0);
+              JSON.parse(statusResponse).states["1"].should.equal(0);
               return done();
             }
           );
