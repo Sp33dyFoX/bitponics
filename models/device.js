@@ -547,7 +547,7 @@ DeviceSchema.method('getStatusResponse', function(options, callback) {
           response = JSON.stringify(statusResponseJson);
           break;
         default : 
-          response = statusResponseJson;
+          response = JSON.stringify(statusResponseJson);
       }
       return callback(err, response);
     }
