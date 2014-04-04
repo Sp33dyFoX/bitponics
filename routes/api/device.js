@@ -290,7 +290,8 @@ module.exports = function(app) {
           calibrationStatusLog,
           device,
           growPlanInstance,
-          contentTypeVersion;
+          contentTypeVersion,
+          requestContentType = req.headers['content-type'];
 
       winston.info('/status POST headers');
       winston.info(req.headers);
@@ -298,14 +299,15 @@ module.exports = function(app) {
       winston.info(JSON.stringify(req.rawBody));
 
       // For now, only accept requests that use the device content-type
-      if(req.headers['content-type'].indexOf(feBeUtils.MIME_TYPES.BITPONICS.PREFIX) === -1){
+      if(!requestContentType || requestContentType.indexOf(feBeUtils.MIME_TYPES.BITPONICS.PREFIX) === -1){
+        winston.error("Invalid content type " + requestContentType + " received at " + req.url);
         return next(new Error('Invalid Content-Type'));
       }
 
-      if(req.headers['content-type'].indexOf(feBeUtils.MIME_TYPES.BITPONICS.PREFIX) > -1 && req.rawBody){
+      if(requestContentType.indexOf(feBeUtils.MIME_TYPES.BITPONICS.PREFIX) > -1 && req.rawBody){
 
         
-        contentTypeVersion = req.headers['content-type'].split("/")[1].split(".")[2];
+        contentTypeVersion = requestContentType.split("/")[1].split(".")[2];
 
         switch(contentTypeVersion) {
           case "v1":
