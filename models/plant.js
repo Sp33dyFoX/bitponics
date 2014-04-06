@@ -17,6 +17,7 @@ var mongoose = require('mongoose'),
 var PlantSchema = new Schema({
   name: { type: String, required: true },
   createdBy: { type: ObjectIdSchema, ref: 'User'},
+  photo: { type: String },
   visibility : { 
     type: String, 
     enum: [

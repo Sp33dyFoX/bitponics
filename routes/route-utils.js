@@ -308,51 +308,73 @@ module.exports = {
    * @param {string} req.body.ref.collectionName
    * @param {string} req.body.ref.documentId
    */
-  processPhotoUpload : function(req, res, next){
+  processPhotoUpload : function(req, res, next, refModelResult){
     var PhotoModel = require('../models/photo').model,
-      async = require('async'),
-      requirejs = require('../lib/requirejs-wrapper'),
-      feBeUtils = requirejs('fe-be-utils'),
-      filesKeys = Object.keys(req.files),
-      now = new Date(),
-      responseData = [];
+        ReferenceModel = refModelResult,
+        async = require('async'),
+        requirejs = require('../lib/requirejs-wrapper'),
+        feBeUtils = requirejs('fe-be-utils'),
+        filesKeys = Object.keys(req.files),
+        now = new Date(),
+        responseData = [],
+        setPhotoIdOnRef = req.body.setPhotoIdOnRef; //set canonical photo to parent reference model
 
     // to send the photo back as the response:
     //res.sendfile(req.files.photo.path);
 
     async.each(filesKeys, 
       function fileIterator(fileKey, iteratorCallback){
-        var photo = req.files[fileKey];
+        var photo = req.files[fileKey],
+            options = {
+              owner : req.user,
+              originalFileName : photo.name,
+              name : photo.name,
+              contentType : photo.type,
+              date : photo.lastModifiedDate || (new Date()),
+              size : photo.size,
+              tags : req.body.tags,
+              gpi : req.body.gpi,
+              ref : req.body.ref,
+              visibility : req.body.visibility || feBeUtils.VISIBILITY_OPTIONS.PUBLIC,
+              filePath : photo.path
+            };
 
-        PhotoModel.createAndStorePhoto(
-        {
-          owner : req.user,
-          originalFileName : photo.name,
-          name : photo.name,
-          contentType : photo.type,
-          date : photo.lastModifiedDate || (new Date()),
-          size : photo.size,
-          tags : req.body.tags,
-          gpi : req.body.gpi,
-          ref : req.body.ref,
-          visibility : req.body.visibility || feBeUtils.VISIBILITY_OPTIONS.PUBLIC,
-          filePath : photo.path
-        },
-        function(err, photo){
-          if (err) { 
-            winston.error("ERROR IN processPhotoUpload PhotoModel.createAndStorePhoto " + JSON.stringify(err));
-            return iteratorCallback(err); 
-          }
-          responseData.push(photo);
-          return iteratorCallback();
-        });
+        // set photo available on parent model and make it accessible on CDN
+        if (ReferenceModel && setPhotoIdOnRef) {
+          console.log('set public');
+          options.acl = "public-read";
+        }
+        
+        PhotoModel.createAndStorePhoto(options,
+          function(err, photo){
+            if (err) {
+              winston.error("ERROR IN processPhotoUpload PhotoModel.createAndStorePhoto " + JSON.stringify(err));
+              return iteratorCallback(err); 
+            }
+            responseData.push(photo);
+            return iteratorCallback();
+          });
       },
       function fileLoopEnd(err){
         if (err) { return next(err); }
+
+        if (ReferenceModel) {
+          if (setPhotoIdOnRef) {
+            ReferenceModel.photo = responseData[0][0]._id;
+            ReferenceModel.save(function(err, model) {
+              if (err) {
+                winston.error("ERROR IN processPhotoUpload ReferenceModel.save " + JSON.stringify(err));
+              }
+              return module.exports.sendJSONResponse(res, 200, { data : responseData });
+            });
+          }
+        }
+
         return module.exports.sendJSONResponse(res, 200, { data : responseData });
       }
     );
   },
+
 
   /**
    * @param {HTTP Request} req

@@ -188,6 +188,10 @@ PhotoSchema.static("createAndStorePhoto",  function(options, callback){
       photo.gpi = options.gpi;
     }
 
+    if (!options.acl){
+      options.acl = 'private';
+    }
+
     async.parallel(
       [
         
@@ -196,7 +200,7 @@ PhotoSchema.static("createAndStorePhoto",  function(options, callback){
             knoxMethodArgument = (knoxMethod === 'putStream' ? options.stream : options.filePath),
             knoxHeaders = {
               'Content-Type': photo.type, 
-              'x-amz-acl': 'private'
+              'x-amz-acl': options.acl
             };
 
           if (options.size){
@@ -266,7 +270,7 @@ PhotoSchema.static("createAndStorePhoto",  function(options, callback){
                 s3Config.photoPathPrefix + photo._id.toString() + '/' + feBeUtils.PHOTO_THUMBNAIL_SIZE.WIDTH, 
                 {
                   'Content-Type': photo.type, 
-                  'x-amz-acl': 'private'
+                  'x-amz-acl': options.acl
                 },
                 function(err, result) {
                   winston.info("PHOTO PROCESSING THUMBNAIL RETURNED FROM S3, id: " + photo._id.toString() + ", err:" +  JSON.stringify(err) + ", result: " + JSON.stringify(Object.keys(result)) + ', statusCode:' + JSON.stringify(result.statusCode));
@@ -315,7 +319,7 @@ PhotoSchema.static("createAndStorePhoto",  function(options, callback){
           //       s3Config.photoPathPrefix + photo._id.toString() + '/' + feBeUtils.PHOTO_THUMBNAIL_SIZE.WIDTH, 
           //       {
           //         'Content-Type': photo.type, 
-          //         'x-amz-acl': 'private',
+          //         'x-amz-acl': options.acl,
           //         'Content-Length' : photo.thumbnailSize
           //       },
           //       function(err, result) {

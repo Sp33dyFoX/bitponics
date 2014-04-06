@@ -3,7 +3,8 @@ var async = require('async'),
   express    = require('express'),
   winston = require('winston'),
   routeUtils = require('./route-utils'),
-  ModelUtils = require('../models/utils');
+  ModelUtils = require('../models/utils'),
+  s3config = require('../config/s3-config.js');
   
 module.exports = function(app){
   
@@ -241,6 +242,24 @@ module.exports = function(app){
     });
   });
 
+  app.get('/admin/plants', function(req, res, next){
+    var PlantModel = require('../models/plant').model,
+        locals = {
+          title: 'Bitponics Admin | Plants',
+          growSystems : []
+        };
+
+    PlantModel.find()
+    .sort('-updatedAt')
+    .exec(function(err, results){
+      if (err) { return next(err);}
+
+      locals.plants = results;
+      locals.cdnURL = s3config.cloudFrontEndpoint;
+      locals.photoPathPrefix = s3config.photoPathPrefix;
+      res.render('admin/plants', locals);
+    });
+  });
 
 
   app.use('/admin/docs', express.static(path.join(__dirname, '/../docs')));

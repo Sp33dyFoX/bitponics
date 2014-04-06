@@ -18,7 +18,7 @@
     "ejs": "=0.8.4",
     "email-templates": "=0.1.0",
     "express": "3.0.1",
-    "express-cdn": ">= 0.0.9",
+    "express-cdn": ">= 0.1.9",
     "express-csv": ">=0.4.1",
     "getenv": "0.3.0",
     "gm": "1.14.2",
@@ -26,6 +26,7 @@
     "jade": "= 0.30.0",
     "jsftp": "=0.6.0",
     "knox": "=0.8.2",
+    "knox-copy": "=0.2.2",
     "mailparser": "=0.3.6",
     "mixpanel": "=0.0.18",
     "mkdirp": ">= 0.0.1",
@@ -52,7 +53,8 @@
     "timezone": "=0.0.23",
     "winston": "0.7.3",
     "winston-loggly": ">= 0.6",
-    "winston-nodemailer": "0.0.4"
+    "winston-nodemailer": "0.0.4",
+    "xtend": "~2.2.0"
   },
   "devDependencies": {
     "angular": "~1.2.10",

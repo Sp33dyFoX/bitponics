@@ -272,8 +272,9 @@ module.exports = {
    * 
    */
   photoPost : function(options){
-    var ReferenceModel = options.refModel;
-
+    var ReferenceModel = options.refModel,
+        setPhotoIdOnRef = options.setPhotoIdOnRef;
+    console.log('in photoPost')
     return function(req, res, next){
       ReferenceModel.findById(req.params.id)
       .exec(function (err, refModelResult) {
@@ -289,11 +290,12 @@ module.exports = {
           collectionName : ReferenceModel.collection.name,
           documentId : req.params.id
         };
+        req.body.setPhotoIdOnRef = setPhotoIdOnRef;
 
         // Unless otherwise specified, photo should use same visibility settings as reference, with public as default
         req.body.visibility = req.body.visibility || refModelResult.visibility || feBeUtils.VISIBILITY_OPTIONS.PUBLIC;
 
-        return routeUtils.processPhotoUpload(req, res, next);
+        return routeUtils.processPhotoUpload(req, res, next, refModelResult);
       });
     }
   }

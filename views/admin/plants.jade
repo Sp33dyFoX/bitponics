@@ -1,0 +1,54 @@
+block vars
+  - pageClassName = 'app-page admin plants'
+
+extends ../layout
+
+block head
+  link(rel='stylesheet', href='/assets/css/pages/admin/plants.css')
+  mixin requirejs("/assets/js/pages/admin/plants")
+
+
+block content
+  section.header
+    header
+      include ../includes/nav/main
+
+  section#main(role="main", class="main")
+    h2.page-heading Plants
+    div.separator-top(ng-cloak, ng-controller="bpn.controllers.admin.plants.Main")
+      
+      form(ng-submit="submit()", ng-controller="bpn.controllers.admin.plants.AddPlant", enctype="multipart/form-data")
+        h3 Name
+        input(type="text", ng-model="newPlant.name")
+
+        div(ng-show="newPlant._id")
+          h3 Upload a Photo
+          //- form(action="/admin/photos/upload", method="post", enctype="multipart/form-data")
+          //- input(type="file", name="photo", accept="image/*")
+          //- input(type="radio", name="visibility", value="public", checked="checked") 
+          bpn-directives-file-upload(
+            upload-url="'/api/plants/' + sharedDataService.newPlant._id + '/photos'" 
+            shared-data-service="sharedDataService"
+          )
+
+        button(ng-show="newPlant._id", type="button", ng-click="clear()", class="btn no-margin") Done
+        input(ng-hide="newPlant._id", type="submit", value="Submit")
+
+        p
+          figure
+            div {{newPlant.name}}
+            div.photo 
+              div Photo:
+              img(src="//{{cdnURL}}/{{photoPathPrefix}}{{newPlant.photo}}/200", alt="newPlant.name")
+
+
+        h3.separator-top All Plants
+        ul
+          li(ng-repeat="plant in plants", id="{{plant._id}}", ng-click="setCurrentPlant(plant)") {{plant.name}}
+        
+
+block footer-scripts
+  script
+    bpn.pageData.plants = !{JSON.stringify(plants)};
+    bpn.pageData.cdnURL = !{JSON.stringify(cdnURL)};
+    bpn.pageData.photoPathPrefix = !{JSON.stringify(photoPathPrefix)};

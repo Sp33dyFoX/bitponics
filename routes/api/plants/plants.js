@@ -1,9 +1,10 @@
-var PlantModel = require('../../models/plant').model,
+var PlantModel = require('../../../models/plant').model,
     winston = require('winston'),
-    routeUtils = require('../route-utils'),
-    requirejs = require('../../lib/requirejs-wrapper'),
+    routeUtils = require('../../route-utils'),
+    requirejs = require('../../../lib/requirejs-wrapper'),
   	feBeUtils = requirejs('fe-be-utils'),
-    apiUtils = require('./utils');
+    apiUtils = require('../utils'),
+    extend = require("xtend");
 
 /**
  * module.exports : function to be immediately invoked when this file is require()'ed 
@@ -88,11 +89,15 @@ module.exports = function(app) {
   	function (req, res, next){
 	    return PlantModel.findById(req.params.id, function (err, plant) {
 	      if (err) { return next(err); }
-	      plant.actionBelowMin = req.body.actionBelowMin;
-	      return plant.save(function (err) {
+        var updated = {};
+        // console.log('plant before:', plant);
+        updated = extend(plant, req.params);
+        // console.log('plant after:', updated);
+	      return updated.save(function (err) {
 	        if (err) { return next(err); }
-	        return res.send(plant);
+	        return res.send(updated);
 	      });
+
 	    });
 	  }
   );
