@@ -34,15 +34,15 @@ var createInstance = function(callback){
  * your code should be done executing so Mocha runs to test properly.
  */
  describe('GrowPlanInstance', function(){
- 	
+  
   /*
    * beforeEach Method
    *
-	 * Run before each test.
-	 */
-	 beforeEach(function(done){
-	 	done();
-	 });
+   * Run before each test.
+   */
+   beforeEach(function(done){
+    done();
+   });
 
 
    /*
@@ -52,7 +52,7 @@ var createInstance = function(callback){
     * Remove the test user.
     */
     afterEach(function(done){
-    	done();
+      done();
     });
 
 

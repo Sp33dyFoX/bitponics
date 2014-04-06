@@ -242,7 +242,7 @@ module.exports = function(app){
                       if(deviceResult) {
                         deviceResult.getStatusResponse({}, function(err, deviceStatusResponse){
                           var deviceStatus = deviceResult.toObject().status;
-                          deviceStatus.outputValues = deviceStatusResponse.states;
+                          deviceStatus.outputValues = JSON.parse(deviceStatusResponse).states;
                           return innerCallback(err, deviceStatus);
                         });
                       }
