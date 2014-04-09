@@ -637,6 +637,7 @@ NotificationSchema.method('getDisplays', function(options, callback){
                 SensorModel.findOne({code : notificationTemplateLocals.notificationDetails.idealRange.sCode})
                 .exec(function(err, sensorResult){
                   notificationTemplateLocals.notificationDetails.sensor = sensorResult;
+                  notificationTemplateLocals.notificationDetails.idealRange.sensor = sensorResult;
                   return innerCallback();  
                 });
                 
