@@ -49,8 +49,17 @@ module.exports = function(app){
     app.set('view engine', 'jade');
     app.locals({ basedir: path.join(__dirname, '/../views'), breakpoints: breakpoints });
 
-    app.use(express.logger(':method :url :status'));
-
+    //express log messages through winston
+    if (app.settings.env === 'local') {
+      app.use(express.logger({
+        stream: {
+          write: function(message, encoding){
+            winston.info(message);
+          }
+        }
+      }));
+      // app.use(express.logger(':method :url :status'));
+    }
 
     // Since we're on Heroku (and hence behind a proxy), tell express proxied requests are cool
     // http://expressjs.com/guide.html#proxies
