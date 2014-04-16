@@ -39,8 +39,8 @@ block content
             figure
               div.photo 
                 div Photo:
-                span(ng-hide="{{newPlant.photo.length > 0}}") None
-                img(ng-show="{{newPlant.photo.length > 0}}", bpn-directives-if-thumbnail-404="//{{cdnURL}}/{{photoPathPrefix}}{{newPlant.photo}}/200",
+                span(ng-hide="newPlant.photo.length > 0") None
+                img(ng-show="newPlant.photo.length > 0", bpn-directives-if-thumbnail-404="//{{cdnURL}}/{{photoPathPrefix}}{{newPlant.photo}}/200",
                     ng-src="//{{cdnURL}}/{{photoPathPrefix}}{{newPlant.photo}}/200", alt="newPlant.name")
 
         div.float-r.half-width

@@ -22,7 +22,14 @@ require([
       [
         // '$q',
         function(){
-          var sharedData = {};
+          var sharedData = {
+            
+            uploadCallback: function(id) {
+              console.log(id);
+              this.newPlant.photo = id;
+            }
+
+          };
           return sharedData
         }
       ]

@@ -15,8 +15,6 @@ define(['angular', 'bpn.directives', 'drop', 'lvl.directives.fileUpload'],
             controller : [
               '$scope', '$element', '$attrs', '$transclude',
               function ($scope, $element, $attrs, $transclude){
-                console.log('$scope.sharedDataService', $scope.sharedDataService);
-                console.log('bpnDirectivesFileUpload $scope.uploadUrl', $scope.uploadUrl);
                 
                 $scope.uploadInProgress = false;
 
@@ -69,6 +67,9 @@ define(['angular', 'bpn.directives', 'drop', 'lvl.directives.fileUpload'],
 
                 $scope.done = function(files, data){
                   $scope.uploadInProgress = false;
+                  if ($scope.sharedDataService.uploadCallback) {
+                    $scope.sharedDataService.uploadCallback(data.data[0][0]._id);
+                  }
                   console.log('bpnDirectivesFileUpload done', files, data);
                 };
               }
