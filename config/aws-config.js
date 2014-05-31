@@ -1,4 +1,6 @@
+var getenv = require('getenv');
+
 module.exports = {
-	key        : 'AKIAIU5OC3NSS5DGS4RQ',
-  secret     : '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'
+	key        : getenv('BPN_AWS_KEY', false),
+  secret     : getenv('BPN_AWS_SECRET', false)
 };

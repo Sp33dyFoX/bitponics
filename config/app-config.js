@@ -203,18 +203,6 @@ module.exports = function(app){
               //not currently doing anything here
             }
 
-            // return connect.basicAuth(
-            //   function(basicAuthUsername, basicAuthPassword){
-            //     switch (basicAuthUsername) {
-            //       case "bitponics":
-            //         return basicAuthPassword === "8bitpass";
-            //       case "braintree":
-            //         return basicAuthPassword === "dendrite";
-            //     }
-            //     return false;
-            //   }
-            // )(req, res, next);
-
             return next();
         }
       });
@@ -241,19 +229,6 @@ module.exports = function(app){
         }
         
       });
-
-      //we probably want to do something like this on heroku:
-      //redirect to https
-      // app.use(function(req, res, next) {
-      //    //this is only present on heroku
-      //     var schema = req.headers["x-forwarded-proto"];
-
-      //     if (schema === "https")
-      //         return next();
-
-      //     res.redirect("https://" + req.headers.host + req.url);
-      // });
-
 
       break;
   }

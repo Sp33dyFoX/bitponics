@@ -3,18 +3,19 @@ var passport = require('passport'),
     HmacStrategy = require('../lib/passport-hmac').Strategy,
     FacebookStrategy = require('passport-facebook').Strategy,
     User = require('../models/user').model,
+    getenv = require('getenv'),
     oauthConfigs = {
         fb: {
-          appId: '260907493994161',
-          appSecret: '374abde8cd83d33bbea039b14ab208d9'
+          appId: getenv('BPN_FACEBOOK_APP_ID', false),
+          appSecret: getenv('BPN_FACEBOOK_APP_SECRET', false)
         },
         twitter: {
-            consumerKey: 'PyyZ8tnqCrLqpZHrLx56w',
-            consumerSecret: 'USgcvujBuqpRRLwWXRCXK159gNtJ4zj0FBmMvhNDbKM'
+            consumerKey: getenv('BPN_TWITTER_CONSUMER_KEY', false),
+            consumerSecret: getenv('BPN_TWITTER_CONSUMER_SECRET', false)
         },
         google: {
-            clientId: '278080134499.apps.googleusercontent.com',
-            clientSecret: 'lQD_LRWm1aNkJLuUJZ_pn1oI'
+            clientId: getenv('BPN_GOOGLE_CLIENT_ID', false),
+            clientSecret: getenv('BPN_GOOGLE_CLIENT_SECRET', false)
         }
     };
 

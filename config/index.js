@@ -74,7 +74,6 @@ module.exports = function(app, callback) {
 
   require('./auth-config')(app);
   require('./app-config')(app);
-  require('./braintree-config').setEnvironment(app.settings.env);
   
   require('../config/socket-config')(app);
   winston.info('Finished socket config');

@@ -394,13 +394,12 @@ module.exports = function(app){
   require('./admin')(app);
   require('./api')(app);
   require('./blog')(app);
-  require('./buy')(app);
   require('./dashboard')(app);
   require('./gardens')(app);
   require('./grow-plans')(app);
   require('./guides')(app);
   require('./photos')(app);
-    require('./profiles')(app);
+  require('./profiles')(app);
   require('./reset')(app);
   require('./setup')(app);
   require('./sockets')(app);
