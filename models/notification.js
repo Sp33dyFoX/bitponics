@@ -814,7 +814,7 @@ NotificationSchema.static('clearPendingNotifications', function (options, callba
       DeviceModel = require('./device').model,
       ControlModel = require('./control').model, // need this so that mongoose registers Control schema in worker process
       ImmediateActionModel = require('./immediateAction').model,
-      EmailConfig = require('../config/email-config'),
+      awsConfig = require('../config/aws-config'),
       nodemailer = require('nodemailer'),
       tz = require('../lib/timezone-wrapper'),
       async = require('async'),
@@ -851,7 +851,10 @@ NotificationSchema.static('clearPendingNotifications', function (options, callba
     winston.info("IN clearPendingNotifications, db " + NotificationModel.db.name);
     winston.info('IN clearPendingNotifications, PROCESSING ' + notificationResults.length + ' RESULTS ' + now);
 
-    var emailTransport = nodemailer.createTransport("SES", EmailConfig.amazonSES.api);
+    var emailTransport = nodemailer.createTransport("SES", {
+      'AWSAccessKeyID': awsConfig.key,
+      'AWSSecretKey': awsConfig.secret
+    });
     
     async.waterfall(
       [

@@ -14,8 +14,7 @@ var mongoose = require('mongoose'),
 	crypto = require('crypto'),
 	bcrypt = require('bcrypt'),
 	winston = require('winston'),
-	timezone = require('../lib/timezone-wrapper'),	
-	EmailConfig = require('../config/email-config'),
+	timezone = require('../lib/timezone-wrapper'),
 	mongooseConnection = require('../config/mongoose-connection').defaultConnection,
 	async = require('async'),
 	requirejs = require('../lib/requirejs-wrapper'),
@@ -23,6 +22,7 @@ var mongoose = require('mongoose'),
 	ejs = require('../config/ejs-config'),
 	fs = require('fs'),
 	path = require('path'),
+  awsConfig = require('../config/aws-config'),
 	passport = require('passport'),
   	FacebookStrategy = require('passport-facebook').Strategy,
   
@@ -553,7 +553,10 @@ UserSchema.pre('save', true, function(next, done){
 	  // The welcome email should be one-time only, even if the user hasn't activated yet
 		if(user.sentEmail){ return done(); }
 			
-		var emailTransport = nodemailer.createTransport("SES", EmailConfig.amazonSES.api);
+		var emailTransport = nodemailer.createTransport("SES", { 
+      'AWSAccessKeyID': awsConfig.key,
+      'AWSSecretKey': awsConfig.secret
+    });
 
 		var welcomeEmailTemplateLocals = {
       verifyUrl : (emailVariables.secureAppUrl + '/register?verify=' + user.activationToken)

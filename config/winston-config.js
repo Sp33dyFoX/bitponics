@@ -1,6 +1,7 @@
 var winston = require('winston'),
   nodemailer = require('nodemailer'),
   getenv = require('getenv'),
+  awsConfig = require('./aws-config'),
   loggly = {
       subdomain : 'bitponics',
       tokens : {
@@ -24,7 +25,10 @@ module.exports = function(env){
       from: "notifications@bitponics.com",
       level: 'error',
       handleExceptions : true,
-      transport : nodemailer.createTransport("SES", require('./email-config').amazonSES.api)
+      transport : nodemailer.createTransport("SES", { 
+        'AWSAccessKeyID': awsConfig.key,
+        'AWSSecretKey': awsConfig.secret
+      })
     });
   }
 

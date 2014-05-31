@@ -5,7 +5,8 @@ var User = require('../models/user').model,
 	winston = require('winston'),
 	timezone = require('../lib/timezone-wrapper'),	
 	verificationEmailDomain = 'bitponics.com'
-	routeUtils = require('./route-utils');
+	routeUtils = require('./route-utils'),
+  awsConfig = require('../config/aws-config');
 
 module.exports = function(app){
 	app.get('/reset', 
@@ -79,13 +80,10 @@ module.exports = function(app){
 							user.resetToken = token;
 							verifyUrl = 'http://' + verificationEmailDomain + '/reset?verify=' + user.resetToken;
 
-							var smtpTransport = nodemailer.createTransport("SMTP",{
-							    service: "Gmail",
-							    auth: {
-							        user: "accounts@bitponics.com",
-							        pass: "8bitpass"
-							    }
-							});
+							var smtpTransport = nodemailer.createTransport("SES", { 
+                'AWSAccessKeyID': awsConfig.key,
+                'AWSSecretKey': awsConfig.secret
+              });
 
 							var mailOptions = {
 							    from: "Bitponics <accounts@bitponics.com>",

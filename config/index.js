@@ -35,12 +35,9 @@ module.exports = function(app, callback) {
   winston.info(JSON.stringify(process.env));
       
   app.config = {
-    //auth : require('./auth-config'),
-    css : require('./css-config'),
     appUrl : appUrl,
     secureAppUrl : 'https://' + appDomain,
-    appDomain : appDomain,
-    js : require('./js-config')
+    appDomain : appDomain
   };
 
 
