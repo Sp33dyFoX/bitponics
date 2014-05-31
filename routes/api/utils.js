@@ -274,7 +274,7 @@ module.exports = {
   photoPost : function(options){
     var ReferenceModel = options.refModel,
         setPhotoIdOnRef = options.setPhotoIdOnRef;
-    console.log('in photoPost')
+    
     return function(req, res, next){
       ReferenceModel.findById(req.params.id)
       .exec(function (err, refModelResult) {
