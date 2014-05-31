@@ -10,7 +10,6 @@
     "async": "=0.2.8",
     "bcrypt": "0.7.7",
     "bootstrap-stylus": ">= 0.0.1",
-    "braintree": "*",
     "connect": "=2.4.3",
     "connect-flash": ">= 0.1.0",
     "connect-mongo": "=0.3.2",
