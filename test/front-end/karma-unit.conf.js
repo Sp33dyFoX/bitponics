@@ -2,9 +2,9 @@ module.exports = function(config) {
   config.set({
     files : [
       //deps for tests
-      'public/assets/js/libs/angular/1.2.0/angular.min.js',
-      'public/assets/js/libs/angular/1.2.0/angular-route.min.js',
-      'public/assets/js/libs/angular/1.2.0/angular-mocks.js',
+      'public/assets/js/libs/angular/1.2.9/angular.min.js',
+      'public/assets/js/libs/angular/1.2.9/angular-route.min.js',
+      'public/assets/js/libs/angular/1.2.9/angular-animate.min.js',
       { pattern: 'public/assets/js/libs/jquery-1.8.2.min.js', watched: false, served: true, included: true }, //jquery
       { pattern: 'test/front-end/libs/jasmine-jquery.js', watched: false, served: true, included: true }, //jasmine-jquery
 
