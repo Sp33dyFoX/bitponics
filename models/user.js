@@ -278,14 +278,23 @@ UserSchema.static('createUserWithPassword', function(userProperties, password, d
 });
 
 
+/**
+ * calls callback with 3 params: err, user, info
+ */
 UserSchema.static('authenticate', function(email, password, done) {
   this.findOne({ email: email.toLowerCase() }, function(err, user) {
       if (err) { return done(err); }
-      if (!user) { return done(new Error('No user found with that email'), false); }
-      if (user && !user.hash) { return done(new Error('Incorrect password. Did you sign up through a social account?'), false); }
+      if (!user) { 
+        return done(null, null, { message: 'No user found with that email' });
+      }
+      if (user && !user.hash) { 
+        return done(null, null, { message: 'Incorrect password. Did you sign up through a social account?' });
+      }
       user.verifyPassword(password, function(err, passwordCorrect) {
         if (err) { return done(err); }
-        if (!passwordCorrect) { return done(new Error('Incorrect password'), false); }
+        if (!passwordCorrect) { 
+          return done(null, null, { message: 'Incorrect password' });
+        }
         return done(null, user);
       });
     });

@@ -18,14 +18,11 @@ var passport = require('passport'),
         }
     };
 
-passport.use(new LocalStrategy({
+passport.use(new LocalStrategy(
+  {
     usernameField: 'email'
   },
-  function(email, password, done) {
-    User.authenticate(email, password, function(err, user) {
-      return done(err, user);
-    });
-  }
+  User.authenticate
 ));
 
 passport.use(new HmacStrategy({

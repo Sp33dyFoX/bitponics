@@ -156,7 +156,8 @@ module.exports = function(app){
           title: 'Login',
           formAction : '/login',
           className: "app-page single-page get-started",
-            pageType: "app-page"
+          pageType: "app-page",
+          loginErrorMessage: req.flash('loginError')
         };
 
 
@@ -181,7 +182,7 @@ module.exports = function(app){
           if (err) { return next(err); }
           if (!user) {
             winston.info(info);
-            req.flash('error', info.message);
+            req.flash('loginError', info.message);
             return res.redirect('/login')
           }
 
