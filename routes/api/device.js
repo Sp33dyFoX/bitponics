@@ -300,8 +300,15 @@ module.exports = function(app) {
 
       // For now, only accept requests that use the device content-type
       if(!requestContentType || requestContentType.indexOf(feBeUtils.MIME_TYPES.BITPONICS.PREFIX) === -1){
-        winston.error("Invalid content type " + requestContentType + " received at " + req.url);
-        return next(new Error('Invalid Content-Type'));
+        winston.error("Invalid content type " + requestContentType + " received at " + req.url + " . Continuing execution with implied content-type.");
+        // return next(new Error('Invalid Content-Type'));
+      }
+
+      
+      // HACK - in certain as-yet-unknown scenarios, device firmware submits undefined content-type. Let this go through and assume v2 content-type.
+      if (typeof requestContentType === 'undefined'){
+        requestContentType = "application/vnd.bitponics.v2.deviceText";
+        winston.error("Undefined content type " + requestContentType + " received at " + req.url + " . Request body:" + req.rawBody);
       }
 
       if(requestContentType.indexOf(feBeUtils.MIME_TYPES.BITPONICS.PREFIX) > -1 && req.rawBody){
