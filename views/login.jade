@@ -11,6 +11,8 @@ block content
     form(id='login-form', action=formAction, method='POST')
       h2.page-heading Log in
       div.separator-top
+        if loginErrorMessage
+          div.error-message #{loginErrorMessage}
         label(for="email") Email
         input(type='email', name="email", autofocus="autofocus")
         label(for="password") Password

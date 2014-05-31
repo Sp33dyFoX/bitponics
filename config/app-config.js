@@ -163,6 +163,7 @@ module.exports = function(app){
 
     //flash messages are separate as of express 3
     app.use(flash());
+    
     //  app.use(function(req, res, next){
     //    res.locals.flashMessages = req.flash();
     // });
