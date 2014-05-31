@@ -17,6 +17,11 @@ To run a specific test, use the grep flag:
 - BPN_EMAIL_ON_ERRORS
   
   Enables winston-nodemailer, which will email engineering@bitponics.com for all errors & exceptions.
+
 - BPN_BLOG_ENABLED
   
   Determines whether /blog route is enabled.
+
+- REDISCLOUD_URL
+
+  Redis is used for session cache.
