@@ -298,10 +298,9 @@ module.exports = function(app) {
       winston.info('/status POST req.rawBody');
       winston.info(JSON.stringify(req.rawBody));
 
-      // For now, only accept requests that use the device content-type
+      // Device requests are spotty with content-type, so be forgiving
       if(!requestContentType || requestContentType.indexOf(feBeUtils.MIME_TYPES.BITPONICS.PREFIX) === -1){
-        winston.error("Invalid content type " + requestContentType + " received at " + req.url + " . Continuing execution with implied content-type.");
-        // return next(new Error('Invalid Content-Type'));
+        winston.warn("Invalid content type " + requestContentType + " received at " + req.url + " . Continuing execution with implied content-type application/vnd.bitponics.v2.deviceText.");
       }
 
       
