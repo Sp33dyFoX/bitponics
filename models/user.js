@@ -282,7 +282,7 @@ UserSchema.static('createUserWithPassword', function(userProperties, password, d
  * calls callback with 3 params: err, user, info
  */
 UserSchema.static('authenticate', function(email, password, done) {
-  this.findOne({ email: email.toLowerCase() }, function(err, user) {
+  User.findOne({ email: email.toLowerCase() }, function(err, user) {
       if (err) { return done(err); }
       if (!user) { 
         return done(null, null, { message: 'No user found with that email' });
