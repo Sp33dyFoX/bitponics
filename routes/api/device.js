@@ -324,7 +324,7 @@ module.exports = function(app) {
             break;
           case "v2":
             var csvRequestBodyParts = req.rawBody.split(",");
-            if (req.headers['x-bpn-mode'] === "calib") {
+            if (routeUtils.matchesHeaderLike(req, "x-bpn-mode", "calib")) {
               // [calibration mode],[calibration status]
               // we get req.rawBody created for all requests that come from a device
               calibrationStatusLog = {

@@ -47,6 +47,7 @@
     "requirejs": ">=2.1.2",
     "s3policy": "=0.0.1",
     "semver": ">= 1.1.1",
+    "string_score": "0.1.20",
     "stylus": "=0.42.0",
     "time": "0.10.0",
     "timezone": "=0.0.23",

@@ -4,14 +4,7 @@
 
 
 module.exports = {
-	middleware : {
-		ensureLoggedIn : function(req, res, next){
-			if( !(req.user && req.user._id)){
-				return res.redirect('/login?redirect=' + req.url);
-			}
-			next();
-		},
-
+  middleware : {
     ensureLoggedIn : function(req, res, next){
       if( !(req.user && req.user._id)){
         return res.redirect('/login?redirect=' + req.url);
@@ -20,39 +13,39 @@ module.exports = {
     },
 /*
     ensureDeviceKeyVerified : function(req, res, next){
-    	var async = require('async'),
-    			DeviceModel = require('../models/device').model;
-    	// get the key on the req.user. check whether it has a device and is verified.
-    	// if not verified, use the id on the request to retrieve
-    	// the device. check whether device.serial matches the serial that we have
-    	// on the req.deviceKey. If so, set the device & set verified & save the user
-    	var deviceKey = req.deviceKey;
+      var async = require('async'),
+          DeviceModel = require('../models/device').model;
+      // get the key on the req.user. check whether it has a device and is verified.
+      // if not verified, use the id on the request to retrieve
+      // the device. check whether device.serial matches the serial that we have
+      // on the req.deviceKey. If so, set the device & set verified & save the user
+      var deviceKey = req.deviceKey;
 
-    	if (!deviceKey) { return next(); }
+      if (!deviceKey) { return next(); }
 
-    	if (deviceKey.deviceId && deviceKey.verified){ return next(); }
-			
-			var id = req.params.id.replace(/:/g,'');
-    	DeviceModel
+      if (deviceKey.deviceId && deviceKey.verified){ return next(); }
+      
+      var id = req.params.id.replace(/:/g,'');
+      DeviceModel
       .findOne({ _id: id })
       .exec(function(err, device){
-      	if (err) { return next(err); }	
-      	if (device.serial === deviceKey.serial){
+        if (err) { return next(err); }  
+        if (device.serial === deviceKey.serial){
       
-      		var dKeys = req.user.deviceKeys,
-      				dKey,
-      				found = false,
-      				i = dKeys.length;
-    			for (; i--;){
-    				dKey = dKeys[i];
-    				if ((deviceKey.serial === dKey.serial) && (dKey.public === deviceKey.public)){
-    					found = true;
-    					break;
-    				}
-    			}
+          var dKeys = req.user.deviceKeys,
+              dKey,
+              found = false,
+              i = dKeys.length;
+          for (; i--;){
+            dKey = dKeys[i];
+            if ((deviceKey.serial === dKey.serial) && (dKey.public === deviceKey.public)){
+              found = true;
+              break;
+            }
+          }
 
-    			if (found){
-    				ModelUtils.assignDeviceToUser({
+          if (found){
+            ModelUtils.assignDeviceToUser({
               user : req.user,
               deviceKey : dKey,
               device : device
@@ -60,8 +53,8 @@ module.exports = {
             function(err){
               return next(err);
             });
-    			} else {
-    				return next(new Error("Could not verify device for the serial number " + deviceKey.serial));
+          } else {
+            return next(new Error("Could not verify device for the serial number " + deviceKey.serial));
 
     },
     */
@@ -79,39 +72,39 @@ module.exports = {
       next();
     },
 
-		
+    
     ensureUserIsAdmin : function(req, res, next){
-			if( !(req.user && req.user._id && req.user.admin)){
-				return res.redirect('/login?redirect=' + req.url);
-			}
-			next();
-		},
-		
+      if( !(req.user && req.user._id && req.user.admin)){
+        return res.redirect('/login?redirect=' + req.url);
+      }
+      next();
+    },
+    
 
     /**
-		 * References:
-		 * http://stackoverflow.com/questions/7450940/automatic-https-connection-redirect-with-node-js-express
-		 * http://stackoverflow.com/questions/13186134/node-js-express-and-heroku-how-to-handle-http-and-https
-		 */
-		ensureSecure : (function(){
-			var app = require('../app');
-			if (app.settings.env === 'local'){
-				return function(req, res, next){
-					if (req.secure){
-						return next();
-					}
-					res.redirect("https://" + req.headers.host + req.url); 
-				}
-			} else {
-				// else, assumed to be hosted on heroku
-				return function(req, res, next){
-					if (req.headers['x-forwarded-proto'] === 'https'){
-						return next();
-					}
-					res.redirect("https://" + req.headers.host + req.url); 
-				}
-			}
-		}()),
+     * References:
+     * http://stackoverflow.com/questions/7450940/automatic-https-connection-redirect-with-node-js-express
+     * http://stackoverflow.com/questions/13186134/node-js-express-and-heroku-how-to-handle-http-and-https
+     */
+    ensureSecure : (function(){
+      var app = require('../app');
+      if (app.settings.env === 'local'){
+        return function(req, res, next){
+          if (req.secure){
+            return next();
+          }
+          res.redirect("https://" + req.headers.host + req.url); 
+        }
+      } else {
+        // else, assumed to be hosted on heroku
+        return function(req, res, next){
+          if (req.headers['x-forwarded-proto'] === 'https'){
+            return next();
+          }
+          res.redirect("https://" + req.headers.host + req.url); 
+        }
+      }
+    }()),
     
 
     ensureInsecure : (function(){
@@ -133,7 +126,7 @@ module.exports = {
         }
       }
     }())
-	},
+  },
 
   
   /**
@@ -211,6 +204,32 @@ module.exports = {
    */
   isUserLoggedIn: function(req){
     return (req.user && req.user._id);
+  },
+
+
+  /**
+   * Arduino unpredictably drops characters. This method lets the device API 
+   * check for close matches to expected headers. 
+   * 
+   * Matches when both key and value are within ~2 characters of provided values.
+   * 
+   * @param {Request} req : express request object
+   * @param {string} key : name of header field to check
+   * @param {string} value : expected value of header field
+   * 
+   * @return {bool} 
+   */
+  matchesHeaderLike: function(req, key, value){
+    require('string_score');
+
+    var keyMatch = Object.keys(req.headers).filter(function(headerKey){
+      return headerKey.score(key, 1) > 0.8;
+    })[0];
+
+    if (keyMatch){
+      return req.headers[keyMatch].score(value, 1) > 0.8;
+    }
+    return false;
   },
 
 

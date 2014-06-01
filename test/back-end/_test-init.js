@@ -11,6 +11,7 @@ var mongooseConnection = require('../../config/mongoose-connection').open('test'
     winston = require('winston'),
     sinon = require('sinon');
 
+
 /*
  * before Method
  *
@@ -19,7 +20,7 @@ var mongooseConnection = require('../../config/mongoose-connection').open('test'
  */
  before(function(done){
     // Stub email sender
-    var stub = sinon.stub(require("nodemailer"), "createTransport", function(){
+    sinon.stub(require("nodemailer"), "createTransport", function(){
       console.log('returning mock nodemailer.createTransport')
       return {
         sendMail : function(options, callback){
@@ -28,6 +29,9 @@ var mongooseConnection = require('../../config/mongoose-connection').open('test'
         }
       }
     });
+
+    
+
 
     // Connecting to a local test database or creating it on the fly
     exec('db_init test clear', 
