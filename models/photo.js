@@ -273,6 +273,8 @@ PhotoSchema.static("createAndStorePhoto",  function(options, callback){
                   'x-amz-acl': options.acl
                 },
                 function(err, result) {
+                  result = result || {};
+                  
                   winston.info("PHOTO PROCESSING THUMBNAIL RETURNED FROM S3, id: " + photo._id.toString() + ", err:" +  JSON.stringify(err) + ", result: " + JSON.stringify(Object.keys(result)) + ', statusCode:' + JSON.stringify(result.statusCode));
 
                   fs.unlink(thumbnailFilePath);
