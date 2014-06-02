@@ -307,7 +307,6 @@ module.exports = function(app) {
       // HACK - in certain as-yet-unknown scenarios, device firmware submits undefined content-type. Let this go through and assume v2 content-type.
       if (typeof requestContentType === 'undefined'){
         requestContentType = "application/vnd.bitponics.v2.deviceText";
-        winston.error("Undefined content type " + requestContentType + " received at " + req.url + " . Request body:" + req.rawBody);
       }
 
       if(requestContentType.indexOf(feBeUtils.MIME_TYPES.BITPONICS.PREFIX) > -1 && req.rawBody){
