@@ -133,13 +133,8 @@ block content
       h1.page-heading Setting up your Bitponics Base Station
       section(ng-view)
 
-      
-
-
-        
-
-               
 
 block footer-scripts
-  script
-    bpn.user = !{JSON.stringify(user.toPublicJSON())};
+  - if (typeof user !== 'undefined' && user._id)
+    script
+      bpn.user = !{JSON.stringify(user.toPublicJSON())};
