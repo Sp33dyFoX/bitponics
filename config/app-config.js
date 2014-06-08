@@ -19,7 +19,8 @@ var connect    = require('connect'),
   s3Config = require('../config/s3-config'),
   intercomConfig = require('../config/intercom-config'),
   crypto = require('crypto'),
-  breakpoints = require('../public/assets/config/media-queries');
+  breakpoints = require('../public/assets/config/media-queries'),
+  getenv = require('getenv');
   
 
 module.exports = function(app){
@@ -141,7 +142,7 @@ module.exports = function(app){
       app.config.mongooseConnection = mongooseConnection;
 
       app.config.session = {
-        secret : 'somethingrandom',
+        secret : getenv('BPN_SESSION_KEY', false),
         key : 'express.sid',
         store : new MongoStore({
           //mongoose_connection : app.config.mongooseConnection
