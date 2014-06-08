@@ -25,9 +25,27 @@ pub.auth(password, redisAuthCallback);
 sub.auth(password, redisAuthCallback);
 client.auth(password, redisAuthCallback);
 
-client.set('test-connection', 'connected');
-client.get('test-connection', function (err, reply) {
-  winston.info('redis connection is: ' + reply.toString()); // Will print `connected`
+client.set('socket.io client test-connection', 'connected');
+client.get('socket.io client test-connection', function (err, reply) {
+  if (err){
+    winston.err(err.toString());
+  } else {
+    winston.info('redis connection is: ' + reply.toString()); // Will print `connected`  
+  }
+});
+
+
+process.on('exit', function(){
+  winston.info('socket.io redis closing clients')
+  if (pub){
+    pub.close();
+  }
+  if (sub){
+    sub.close();    
+  }
+  if (client){
+    client.close();    
+  }
 });
 
 module.exports = function(app){
