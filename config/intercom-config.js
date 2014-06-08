@@ -1,3 +1,5 @@
+var getenv = require('getenv');
+
 module.exports = {
-	secretKey : "-Fil853fuSC8vxWgzxT0ok8mhMVlhTipsDhy_4Rq"
+	secretKey : getenv('BPN_INTERCOM_KEY', false)
 };
