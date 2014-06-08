@@ -1,11 +1,12 @@
 var passportSocketIo = require("passport.socketio")
     , winston = require('winston')
+    , getenv = require('getenv')
     , express = require('express')
     , SocketMongoStore = require('mong.socket.io')
     // https://devcenter.heroku.com/articles/rediscloud#using-redis-from-node-js
     , redis = require("redis")
     , url = require('url')
-    , redisURL = url.parse(process.env.REDISCLOUD_URL || 'http://@localhost') // need empty auth on local
+    , redisURL = url.parse(getenv('BPN_REDIS_URL', false) || 'http://@localhost') // need empty auth on local
     //, client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
     , password = redisURL.auth.split(":")[1];
 
