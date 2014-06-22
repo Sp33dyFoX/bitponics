@@ -1,11 +1,11 @@
 var User = require('../models/user').model,
-  routeUtils = require('./route-utils'),
-  winston = require('winston'),
-  passport = require('passport'),
-  querystring = require('querystring'),
-  http = require('http'),
-  verificationEmailDomain = 'bitponics.com',
-  mixpanel = require('../lib/mixpanel-wrapper');
+routeUtils = require('./route-utils'),
+winston = require('winston'),
+passport = require('passport'),
+querystring = require('querystring'),
+http = require('http'),
+verificationEmailDomain = 'bitponics.com',
+mixpanel = require('../lib/mixpanel-wrapper');
 
 module.exports = function(app){
 
@@ -152,13 +152,13 @@ module.exports = function(app){
     routeUtils.middleware.ensureSecure, 
     function (req, res){
       var redirect = req.query.redirect,
-        locals = {
-          title: 'Login',
-          formAction : '/login',
-          className: "app-page single-page get-started",
-          pageType: "app-page",
-          loginErrorMessage: req.flash('loginError')
-        };
+      locals = {
+        title: 'Login',
+        formAction : '/login',
+        className: "app-page single-page get-started",
+        pageType: "app-page",
+        loginErrorMessage: req.flash('loginError')
+      };
 
 
       // if user is already logged in
@@ -173,29 +173,29 @@ module.exports = function(app){
 
       return res.render('login', locals);  
     }
-  );
+    );
 
   app.post('/login', 
     routeUtils.middleware.ensureSecure, 
     function (req, res, next){
       passport.authenticate('local', function(err, user, info) {
+        if (err) { return next(err); }
+        if (!user) {
+          winston.info(info);
+          req.flash('loginError', info.message);
+          return res.redirect('/login')
+        }
+
+        mixpanel.track(user, "login", { redirect: req.query.redirect });
+        mixpanel.increment(user, "logins");
+
+        req.logIn(user, function(err) {
           if (err) { return next(err); }
-          if (!user) {
-            winston.info(info);
-            req.flash('loginError', info.message);
-            return res.redirect('/login')
-          }
-
-          mixpanel.track(user, "login", { redirect: req.query.redirect });
-          mixpanel.increment(user, "logins");
-
-          req.logIn(user, function(err) {
-            if (err) { return next(err); }
-            return res.redirect(req.query.redirect || '/dashboard');
-          });
-        })(req, res, next);
+          return res.redirect(req.query.redirect || '/dashboard');
+        });
+      })(req, res, next);
     }
-  );
+    );
 
   app.get('/signup', 
     routeUtils.middleware.ensureSecure, 
@@ -203,10 +203,10 @@ module.exports = function(app){
       res.render('signup', {
         title : 'Signup',
         className: "signup single-page app-page",
-          pageType: "app-page"
+        pageType: "app-page"
       });
     }
-  );
+    );
 
   app.post('/signup', 
     routeUtils.middleware.ensureSecure, 
@@ -249,25 +249,25 @@ module.exports = function(app){
 
             // Build the post string from an object
             var post_data = querystring.stringify({
-                'EMAIL' : req.param('email'),
-                'subscribe' : req.param('subscribe')
+              'EMAIL' : req.param('email'),
+              'subscribe' : req.param('subscribe')
             });
 
             // An object of options to indicate where to post to
             var post_options = {
-                host: 'bitponics.us2.list-manage1.com',
-                port: '80',
-                path: '/subscribe/post?u=68c690cb49ec37200919b6e55&amp;id=9b5ad31a92',
-                method: 'POST',
-                headers: {
-                  'Host': 'bitponics.us2.list-manage1.com',
-                  'Content-Type': 'application/x-www-form-urlencoded',
-                  'Content-Length': post_data.length,
-                  'Cache-Control':  'max-age=0',
-                  'Accept': 'text/html',
-                  'Origin': 'http://bitponics.com',
-                  'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.32 (KHTML, like Gecko) Chrome/27.0.1421.0 Safari/537.32',
-                  'Referer': 'http://bitponics.com/contact',
+              host: 'bitponics.us2.list-manage1.com',
+              port: '80',
+              path: '/subscribe/post?u=68c690cb49ec37200919b6e55&amp;id=9b5ad31a92',
+              method: 'POST',
+              headers: {
+                'Host': 'bitponics.us2.list-manage1.com',
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Length': post_data.length,
+                'Cache-Control':  'max-age=0',
+                'Accept': 'text/html',
+                'Origin': 'http://bitponics.com',
+                'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.32 (KHTML, like Gecko) Chrome/27.0.1421.0 Safari/537.32',
+                'Referer': 'http://bitponics.com/contact',
                   // 'Accept-Encoding': 'gzip,deflate,sdch',
                   'Accept-Language': 'en-US,en;q=0.8',
                   // 'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
@@ -275,16 +275,16 @@ module.exports = function(app){
                   'Pragma': 'no-cache',
                   'Cache-Control': 'no-cache'
                 }
-            };
+              };
 
             // Set up the request
             var post_req = http.request(post_options, function(res) {
-                var response = '';
-                res.setEncoding('utf8');
-                res.on('data', function (chunk) {
-                    response += chunk;
-                });
-                res.on('end', function(){
+              var response = '';
+              res.setEncoding('utf8');
+              res.on('data', function (chunk) {
+                response += chunk;
+              });
+              res.on('end', function(){
                   //console.log(response);
                   winston.info('newsletter signup email sent');
                 });
@@ -308,76 +308,82 @@ module.exports = function(app){
           });
         }
       });
-    }
-  );
-    
-  app.get('/logout', function (req, res) {
-    if (routeUtils.isUserLoggedIn(req)){
-      mixpanel.track(req.user, "logout");  
-    }
+}
+);
 
-    req.session.regenerate(function(){
-      req.logout();
-      res.redirect('/')  
-    });
+app.get('/logout', function (req, res) {
+  if (routeUtils.isUserLoggedIn(req)){
+    mixpanel.track(req.user, "logout");  
+  }
+
+  req.session.regenerate(function(){
+    req.logout();
+    res.redirect('/')  
   });
+});
 
-  
+
   /*
    * Email verification
    * 
    */
-  app.get('/register', 
+   app.get('/register', 
     routeUtils.middleware.ensureSecure, 
     function (req, res, next) {
       var UserModel = require('../models/user').model,
-          locals = {
-          title: 'Welcome to Bitponics!',
-          header: 'Thank you.',
-          message: 'Thanks for signing up. Check your email.',
-          className: "landing-page single-page getstarted register",
-          pageType: "landing-page"
-          };
+      locals = {
+        title: 'Welcome to Bitponics!',
+        header: 'Thank you.',
+        message: 'Thanks for signing up. Check your email.',
+        className: "landing-page single-page getstarted register",
+        pageType: "landing-page"
+      };
 
-        if(req.query.verify){ //user coming back to verify account
-            return UserModel.findOne({ activationToken: req.query.verify }, 
-            function (err, user) {
-              if (err) { return next(err); }
-                if (user) {
-                  mixpanel.track(user, "activate registration");
-                }
-              if (user && user.activationToken !== '') {
-                user.active = true;
-                user.sentEmail = true; //if we get here, this should be true
-                user.save( function(err, user){
-                  if (err) { return next(err); }
-                  locals.header =  "All set!";
-                          locals.message = 'Your account is now verified.';
-                  locals.link = '/setup/grow-plan';
-                  // locals.message = 'Your registration was successfull. Have you preordered a device yet?';
-                  locals.user = user;
-                  res.render('register', locals);
-                });
-              } else {
-                locals.message = 'There was an error validating your account. Please try signing up again.';
-                res.render('register', locals);
-              }
+      if(req.query.verify){ //user coming back to verify account
+        return UserModel.findOne({ activationToken: req.query.verify }, 
+          function (err, user) {
+            if (err) { return next(err); }
+            if (user) {
+              mixpanel.track(user, "activate registration");
             }
+            if (user && user.activationToken !== '') {
+              user.active = true;
+              user.sentEmail = true; //if we get here, this should be true
+              user.save( function(err, user){
+                if (err) { return next(err); }
+                locals.header =  "All set!";
+                locals.message = 'Your account is now verified.';
+                locals.link = '/setup/grow-plan';
+                // locals.message = 'Your registration was successfull. Have you preordered a device yet?';
+                locals.user = user;
+                res.render('register', locals);
+              });
+            } else {
+              locals.message = 'There was an error validating your account. Please try signing up again.';
+              res.render('register', locals);
+            }
+          }
           );
-        } else if(req.query.status == 'success') { //user preordered successfully
+      } else if(req.query.status == 'success') { //user preordered successfully
         locals.message = 'You\'ve successfully preordered a Bitponics device';
-        //TODO: here we could also collect additional info on user (amazon setting)
-        } else if(req.query.status == 'abandon') { //user cancelled preorder process mid-way
-          locals.message = 'Issues preordering the device?';
-      } else { //user has signed up, so tell them to check email to verify or if already verified then redirect to /gardens
-          
+      //TODO: here we could also collect additional info on user (amazon setting)
+      } else if(req.query.status == 'abandon') { //user cancelled preorder process mid-way
+        locals.message = 'Issues preordering the device?';
+      } else { 
+
+        // anonymous user here by mistake
+        if (!req.user){
+          return res.redirect('/signup');
+        }
+
+        //user has signed up, so tell them to check email to verify or if already verified then redirect to /gardens
         if (req.user.active) {
           return res.redirect('/gardens');
         } else {
-            locals.header =  "Thanks for signing up!";
-              locals.message = "We've sent you a welcome email. When you get a chance, click the activation link in that email.<br/><br/>In the meanwhile, let's get you growing!";
-              locals.link = '/setup/grow-plan';
-          }
+          locals.header =  "Thanks for signing up!";
+          locals.message = "We've sent you a welcome email. When you get a chance, click the activation link in that email.<br/><br/>In the meanwhile, let's get you growing!";
+          locals.link = '/setup/grow-plan';
+        }
 
       }
       
@@ -404,12 +410,12 @@ module.exports = function(app){
   require('./setup')(app);
   require('./sockets')(app);
   require('./styleguide')(app);
-  
+
 
   /*
    * Legacy PHP site routes
    */
-  require('./legacy')(app);
+   require('./legacy')(app);
 
 
   // The call to app.use(app.router); is to position the route handler in the middleware chain.
