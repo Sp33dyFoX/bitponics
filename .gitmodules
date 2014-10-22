@@ -1,6 +1,0 @@
-[submodule "public/assets/js/libs/list"]
-	path = public/assets/js/libs/list
-	url = https://github.com/javve/list.git
-[submodule "public/assets/js/libs/flexslider"]
-	path = public/assets/js/libs/flexslider
-	url = https://github.com/woothemes/FlexSlider.git
