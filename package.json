@@ -36,7 +36,7 @@
     "mongoose": "=3.8.1",
     "mongoose-types": ">=1.0",
     "nib": "=1.0.1",
-    "nodemailer": ">=0.3",
+    "nodemailer": "0.3",
     "nodetime": "0.8.15",
     "passport": ">= 0.1.1",
     "passport.socketio": "2.2.1",
@@ -87,7 +87,7 @@
     "karma-script-launcher": "~0.1.0",
     "jsdom": "~0.10.1",
     "mocha": "=1.6.0",
-    "protractor": "latest",
+    "protractor": "0.23.1",
     "should": "=1.2.0",
     "sinon": "1.7.3",
     "zombie": ">=1.1.1"
