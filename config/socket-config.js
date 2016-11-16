@@ -2,7 +2,7 @@ var passportSocketIo = require("passport.socketio")
     , winston = require('winston')
     , getenv = require('getenv')
     , express = require('express')
-    , SocketMongoStore = require('mong.socket.io')
+    , cookieParser = require('cookie-parser')
     // https://devcenter.heroku.com/articles/rediscloud#using-redis-from-node-js
     , redis = require("redis")
     , url = require('url')
@@ -11,7 +11,7 @@ var passportSocketIo = require("passport.socketio")
     , password = redisURL.auth.split(":")[1];
 
 
-var RedisStore = require('socket.io/lib/stores/redis')
+var ioRedis = require('socket.io-redis')
   , pub    = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true})
   , sub    = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true})
   , client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
@@ -53,35 +53,33 @@ module.exports = function(app){
   
   app.socketIOs.forEach(function(io){
     
-    io.configure(function () {
-      io.set("log level", 3);
-      // var store = new SocketMongoStore({
-      //   url: app.config.mongooseConnection.db
-      // });
-      // store.on('error', console.error);
-      // io.set('store', store);
-      io.set('store', new RedisStore({
-        redis    : redis
-      , redisPub : pub
-      , redisSub : sub
-      , redisClient : client
-      }));
-    });
+    // io.set("log level", 3);
+    // var store = new SocketMongoStore({
+    //   url: app.config.mongooseConnection.db
+    // });
+    // store.on('error', console.error);
+    // io.set('store', store);
+    io.adapter(ioRedis({
+      pubClient : pub,
+      subClient : sub,
+      host: redisURL.hostname,
+      port: redisURL.port
+    }));
 
 
-    io.configure('staging', function(){
+    if (app.settings.env === 'staging'){
       io.enable('browser client minification');  // send minified client
       io.enable('browser client etag');          // apply etag caching logic based on version number
       io.enable('browser client gzip');          // gzip the file
-      io.set('log level', 1);
-    });
+      // io.set('log level', 1);
+    }
 
-    io.configure('production', function(){
+    if (app.settings.env === 'production') {
       io.enable('browser client minification');  // send minified client
       io.enable('browser client etag');          // apply etag caching logic based on version number
       io.enable('browser client gzip');          // gzip the file
-      io.set('log level', 1);
-    });
+      // io.set('log level', 1);
+    }
 
 
     // Make socket.io handlers aware of user sessions
@@ -91,7 +89,7 @@ module.exports = function(app){
     // Just attach the session if found, don't reject the handshake.
     // Make individual session routes/namespaces ensure auth'ed user when necessary
     io.set('authorization', passportSocketIo.authorize({
-      cookieParser: express.cookieParser,
+      cookieParser: cookieParser,
       key:         app.config.session.key,
       secret:      app.config.session.secret,
       store:       app.config.session.store

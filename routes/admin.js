@@ -4,6 +4,7 @@ var async = require('async'),
   winston = require('winston'),
   routeUtils = require('./route-utils'),
   ModelUtils = require('../models/utils'),
+  directory = require('serve-index'),
   s3config = require('../config/s3-config.js');
   
 module.exports = function(app){
@@ -263,7 +264,7 @@ module.exports = function(app){
 
 
   app.use('/admin/docs', express.static(path.join(__dirname, '/../docs')));
-  app.use('/admin/docs', express.directory(path.join(__dirname, '/../docs')));
+  app.use('/admin/docs', directory(path.join(__dirname, '/../docs')));
 
   // app.get('/admin/docs', function (req, res){
   //   res.redirect('/admin/docs/');

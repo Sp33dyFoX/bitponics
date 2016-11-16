@@ -1,6 +1,6 @@
 var User = require('../models/user').model,
 	nodemailer = require('nodemailer'),
-	bcrypt = require('bcrypt'),
+	bcrypt = require('bcryptjs'),
 	crypto = require('crypto'),
 	winston = require('winston'),
 	timezone = require('../lib/timezone-wrapper'),	

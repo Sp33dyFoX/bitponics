@@ -409,20 +409,21 @@
   .landing-page h1.headline {
     display: none;
   }
-  .landing-page .headline {
+  .landing-page .hero-text {
     background: rgba(0,0,0,0);
     padding: 0.5em;
     color: #fff;
-    width: 14em;
-    font-size: 2em;
+    width: 28em;
     margin: 0 0 -6.5em 7em;
-    position: relative;
-    height: 4em;
     line-height: 1.25;
     text-align: left;
     position: absolute;
-    top: 4em;
+    top: 2em;
     left: 0.6em;
+  }
+  .landing-page .headline {
+    color: #fff;
+    font-size: 2em;
   }
   .landing-page .headline .icon-glyphlogo-new {
     display: block;

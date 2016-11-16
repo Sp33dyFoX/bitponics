@@ -13,7 +13,8 @@
  *   2. $ npm link
  *
  * Usage:
- *   1. $ db_init [local|dev|staging|test|mongodb://whatever-db-you-need] [clear]
+ *   $ cd bitponics
+ *   $ db_init [local|dev|staging|test|mongodb://whatever-db-you-need] [clear]
  *   
  *   example: 
  *		$ db_init local

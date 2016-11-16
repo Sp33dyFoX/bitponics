@@ -11,13 +11,11 @@ module.exports = function(app){
 
   // global middleware
   app.all('*', function (req, res, next){
-    res.locals({
-      user : req.user,
-      title: 'Bitponics',
-      pageDescription: 'Bitponics is your personal gardening assistant.',
-      pageImage: 'http://www.bitponics.com/assets/img/home/Bitponics_social_default.png',
-      pageUrl: 'http://www.bitponics.com'
-    });
+    res.locals.user = req.user,
+    res.locals.title = 'Bitponics';
+    res.locals.pageDescription = 'Bitponics is your personal gardening assistant.';
+    res.locals.pageImage = 'http://www.bitponics.com/assets/img/home/Bitponics_social_default.png';
+    res.locals.pageUrl = 'http://www.bitponics.com';
     next();
   });
 
@@ -421,5 +419,5 @@ app.get('/logout', function (req, res) {
   // The call to app.use(app.router); is to position the route handler in the middleware chain.
   // Everything afterward is assumed to have not matched a route.
   // https://github.com/visionmedia/express/blob/master/examples/error-pages/index.js
-  app.use(app.router);
+  // app.use(app.router);
 };
