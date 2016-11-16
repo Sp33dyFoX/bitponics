@@ -410,16 +410,17 @@
     display: none;
   }
   .landing-page .hero-text {
-    background: rgba(0,0,0,0);
-    padding: 0.5em;
-    color: #fff;
-    width: 28em;
-    margin: 0 0 -6.5em 7em;
-    line-height: 1.25;
-    text-align: left;
     position: absolute;
     top: 2em;
-    left: 0.6em;
+  }
+@media screen and (min-width: 1024px) {
+    .landing-page .hero-text {
+      margin: 0 0 -6.5em 7em;
+      padding: 0.5em;
+    }
+}
+  .landing-page .hero-img {
+    display: inline;
   }
   .landing-page .headline {
     color: #fff;
@@ -460,6 +461,7 @@
     min-width: 1440px;
     position: static;
     margin: 0;
+    display: inline;
   }
   .landing-page .flex-direction-nav {
     position: absolute;

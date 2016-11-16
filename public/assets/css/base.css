@@ -2382,13 +2382,24 @@ bpn-directives-file-upload input[type="file"],
 /*
  * Home Page
  */
+.hero-img {
+  display: none;
+}
 .hero-text {
-  padding: 0.5em;
+  background: rgba(0,0,0,0);
+  padding: 1em 2em;
+  color: #fff;
+  margin: 0;
+  line-height: 1.25;
+  text-align: left;
 }
 .hero-text,
 .hero-text h3,
 .hero-text p {
   color: #fff;
+}
+.hero-text h3 {
+  font-weight: 600;
 }
 .hero-text a.underline-link {
   color: #fff;
@@ -2401,6 +2412,9 @@ bpn-directives-file-upload input[type="file"],
 }
 .hero-text .notice h3 {
   margin-top: 0;
+}
+.hero-text .notice p:last-of-type {
+  margin-bottom: 0;
 }
 .headline {
   color: #fff;
@@ -2598,7 +2612,7 @@ bpn-directives-file-upload input[type="file"],
 .landing-page .flexslider img {
   width: 100%;
   height: auto;
-  display: inline;
+  display: none;
 }
 .landing-page .slides li {
   position: relative;
@@ -2608,6 +2622,11 @@ bpn-directives-file-upload input[type="file"],
   background: -o-linear-gradient(top, #a4a4a4 45%, #cacecf 70%);
   background: -ms-linear-gradient(top, #a4a4a4 45%, #cacecf 70%);
   background: linear-gradient(to bottom, #a4a4a4 45%, #cacecf 70%);
+}
+.landing-page .slides .hero-slide {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
 }
 .landing-page .flex-direction-nav {
   position: relative;
