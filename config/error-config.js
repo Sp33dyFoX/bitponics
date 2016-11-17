@@ -1,5 +1,6 @@
 var app = require('../app'),
-    winston = require('winston');
+    winston = require('winston'),
+    errorHandler = require('errorhandler');
 
 module.exports = function(){
   if ((app.settings.env === 'staging') || (app.settings.env === 'production')){

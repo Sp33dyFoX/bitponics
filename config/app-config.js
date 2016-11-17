@@ -251,13 +251,6 @@ module.exports = function(app){
     });
 
     app.enable('view cache');
-
-    app.socketIOs.forEach(function(io){
-      io.enable('browser client minification');  // send minified client
-      io.enable('browser client etag');          // apply etag caching logic based on version number
-      io.enable('browser client gzip');          // gzip the file
-      io.set('log level', 1);
-    });
   }
 
   // Expose user to the view templates

@@ -50,7 +50,6 @@ process.on('exit', function(){
 });
 
 module.exports = function(app){
-  
   app.socketIOs.forEach(function(io){
     
     // io.set("log level", 3);
@@ -67,19 +66,19 @@ module.exports = function(app){
     }));
 
 
-    if (app.settings.env === 'staging'){
-      io.enable('browser client minification');  // send minified client
-      io.enable('browser client etag');          // apply etag caching logic based on version number
-      io.enable('browser client gzip');          // gzip the file
-      // io.set('log level', 1);
-    }
+    // if (app.settings.env === 'staging'){
+    //   io.enable('browser client minification');  // send minified client
+    //   io.enable('browser client etag');          // apply etag caching logic based on version number
+    //   io.enable('browser client gzip');          // gzip the file
+    //   // io.set('log level', 1);
+    // }
 
-    if (app.settings.env === 'production') {
-      io.enable('browser client minification');  // send minified client
-      io.enable('browser client etag');          // apply etag caching logic based on version number
-      io.enable('browser client gzip');          // gzip the file
-      // io.set('log level', 1);
-    }
+    // if (app.settings.env === 'production') {
+    //   io.enable('browser client minification');  // send minified client
+    //   io.enable('browser client etag');          // apply etag caching logic based on version number
+    //   io.enable('browser client gzip');          // gzip the file
+    //   // io.set('log level', 1);
+    // }
 
 
     // Make socket.io handlers aware of user sessions
