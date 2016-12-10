@@ -129,10 +129,10 @@ module.exports = function(app){
   };
 
   // Initialize the CDN magic
-  // var CDN = require('express-cdn')(app, options);
+  var CDN = require('express-cdn')(app, options);
 
   // Add the view helper
-  // app.locals.CDN = CDN();
+  app.locals.CDN = CDN();
 
 
   // Method for views to generate intercom.io hash
