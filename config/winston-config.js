@@ -13,16 +13,16 @@ module.exports = function(env){
 
   
   if (getenv.bool('BPN_EMAIL_ON_ERRORS', false)){
-    winston.add(require('winston-nodemailer'), {
-      to: "engineering@bitponics.com",
-      from: "notifications@bitponics.com",
-      level: 'error',
-      handleExceptions : true,
-      transport : nodemailer.createTransport("SES", { 
-        'AWSAccessKeyID': awsConfig.key,
-        'AWSSecretKey': awsConfig.secret
-      })
-    });
+    // winston.add(require('winston-nodemailer'), {
+    //   to: "engineering@bitponics.com",
+    //   from: "notifications@bitponics.com",
+    //   level: 'error',
+    //   handleExceptions : true,
+    //   transport : nodemailer.createTransport("SES", { 
+    //     'AWSAccessKeyID': awsConfig.key,
+    //     'AWSSecretKey': awsConfig.secret
+    //   })
+    // });
   }
 
   winston.add(require('winston-loggly').Loggly, {

@@ -241,9 +241,15 @@ async@1.x, async@^1.4.0, async@^1.5.0, async@^1.5.2, async@~1.5.2:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
 
-async@2.1.2, async@^2.0.1, async@latest:
+async@2.1.2, async@^2.0.1:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/async/-/async-2.1.2.tgz#612a4ab45ef42a70cde806bad86ee6db047e8385"
+  dependencies:
+    lodash "^4.14.0"
+
+async@2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/async/-/async-2.1.4.tgz#2d2160c7788032e4dd6cbe2502f1f9a2c8f6cde4"
   dependencies:
     lodash "^4.14.0"
 
@@ -385,7 +391,7 @@ binary-extensions@^1.0.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.7.0.tgz#6c1610db163abfb34edfe42fa423343a1e01185d"
 
-bindings@*:
+bindings@~1.2.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/bindings/-/bindings-1.2.1.tgz#14ad6113812d2d37d72e67b4cacb4bb726505f11"
 
@@ -2868,6 +2874,10 @@ jade@~0.30.0:
     monocle "~0.1.46"
     transformers "~2.0.1"
 
+jasmine-core@^2.5.2:
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-2.5.2.tgz#6f61bd79061e27f43e6f9355e44b3c6cab6ff297"
+
 jasmine-core@~2.4.0:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/jasmine-core/-/jasmine-core-2.4.1.tgz#6f83ab3a0f16951722ce07d206c773d57cc838be"
@@ -3753,25 +3763,15 @@ mocha@latest:
     mkdirp "0.5.1"
     supports-color "3.1.2"
 
-moment-timezone@0.0.3:
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.0.3.tgz#ebbd95f9220eba1c1b5e562d078db6c7d971e7ac"
-  dependencies:
-    moment ">= 2.1.0"
-
-moment-timezone@~0.5.5:
-  version "0.5.9"
-  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.9.tgz#e0ea82036d67d21d793544a91b5057f480eda2dd"
+moment-timezone@0.5.10, moment-timezone@~0.5.5:
+  version "0.5.10"
+  resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.10.tgz#3766249c2d317d08f07d896d3033c26f87c4ae2b"
   dependencies:
     moment ">= 2.6.0"
 
-moment@2.5.0, "moment@>= 2.1.0":
-  version "2.5.0"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.5.0.tgz#e49f0f26e3b74d3bc3564ea3176f99e6f7f32453"
-
-"moment@>= 2.6.0":
-  version "2.16.0"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.16.0.tgz#f38f2c97c9889b0ee18fc6cc392e1e443ad2da8e"
+moment@2.17.1, "moment@>= 2.6.0":
+  version "2.17.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.17.1.tgz#fed9506063f36b10f066c8b59a144d7faebe1d82"
 
 mongodb-core@2.0.13:
   version "2.0.13"
@@ -3879,13 +3879,9 @@ muri@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/muri/-/muri-1.1.1.tgz#64bd904eaf8ff89600c994441fad3c5195905ac2"
 
-nan@^2.3.0, nan@^2.3.5:
+nan@2, nan@^2.3.0, nan@^2.3.5:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.4.0.tgz#fb3c59d45fe4effe215f0b890f8adf6eb32d2232"
-
-nan@~0.4.4:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/nan/-/nan-0.4.4.tgz#9db58eae63cee119807a0d01afd0655d956bea75"
 
 natives@^1.1.0:
   version "1.1.0"
@@ -5441,13 +5437,13 @@ time-stamp@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/time-stamp/-/time-stamp-1.0.1.tgz#9f4bd23559c9365966f3302dbba2b07c6b99b151"
 
-time@0.10.0:
-  version "0.10.0"
-  resolved "https://registry.yarnpkg.com/time/-/time-0.10.0.tgz#1de3567f852bf4085152b9e82133f756f4fb2053"
+time@0.11.4:
+  version "0.11.4"
+  resolved "https://registry.yarnpkg.com/time/-/time-0.11.4.tgz#ec3c8947d7fa488f3b1978b8110a68186f5d340f"
   dependencies:
-    bindings "*"
-    debug "*"
-    nan "~0.4.4"
+    bindings "~1.2.0"
+    debug "2"
+    nan "2"
 
 timed-out@^3.0.0:
   version "3.0.0"
@@ -5464,9 +5460,9 @@ timespan@2.3.x:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/timespan/-/timespan-2.3.0.tgz#4902ce040bd13d845c8f59b27e9d59bad6f39929"
 
-timezone@=0.0.23:
-  version "0.0.23"
-  resolved "https://registry.yarnpkg.com/timezone/-/timezone-0.0.23.tgz#5e89359e0c01c92b495c725e81ecce6ddbdb9bac"
+timezone@1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/timezone/-/timezone-1.0.6.tgz#d3b50bc35c63a09ed8876a8cc3642628685ccc33"
 
 tiny-lr@^0.2.1:
   version "0.2.1"
@@ -5621,10 +5617,6 @@ underscore.string@~2.3.1:
 underscore.string@~3.2.3:
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/underscore.string/-/underscore.string-3.2.3.tgz#806992633665d5e5fcb4db1fb3a862eb68e9e6da"
-
-underscore@1.4.x:
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.4.4.tgz#61a6a32010622afa07963bf325203cf12239d604"
 
 underscore@1.6.0, underscore@~1.6.0:
   version "1.6.0"
@@ -5894,12 +5886,6 @@ winston-loggly@~1.3.1:
   resolved "https://registry.yarnpkg.com/winston-loggly/-/winston-loggly-1.3.1.tgz#20b1bfbeddeda216a1605ef58e23bebcd889aeb6"
   dependencies:
     loggly "~1.1.0"
-
-winston-nodemailer@~0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/winston-nodemailer/-/winston-nodemailer-0.0.5.tgz#dd328a17dd84d0cbdc8a0d71e956f5891ea5350f"
-  dependencies:
-    underscore "1.4.x"
 
 winston@~2.3.0:
   version "2.3.0"
