@@ -4143,6 +4143,10 @@ bpn-directives-file-upload input[type="file"],
   padding-bottom: 25%;
   padding-top: 0;
 }
+.header {
+  position: fixed;
+  z-index: 10000;
+}
 .header .notifications-icon,
 .header .help-icon,
 .header .menu-icon {
@@ -4183,6 +4187,14 @@ bpn-directives-file-upload input[type="file"],
 }
 .hero-img {
   display: none;
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}
+.full-width-img {
+  margin: 4em 0 2em;
+  width: 100%;
+  height: auto;
 }
 .hero-text {
   background: rgba(0,0,0,0);
@@ -4191,6 +4203,7 @@ bpn-directives-file-upload input[type="file"],
   margin: 0;
   line-height: 1.25;
   text-align: left;
+  z-index: 100;
 }
 .hero-text,
 .hero-text h3,
@@ -8774,11 +8787,10 @@ form .ng-invalid.ng-dirty {
     padding: 0;
   }
   .header {
-    position: absolute;
+    position: fixed;
     width: 100%;
     top: 0;
     left: 0;
-    z-index: 4;
     padding: 2em 0;
     height: 3em;
     background: #fff;

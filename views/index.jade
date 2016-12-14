@@ -12,43 +12,145 @@ block content
   section#main(role="main", class="main")
     div(id="home", class="content-module middle home", ng-controller="bpn.controllers.homepage.Main")
       //- h1.headline bitponics is your personal gardening assistant.
+      .hero-text
+        h2(class="headline flex-caption")
+          | <i class="icon-glyph icon-glyphlogo-new icon-__63_logo_white" aria-hidden="true"></i>
+          | bitponics connects your garden to the world.
+        .notice
+          h3 Notice: bitponics suspended development on December 31, 2014. 
+          p Startups are risky endeavors, and they don't always turn out as planned. Unfortunately, bitponics ran out of resources before we could deliver our vision of a thriving garden in every home. 
+          p We still believe in the mission of open-source gardening, so we encourage you to download and explore our  
+            a(href="https://github.com/bitponics", class="underline-link") web server & front-end codebase
+            |  as well as our 
+            a(href="https://github.com/Bitponics/Bitponics-Open-Hardware", class="underline-link") hardware schematics & firmware
+            |  on 
+            a(href="https://github.com/Bitponics", class="underline-link") Github
+            | . 
+          p
+            | We're still here for anyone interested in carrying the mission forward. Say hi at 
+            a(href="mailto:hello@bitponics.com", class="underline-link") hello@bitponics.com
+            | . 
+          p
+            | - Amit, Cofounder & CEO
       div(class="flexslider")
         ul(class="slides")
           li.hero-slide(style="background-image:url('/assets/img/home/Bitponics_Hssld_H4D_0159_flip.jpg')")
             != CDN('/assets/img/home/Bitponics_Hssld_H4D_0159_flip.jpg', { 'alt': 'Bitponics', 'class' : "hero-img" })
-            .hero-text
-              h2(class="headline flex-caption")
-                | <i class="icon-glyph icon-glyphlogo-new icon-__63_logo_white" aria-hidden="true"></i>
-                | bitponics connects your garden to the world.
-              .notice
-                h3 Notice: bitponics suspended development on December 31, 2014. 
-                p Startups are risky endeavors, and they don't always turn out as planned. Unfortunately, bitponics ran out of resources before we could deliver our vision of a thriving garden in every home. 
-                p We still believe in the mission of open-source gardening, so we encourage you to download and explore our  
-                  a(href="https://github.com/bitponics", class="underline-link") web server & front-end codebase
-                  |  as well as our 
-                  a(href="https://github.com/Bitponics/Bitponics-Open-Hardware", class="underline-link") hardware schematics & firmware
-                  |  on 
-                  a(href="https://github.com/Bitponics", class="underline-link") Github
-                  | . 
-                p
-                  | We're still here for anyone interested in carrying the mission forward. Say hi at 
-                  a(href="mailto:hello@bitponics.com", class="underline-link") hello@bitponics.com
-                  | . 
-                p
-                  | - Amit, Cofounder & CEO
-          //- li
-          //-   h2(class="headline flex-caption")
-          //-     | the device and firmware will be open source, allowing you to adapt the device and use your data however you like.
-          //-   img(src="/assets/img/home/Bitponics_Hssld_H4D_0157.jpg")
-          //- li
-          //-   h2(class="headline flex-caption")
-          //-     | what could we learn by looking at past growing histories, comparing them to current results?
-          //-   img(src="/assets/img/home/Bitponics_Hssld_H4D_0158.jpg")
-          //- li
-          //-   h2(class="headline flex-caption")
-          //-     | examine how each environmental factor played its part in your plants' health.
-          //-   img(src="/assets/img/home/Bitponics_Hssld_H4D_0159.jpg")
-          
+            
+          //- li.hero-slide(style="background-image:url('/assets/img/home/Bitponics_Hssld_H4D_0085.jpg')")
+          //-   //- h2(class="headline flex-caption")
+          //-   //-   | the device and firmware are open source, so you can adapt the device and use your data however you like.
+          //-   //- img(src="/assets/img/home/Bitponics_Hssld_H4D_0085.jpg")
+          //-   != CDN('/assets/img/home/Bitponics_Hssld_H4D_0085.jpg', { 'alt': 'Bitponics', 'class' : "hero-img" })
+          //- li.hero-slide(style="background-image:url('/assets/img/home/Bitponics_Hssld_H4D_0158.jpg')")
+          //-   //- h2(class="headline flex-caption")
+          //-   //-   | what could we learn by looking at past growing histories and comparing them to current results?
+          //-   //- img(src="/assets/img/home/Bitponics_Hssld_H4D_0158.jpg")
+          //-   != CDN('/assets/img/home/Bitponics_Hssld_H4D_0158.jpg', { 'alt': 'Bitponics', 'class' : "hero-img" })
+          //- //- li.hero-slide(style="background-image:url('/assets/img/home/Bitponics_Hssld_H4D_0159.jpg')")
+          //-   //- h2(class="headline flex-caption")
+          //-   //-   | examine how each environmental factor played its part in your plants' health.
+          //-   //- img(src="/assets/img/home/Bitponics_Hssld_H4D_0159.jpg")
+    div(id="how-it-works", class="content-module middle")
+      h3(class="page-heading nav-section") 
+        div How It Works
+        | <i class="icon-glyph icon-logo" aria-hidden="true"></i>
+      div(class="page-content center-img")
+        != CDN('/assets/img/home/howitworks.png', { 'alt': 'How It Works' })
+
+        p
+          | You can enter your own sensor readings or connect your own automation device to continuously monitor your garden’s environment. 
+
+        p
+          | The Bitponics Cloud runs your personal Grow Plan, crowd-sourced blueprints for full seasons of garden care. 
+          | Grow Plan reminders notify you when to take action. And if you have a connected device, the Bitponics Cloud can record real-time sensor readings and automatically turn connected accessories on &amp; off.
+
+        p
+          | Manage your garden from any web browser. Track progress over time and swap tips with everyone in the Bitponics community.
+
+    != CDN('/assets/img/home/Bitponics_Hssld_H4D_0085.jpg', { 'alt': 'Bitponics', 'class' : "full-width-img" })
+
+    div(id="press", class="content-module middle")
+      h3(class="page-heading nav-section") 
+        div Press
+        | <i class="icon-glyph icon-logo" aria-hidden="true"></i>
+      div.page-content
+        //- ul
+       
+
+        ul.featured-press
+          li
+            != CDN('/assets/img/home/fastco.jpg', { 'alt': 'Fast Co Icon' })
+            p &quot;This new system allows you to hook up simple sensors to your hydroponic plants and receive helpful reminders when its time to cares for them.&quot;
+            p Ben Schiller
+              br
+              a(href="http://www.fastcoexist.com/1679905/bitponics-an-internet-connected-hydroponic-home-garden") fastcoexist
+          li
+            != CDN('/assets/img/home/coolhunting.jpg', { 'alt': 'Cool Hunting Icon' })
+            p &quot;Whether you can barely keep alive a cactus or you're a serious green thumb looking to monitor a new strain of tomatoes, Bitponics can help.&quot;
+            p Karen Day
+              br
+              a(href="http://www.coolhunting.com/tech/bitponics.php") coolhunting
+          li
+            != CDN('/assets/img/home/pandodaily.jpg', { 'alt': 'pandodaily Icon' })
+            p &quot;Gardening is equal parts art and science.&quot;
+            p Erin Griffith
+              br
+              a(href="http://pandodaily.com/2012/06/08/bitponics-automates-gardening-for-brown-thumbed-plant-killers/") pandodaily
+          li.last
+            != CDN('/assets/img/home/treehugger.jpg', { 'alt': 'treehugger Icon' })
+            p &quot;Bitponics is a device and website that promises to simplify hydroponic growing for everyone.&quot;
+            p Ramon Gonzalez
+              br
+              a(href="http://www.treehugger.com/lawn-garden/help-kickstart-bitponics-siri-hydroponic-growing.html") treehugger
+        
+        ul.additional-press
+          li 
+            p
+              a(href="http://inhabitat.com/nyc/bitponics-is-a-real-life-farmville-that-lets-you-to-manage-your-garden-from-the-cloud/") Inhabitat
+              a(href="http://www.mnn.com/your-home/organic-farming-gardening/blogs/hydroponics-get-high-tech-with-personal-gardening-assistan") Mother Nature Network
+          li 
+            p
+              a(href="http://ecopreneurist.com/2012/05/31/crowdfunding-platform-bitponics-simplifies-hydroponic-gardening-for-urban-areas/") Ecopreneurist
+              a(href="http://www.queensledger.com/view/full_story/18759275/article-Amit-Kumar") Queens Ledger
+          //- li 
+          //-   a(href="http://www.3rdward.com/blog/2012/6/4/kickstarter-pick-3rd-wards-michael-zick-doherty-takes-green.html") 3rd Ward Blog
+          li 
+            p
+              a(href="http://www.greenlivingguy.com/greenliving/2012/5/30/innovative-hydroponics-automation-system-improves-urban-gard.html") Green Living Guy
+              a(href="http://www.trendhunter.com/trends/bitponics-hydrophonic-program") TrendHunter
+          li.last
+            p
+              | Download our complete 
+              a(href="/press/bitponics-press-kit.zip") press kit
+              | .      
+
+
+    div(id="team", class="content-module middle")
+      h3(class="page-heading nav-section")
+        div Our Team
+        | <i class="icon-glyph icon-logo" aria-hidden="true"></i>
+      
+      div.page-content
+      
+        div.member
+          != CDN('/assets/img/home/amit-kumar.jpg', { 'alt': 'Amit Kumar' })
+          h3 Amit Kumar
+          p 
+            | Amit Kumar has been a software engineer for 8 years and a plant lover for 20. After graduating from UCLA with a degree in Cognitive Science, he brought his knowledge of human information processing to the field of web software development, where he strives to produce products that aren’t just outstanding technically, but are also highly intuitive and a pleasure to use. He’s spent his career working with a variety of technologies in all aspects of software development. From the database to the back-end to the front-end, from .NET to PHP to node.js to HTML5/CSS3/Javascript, he crafts code to produce whatever the customer needs and more. He's delivered solutions for companies including Nike, Verizon, Barnes &amp; Noble and American Express.
+          p
+            | After getting started with hydroponic gardening more than 3 years ago, Amit realized that combining it with computer automation was the perfect way to make gardening more accessible to everyone. He’s been working ever since to use his engineering skills to connect people with their plants in ways never before possible.
+        div.member
+          != CDN('/assets/img/home/jack.jpg', { 'alt': 'Jack Bishop' })
+          h3 Jack Bishop
+          p 
+            | Jack Bishop is a software engineer and web enthusiast with a passion for embracing change and building products for the future that he wants to see. For the better part of the last decade he has designed, developed, architected and maintained many popular websites, web applications and native mobile applications. His primary focus and interest has been mobile optimization on the web &mdash; even before we had cool phones, when mobile was treated as a second-class citizen. Clients include Nike, Johnson & Johnson, Tiffany & Co and AdCouncil. Recently he has become an amatuer gardener, running a small hydroponic garden with basil, tomato and pepper plants. He is currently counting down the days until his garden becomes self-aware, remotely controllable and logs data to the cloud.
+            
+        div.member
+          != CDN('/assets/img/home/chris-piuggi.jpg', { 'alt': 'Chris Piuggi' })
+          h3 Chris Piuggi
+          p 
+            | As an educator, he gives lectures and workshops around the world. He has designed and implemented groundbreaking learning platforms for the National Science Foundation and McArthur Foundation; melding digital and physical worlds to teach STEM principles to all ages. As a thinker and craftsman, Chris provides technology consultation and award winning interactive experiences for organizations such as Google, Coca-Cola, AMEX, Nautica and the Lincoln Motor Company. 
 
 block footer-scripts
   

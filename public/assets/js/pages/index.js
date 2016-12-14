@@ -65,21 +65,21 @@ function (angular, domReady) {
           screenHeight;
 
       //bring in separate pages
-      bpn.utils.setupPages($('nav ul > li a:not([data-page-include="false"])'), function(){
+      // bpn.utils.setupPages($('nav ul > li a:not([data-page-include="false"])'), function(){
         
-        //match section height to window
-        //create fixed nav
-        self.screenWidth = $(window).width();
-        self.screenHeight = screenHeight = $(window).height() > self.MIN_SECTION_HEIGHT ? $(window).height() : self.MIN_SECTION_HEIGHT;
+      //   //match section height to window
+      //   //create fixed nav
+      //   self.screenWidth = $(window).width();
+      //   self.screenHeight = screenHeight = $(window).height() > self.MIN_SECTION_HEIGHT ? $(window).height() : self.MIN_SECTION_HEIGHT;
         
         if(self.screenWidth > 700 && self.screenHeight < 1000){
           bpn.utils.sectionHeightAlign(self.MIN_SECTION_HEIGHT, '#main > .content-module');
         }
 
-        //create fixed nav
-        self.sectionNavSetup(screenHeight);
+      //   //create fixed nav
+      //   self.sectionNavSetup(screenHeight);
 
-        //smooth anchor scrolling to sections
+      //   //smooth anchor scrolling to sections
         $('nav a:not([data-page-include="false"])').localScroll({
             onAfter: function(target){
               history.pushState({'target': target.id}, target.id, target.id);
@@ -87,32 +87,23 @@ function (angular, domReady) {
             lazy: true 
           });
 
-        //TODO: get back/forward working with localscroll
-        // $(window).bind('popstate', function(e){
-        //   console.log(e.originalEvent.state.target)
-        //   if(e.originalEvent.state.target){
-        //     $(window).scrollTo($('#'+e.originalEvent.state.target));
-        //   }
-        // });
+      //   //TODO: get back/forward working with localscroll
+      //   // $(window).bind('popstate', function(e){
+      //   //   console.log(e.originalEvent.state.target)
+      //   //   if(e.originalEvent.state.target){
+      //   //     $(window).scrollTo($('#'+e.originalEvent.state.target));
+      //   //   }
+      //   // });
 
         //get section top values so we know when scrolling to highlight nav item
         $('#main > .content-module').each(function(i){
           var id = $(this).attr('id'),
               top = $(this).position().top;
-
-          //eval any page inline scripts (like Wufoo form scipt)
-          $(this).find('div.script').each(function(){
-            eval($(this).text())
-          });
-
-
           self.sectionPositions[i] = { 'id': id, 'top': Math.floor(top) };
-
-          
         });
-      });
+      // });
 
-      //setup carousel
+      // //setup carousel
       // $('.flexslider').flexslider({
       //   animation: "slide",
       //   useCSS: true,

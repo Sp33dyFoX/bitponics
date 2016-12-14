@@ -6,11 +6,6 @@ section#footer.footer(ng-cloak="")
     a.footer-link(href="/privacy") Privacy Policy
   div(id="fb-root")
 
-
-    
-script(src='//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js')
-script window.jQuery || document.write('<script src="/assets/js/libs/jquery-1.8.2.min.js"><\/script>')
-
 - if (typeof user !== 'undefined' && user._id)
   script(id="IntercomSettingsScriptTag")
     window.intercomSettings = {
