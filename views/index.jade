@@ -10,7 +10,7 @@ block content
         include includes/nav/main
 
   section#main(role="main", class="main")
-    div(id="home", class="content-module middle home", ng-controller="bpn.controllers.homepage.Main")
+    div(id="home", class="content-module middle home", ng-controller="bpn.controllers.homepage.Main", style="background-image:url('/assets/img/home/Bitponics_Hssld_H4D_0159_flip.jpg')")
       //- h1.headline bitponics is your personal gardening assistant.
       .hero-text
         h2(class="headline flex-caption")
@@ -32,10 +32,10 @@ block content
             | . 
           p
             | - Amit, Cofounder & CEO
-      div(class="flexslider")
-        ul(class="slides")
-          li.hero-slide(style="background-image:url('/assets/img/home/Bitponics_Hssld_H4D_0159_flip.jpg')")
-            != CDN('/assets/img/home/Bitponics_Hssld_H4D_0159_flip.jpg', { 'alt': 'Bitponics', 'class' : "hero-img" })
+      //- div(class="flexslider")
+      //-   ul(class="slides")
+      //-     li.hero-slide(style="background-image:url('/assets/img/home/Bitponics_Hssld_H4D_0159_flip.jpg')")
+      //-       != CDN('/assets/img/home/Bitponics_Hssld_H4D_0159_flip.jpg', { 'alt': 'Bitponics', 'class' : "hero-img" })
             
           //- li.hero-slide(style="background-image:url('/assets/img/home/Bitponics_Hssld_H4D_0085.jpg')")
           //-   //- h2(class="headline flex-caption")
@@ -124,7 +124,7 @@ block content
               | Download our complete 
               a(href="/press/bitponics-press-kit.zip") press kit
               | .      
-
+    != CDN('/assets/img/home/PSFK_MG_6632.jpg', { 'alt': 'Bitponics at PSFK\'s Future of Home Living Exhibit', 'class' : "full-width-img" })
 
     div(id="team", class="content-module middle")
       h3(class="page-heading nav-section")
@@ -134,7 +134,7 @@ block content
       div.page-content
       
         div.member
-          != CDN('/assets/img/home/amit-kumar.jpg', { 'alt': 'Amit Kumar' })
+          img(src='/assets/img/home/amit-kumar.jpg', alt: 'Amit Kumar')
           h3 Amit Kumar
           p 
             | Amit Kumar has been a software engineer for 8 years and a plant lover for 20. After graduating from UCLA with a degree in Cognitive Science, he brought his knowledge of human information processing to the field of web software development, where he strives to produce products that aren’t just outstanding technically, but are also highly intuitive and a pleasure to use. He’s spent his career working with a variety of technologies in all aspects of software development. From the database to the back-end to the front-end, from .NET to PHP to node.js to HTML5/CSS3/Javascript, he crafts code to produce whatever the customer needs and more. He's delivered solutions for companies including Nike, Verizon, Barnes &amp; Noble and American Express.
