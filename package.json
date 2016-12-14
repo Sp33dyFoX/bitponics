@@ -21,7 +21,7 @@
     "email-templates": "latest",
     "errorhandler": "^1.4.3",
     "express": "latest",
-    "express-cdn": "git://github.com/Bitponics/express-cdn.git#208819f025c91bef4dc8d5c80b8c41a6b702853b",
+    "express-cdn": "git://github.com/Bitponics/express-cdn.git#907a22063f1c5434ec9702dc75c2edba8c7297ff",
     "express-csv": "latest",
     "express-session": "^1.14.2",
     "getenv": "~0.3.0",
