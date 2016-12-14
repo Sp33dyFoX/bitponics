@@ -124,7 +124,7 @@ module.exports = function(app){
     , hostname   : 'bitponics.com'
     , port       : 80
     , ssl        : true
-    , production : true
+    , production : app.settings.env !== 'local' ? true : false //false means we use local assets
     , logger     : winston.info
   };
 
