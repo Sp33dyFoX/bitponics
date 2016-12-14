@@ -38,15 +38,15 @@ client.get('socket.io client test-connection', function (err, reply) {
 
 process.on('exit', function(){
   winston.info('socket.io redis closing clients')
-  if (pub){
-    pub.close();
-  }
-  if (sub){
-    sub.close();    
-  }
-  if (client){
-    client.close();    
-  }
+  // if (pub){
+  //   pub.close();
+  // }
+  // if (sub){
+  //   sub.close();    
+  // }
+  // if (client){
+  //   client.close();    
+  // }
 });
 
 module.exports = function(app){

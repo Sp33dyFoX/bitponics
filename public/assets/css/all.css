@@ -683,7 +683,6 @@ td {
 .circle,
 .social-icons li {
   text-align: center;
-  -webkit-border-radius: 50em;
   border-radius: 50em;
 }
 .circle:before,
@@ -973,7 +972,6 @@ td {
 .circle,
 .social-icons li {
   text-align: center;
-  -webkit-border-radius: 50em;
   border-radius: 50em;
 }
 .circle:before,
@@ -1733,7 +1731,6 @@ a:hover {
 .circle,
 .social-icons li {
   text-align: center;
-  -webkit-border-radius: 50em;
   border-radius: 50em;
 }
 .circle:before,
@@ -2859,7 +2856,6 @@ img.page-spinner.spinner {
 .circle,
 .social-icons li {
   text-align: center;
-  -webkit-border-radius: 50em;
   border-radius: 50em;
 }
 .circle:before,
@@ -4185,16 +4181,42 @@ bpn-directives-file-upload input[type="file"],
     display: block;
   }
 }
-.headline {
-  position: absolute;
-  top: 0;
-  left: 0;
+.hero-img {
+  display: none;
+}
+.hero-text {
+  background: rgba(0,0,0,0);
+  padding: 1em 2em;
   color: #fff;
-  background: rgba(0,0,0,0.25);
   margin: 0;
-  width: 100%;
-  min-height: 100%;
-  padding: 1em 4em;
+  line-height: 1.25;
+  text-align: left;
+}
+.hero-text,
+.hero-text h3,
+.hero-text p {
+  color: #fff;
+}
+.hero-text h3 {
+  font-weight: 600;
+}
+.hero-text a.underline-link {
+  color: #fff;
+  text-decoration: underline;
+}
+.hero-text .notice {
+  background: rgba(255,255,255,0.35);
+  padding: 1em;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+.hero-text .notice h3 {
+  margin-top: 0;
+}
+.hero-text .notice p:last-of-type {
+  margin-bottom: 0;
+}
+.headline {
+  color: #fff;
   font-size: 1em;
   z-index: 1;
 }
@@ -4389,7 +4411,7 @@ bpn-directives-file-upload input[type="file"],
 .landing-page .flexslider img {
   width: 100%;
   height: auto;
-  display: inline;
+  display: none;
 }
 .landing-page .slides li {
   position: relative;
@@ -4399,6 +4421,11 @@ bpn-directives-file-upload input[type="file"],
   background: -o-linear-gradient(top, #a4a4a4 45%, #cacecf 70%);
   background: -ms-linear-gradient(top, #a4a4a4 45%, #cacecf 70%);
   background: linear-gradient(to bottom, #a4a4a4 45%, #cacecf 70%);
+}
+.landing-page .slides .hero-slide {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
 }
 .landing-page .flex-direction-nav {
   position: relative;
@@ -5202,7 +5229,6 @@ bpn-directives-file-upload input[type="file"],
 }
 .circle {
   text-align: center;
-  -webkit-border-radius: 50em;
   border-radius: 50em;
 }
 .circle:before {
@@ -6130,7 +6156,6 @@ li
 }
 .undefined .flexslider,
 .app-page .flexslider {
-  -webkit-border-radius: 0;
   border-radius: 0;
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -6253,7 +6278,6 @@ li
   *border-bottom-width: 2px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
   border-radius: 6px;
   -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   -moz-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
@@ -6402,7 +6426,6 @@ li
   margin-left: -1px;
   -webkit-border-radius: 0 6px 6px 6px;
   -moz-border-radius: 0 6px 6px 6px;
-  -webkit-border-radius: 0 6px 6px 6px;
   border-radius: 0 6px 6px 6px;
 }
 .dropdown-submenu:hover > .dropdown-menu {
@@ -6432,7 +6455,6 @@ li
   margin-left: 10px;
   -webkit-border-radius: 6px 0 6px 6px;
   -moz-border-radius: 6px 0 6px 6px;
-  -webkit-border-radius: 6px 0 6px 6px;
   border-radius: 6px 0 6px 6px;
 }
 .dropup .dropdown-submenu > .dropdown-menu {
@@ -6442,7 +6464,6 @@ li
   margin-bottom: -2px;
   -webkit-border-radius: 5px 5px 5px 0;
   -moz-border-radius: 5px 5px 5px 0;
-  -webkit-border-radius: 5px 5px 5px 0;
   border-radius: 5px 5px 5px 0;
 }
 .typeahead {
@@ -6450,7 +6471,6 @@ li
   margin-top: 2px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
   border-radius: 4px;
 }
 .well {
@@ -6461,7 +6481,6 @@ li
   border: 1px solid #e3e3e3;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
   border-radius: 4px;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
   -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
@@ -6476,14 +6495,12 @@ li
   padding: 24px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
   border-radius: 6px;
 }
 .well-small {
   padding: 9px;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
   border-radius: 3px;
 }
 .fade {
@@ -6555,7 +6572,6 @@ button.close {
   border: 1px solid #fbeed5;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
   border-radius: 4px;
 }
 .alert h4 {
@@ -6650,7 +6666,6 @@ button.close {
 .tabs-below > .nav-tabs > li > a {
   -webkit-border-radius: 0 0 4px 4px;
   -moz-border-radius: 0 0 4px 4px;
-  -webkit-border-radius: 0 0 4px 4px;
   border-radius: 0 0 4px 4px;
 }
 .tabs-below > .nav-tabs > li > a:hover,
@@ -6682,7 +6697,6 @@ button.close {
   margin-right: -1px;
   -webkit-border-radius: 4px 0 0 4px;
   -moz-border-radius: 4px 0 0 4px;
-  -webkit-border-radius: 4px 0 0 4px;
   border-radius: 4px 0 0 4px;
 }
 .tabs-left > .nav-tabs > li > a:hover,
@@ -6704,7 +6718,6 @@ button.close {
   margin-left: -1px;
   -webkit-border-radius: 0 4px 4px 0;
   -moz-border-radius: 0 4px 4px 0;
-  -webkit-border-radius: 0 4px 4px 0;
   border-radius: 0 4px 4px 0;
 }
 .tabs-right > .nav-tabs > li > a:hover,
@@ -6727,7 +6740,6 @@ button.close {
   margin-left: 0;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
   border-radius: 4px;
   *zoom: 1;
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.05);
@@ -6873,7 +6885,6 @@ button.close {
   border: 1px solid #ddd;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
-  -webkit-border-radius: 15px;
   border-radius: 15px;
 }
 .pager li > a:hover,
@@ -6930,7 +6941,6 @@ button.close {
   *border: 1px solid #999;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
   border-radius: 6px;
   outline: none;
   -webkit-box-shadow: 0 3px 7px rgba(0,0,0,0.3);
@@ -6985,7 +6995,6 @@ button.close {
   border-top: 1px solid #ddd;
   -webkit-border-radius: 0 0 6px 6px;
   -moz-border-radius: 0 0 6px 6px;
-  -webkit-border-radius: 0 0 6px 6px;
   border-radius: 0 0 6px 6px;
   *zoom: 1;
   -webkit-box-shadow: inset 0 1px 0 #fff;
@@ -7081,7 +7090,6 @@ button.close {
   background-color: #000;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
   border-radius: 4px;
 }
 .tooltip-arrow {
@@ -7106,7 +7114,6 @@ button.close {
   border: 1px solid rgba(0,0,0,0.2);
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
   border-radius: 6px;
   -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   -moz-box-shadow: 0 5px 10px rgba(0,0,0,0.2);
@@ -7203,7 +7210,6 @@ button.close {
   border-bottom: 1px solid #ebebeb;
   -webkit-border-radius: 5px 5px 0 0;
   -moz-border-radius: 5px 5px 0 0;
-  -webkit-border-radius: 5px 5px 0 0;
   border-radius: 5px 5px 0 0;
 }
 .popover-title:empty {
@@ -8738,7 +8744,6 @@ form .ng-invalid.ng-dirty {
 }
 .circle {
   text-align: center;
-  -webkit-border-radius: 50em;
   border-radius: 50em;
 }
 .circle:before {
@@ -8956,20 +8961,22 @@ form .ng-invalid.ng-dirty {
   .landing-page h1.headline {
     display: none;
   }
-  .landing-page .headline {
-    background: rgba(0,0,0,0);
-    padding: 0.5em;
-    color: #fff;
-    width: 14em;
-    font-size: 2em;
-    margin: 0 0 -6.5em 7em;
-    position: relative;
-    height: 4em;
-    line-height: 1.25;
-    text-align: left;
+  .landing-page .hero-text {
     position: absolute;
-    top: 4em;
-    left: 0.6em;
+    top: 2em;
+  }
+@media screen and (min-width: 1024px) {
+    .landing-page .hero-text {
+      margin: 0 0 -6.5em 7em;
+      padding: 0.5em;
+    }
+}
+  .landing-page .hero-img {
+    display: inline;
+  }
+  .landing-page .headline {
+    color: #fff;
+    font-size: 2em;
   }
   .landing-page .headline .icon-glyphlogo-new {
     display: block;
@@ -9006,6 +9013,7 @@ form .ng-invalid.ng-dirty {
     min-width: 1440px;
     position: static;
     margin: 0;
+    display: inline;
   }
   .landing-page .flex-direction-nav {
     position: absolute;
@@ -9410,7 +9418,6 @@ form .ng-invalid.ng-dirty {
 }
 .circle {
   text-align: center;
-  -webkit-border-radius: 50em;
   border-radius: 50em;
 }
 .circle:before {

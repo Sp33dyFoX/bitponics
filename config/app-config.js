@@ -121,10 +121,10 @@ module.exports = function(app){
     , bucket     : s3Config.bucketCDN
     , key        : s3Config.key
     , secret     : s3Config.secret
-    , hostname   : 'localhost'
+    , hostname   : 'bitponics.com'
     , port       : 80
     , ssl        : true
-    , production : app.settings.env !== 'local' ? true : false //false means we use local assets
+    , production : true
     , logger     : winston.info
   };
 
