@@ -4205,9 +4205,9 @@ bpn-directives-file-upload input[type="file"],
   text-decoration: underline;
 }
 .hero-text .notice {
-  background: rgba(255,255,255,0.35);
+  background: rgba(0,0,0,0.1);
   padding: 1em;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  text-shadow: 0px 1px 10px rgba(0,0,0,0.1);
 }
 .hero-text .notice h3 {
   margin-top: 0;
