@@ -50,58 +50,74 @@ module.exports = function(app){
     res.render('about', locals);
   });
 
-  app.get('/how-it-works', function (req, res){
-    var locals = {
-      title: "How It Works",
-      className: "landing-page single-page how-it-works",
-      pageType: "landing-page"
-    };
-    res.render('howitworks', locals);
-  });
+  // app.get('/how-it-works', function (req, res){
+  //   var locals = {
+  //     title: "How It Works",
+  //     className: "landing-page single-page how-it-works",
+  //     pageType: "landing-page"
+  //   };
+  //   res.render('howitworks', locals);
+  // });
 
-  app.get('/gallery', function (req, res){
-    var locals = {
-      title: "Gallery",
-      className: "landing-page single-page gallery",
-      pageType: "landing-page"
-    };
-    res.render('gallery', locals);
-  });
+  // app.get('/gallery', function (req, res){
+  //   var locals = {
+  //     title: "Gallery",
+  //     className: "landing-page single-page gallery",
+  //     pageType: "landing-page"
+  //   };
+  //   res.render('gallery', locals);
+  // });
 
-  app.get('/pricing', function (req, res){
-    var locals = {
-      title: "Pricing",
-      className: "landing-page single-page pricing",
-      pageType: "landing-page"
-    };
-    res.render('pricing', locals);
-  });
+  // app.get('/pricing', function (req, res){
+  //   var locals = {
+  //     title: "Pricing",
+  //     className: "landing-page single-page pricing",
+  //     pageType: "landing-page"
+  //   };
+  //   res.render('pricing', locals);
+  // });
 
-  app.get('/press', function (req, res){
-    var locals = {
-      title: "Press",
-      className: "landing-page single-page press",
-      pageType: "landing-page"
-    };
-    res.render('press', locals);
-  });
+  // app.get('/press', function (req, res){
+  //   var locals = {
+  //     title: "Press",
+  //     className: "landing-page single-page press",
+  //     pageType: "landing-page"
+  //   };
+  //   res.render('press', locals);
+  // });
 
-  app.get('/contact', function (req, res){
-    var locals = {
-      title: "Contact",
-      className: "landing-page single-page contact",
-      pageType: "landing-page"
-    };
-    res.render('contact', locals);
-  });
+  // app.get('/contact', function (req, res){
+  //   var locals = {
+  //     title: "Contact",
+  //     className: "landing-page single-page contact",
+  //     pageType: "landing-page"
+  //   };
+  //   res.render('contact', locals);
+  // });
 
-  app.get('/team', function (req, res){
-    var locals = {
-      title: "Our Team",
-      className: "landing-page single-page team",
-      pageType: "landing-page"
-    };
-    res.render('team', locals);
+  // app.get('/team', function (req, res){
+  //   var locals = {
+  //     title: "Our Team",
+  //     className: "landing-page single-page team",
+  //     pageType: "landing-page"
+  //   };
+  //   res.render('team', locals);
+  // });
+
+  app.get('/how-it-works', function (req, res) {
+    res.redirect('/');
+  });
+  app.get('/pricing', function (req, res) {
+    res.redirect('/');
+  });
+  app.get('/press', function (req, res) {
+    res.redirect('/');
+  });
+  app.get('/contact', function (req, res) {
+    res.redirect('/');
+  });
+  app.get('/team', function (req, res) {
+    res.redirect('/');
   });
 
   app.get('/get-started', function (req, res){

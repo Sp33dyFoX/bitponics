@@ -45,7 +45,7 @@ nav(role="nav", ng-controller="bpn.controllers.nav.Main", class="main-nav")
       - var pageType = pageType || null;
       if !!pageType && pageType == 'landing-page'  
 
-          li.nav-section(ng-click="toggleNavMenu()", ng-hide="!navMenuDisplayVisible")
+          li.nav-section(ng-hide="!navMenuDisplayVisible")
             ul
               li(class="howitworks", data-name="how-it-works")
                 a(href="#how-it-works") How It Works
@@ -60,7 +60,7 @@ nav(role="nav", ng-controller="bpn.controllers.nav.Main", class="main-nav")
           //-     li(class="buy", data-name="buy") 
           //-       a(href="/buy", data-page-include="false") Buy
 
-          li.nav-section(ng-click="toggleNavMenu()", ng-hide="!navMenuDisplayVisible")
+          li.nav-section(ng-hide="!navMenuDisplayVisible")
             ul
               li(class="press", data-name="press")
                 a(href="#press") Press
@@ -75,7 +75,7 @@ nav(role="nav", ng-controller="bpn.controllers.nav.Main", class="main-nav")
           //-     li(class="contact", data-name="contact", ng-hide="!navMenuDisplayVisible")
           //-       a(href="/contact") Contact
 
-          li.nav-section(ng-click="toggleNavMenu()", ng-hide="!navMenuDisplayVisible")
+          li.nav-section(ng-hide="!navMenuDisplayVisible")
             ul
               li(class="team", data-name="team") 
                 a(href="#team") Our Team

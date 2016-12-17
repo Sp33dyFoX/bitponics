@@ -81,9 +81,10 @@ function (angular, domReady) {
 
       //   //smooth anchor scrolling to sections
         $('nav a:not([data-page-include="false"])').localScroll({
-            onAfter: function(target){
-              history.pushState({'target': target.id}, target.id, target.id);
-            },
+            // onAfter: function(target){
+            //   history.pushState({'target': target.id}, target.id, target.id);
+            // },
+            duration : 500,
             lazy: true 
           });
 
