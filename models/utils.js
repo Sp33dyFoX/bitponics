@@ -27,15 +27,15 @@ module.exports.logSensorLog = function (options, callback){
       GardenPreaggregationModel = require('./gardenPreaggregation').model,
       requirejs = require('../lib/requirejs-wrapper'),
       feBeUtils = requirejs('fe-be-utils'),
-      moment = require('moment'),
-      timestamp;
+      moment = require('moment');
 
   var pendingSensorLog = options.pendingSensorLog,
       growPlanInstance = options.growPlanInstance,
       device = options.device,
       user = options.user,
       timezone = user.timezone,
-      activeGrowPlanInstancePhase;
+      activeGrowPlanInstancePhase,
+      timestamp;
 
   if (growPlanInstance){
     activeGrowPlanInstancePhase = growPlanInstance.phases.filter(function(phase){ return phase.active; })[0];

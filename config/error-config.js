@@ -1,7 +1,11 @@
 var app = require('../app'),
-    winston = require('winston');
+    winston = require('winston'),
+    errorHandler = require('errorhandler');
 
 module.exports = function(){
+  if ((app.settings.env === 'staging') || (app.settings.env === 'production')){
+    app.use(errorHandler());  
+  }
   
   // https://github.com/visionmedia/express/blob/master/examples/error-pages/index.js
 

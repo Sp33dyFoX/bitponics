@@ -59,3 +59,5 @@ bower_components
 /coverage
 units.html
 unit-test-results.html
+
+run.command

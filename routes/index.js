@@ -11,13 +11,11 @@ module.exports = function(app){
 
   // global middleware
   app.all('*', function (req, res, next){
-    res.locals({
-      user : req.user,
-      title: 'Bitponics',
-      pageDescription: 'Bitponics is your personal gardening assistant.',
-      pageImage: 'http://www.bitponics.com/assets/img/home/Bitponics_social_default.png',
-      pageUrl: 'http://www.bitponics.com'
-    });
+    res.locals.user = req.user,
+    res.locals.title = 'Bitponics';
+    res.locals.pageDescription = 'Bitponics is your personal gardening assistant.';
+    res.locals.pageImage = 'http://www.bitponics.com/assets/img/home/Bitponics_social_default.png';
+    res.locals.pageUrl = 'http://www.bitponics.com';
     next();
   });
 
@@ -52,58 +50,74 @@ module.exports = function(app){
     res.render('about', locals);
   });
 
-  app.get('/how-it-works', function (req, res){
-    var locals = {
-      title: "How It Works",
-      className: "landing-page single-page how-it-works",
-      pageType: "landing-page"
-    };
-    res.render('howitworks', locals);
-  });
+  // app.get('/how-it-works', function (req, res){
+  //   var locals = {
+  //     title: "How It Works",
+  //     className: "landing-page single-page how-it-works",
+  //     pageType: "landing-page"
+  //   };
+  //   res.render('howitworks', locals);
+  // });
 
-  app.get('/gallery', function (req, res){
-    var locals = {
-      title: "Gallery",
-      className: "landing-page single-page gallery",
-      pageType: "landing-page"
-    };
-    res.render('gallery', locals);
-  });
+  // app.get('/gallery', function (req, res){
+  //   var locals = {
+  //     title: "Gallery",
+  //     className: "landing-page single-page gallery",
+  //     pageType: "landing-page"
+  //   };
+  //   res.render('gallery', locals);
+  // });
 
-  app.get('/pricing', function (req, res){
-    var locals = {
-      title: "Pricing",
-      className: "landing-page single-page pricing",
-      pageType: "landing-page"
-    };
-    res.render('pricing', locals);
-  });
+  // app.get('/pricing', function (req, res){
+  //   var locals = {
+  //     title: "Pricing",
+  //     className: "landing-page single-page pricing",
+  //     pageType: "landing-page"
+  //   };
+  //   res.render('pricing', locals);
+  // });
 
-  app.get('/press', function (req, res){
-    var locals = {
-      title: "Press",
-      className: "landing-page single-page press",
-      pageType: "landing-page"
-    };
-    res.render('press', locals);
-  });
+  // app.get('/press', function (req, res){
+  //   var locals = {
+  //     title: "Press",
+  //     className: "landing-page single-page press",
+  //     pageType: "landing-page"
+  //   };
+  //   res.render('press', locals);
+  // });
 
-  app.get('/contact', function (req, res){
-    var locals = {
-      title: "Contact",
-      className: "landing-page single-page contact",
-      pageType: "landing-page"
-    };
-    res.render('contact', locals);
-  });
+  // app.get('/contact', function (req, res){
+  //   var locals = {
+  //     title: "Contact",
+  //     className: "landing-page single-page contact",
+  //     pageType: "landing-page"
+  //   };
+  //   res.render('contact', locals);
+  // });
 
-  app.get('/team', function (req, res){
-    var locals = {
-      title: "Our Team",
-      className: "landing-page single-page team",
-      pageType: "landing-page"
-    };
-    res.render('team', locals);
+  // app.get('/team', function (req, res){
+  //   var locals = {
+  //     title: "Our Team",
+  //     className: "landing-page single-page team",
+  //     pageType: "landing-page"
+  //   };
+  //   res.render('team', locals);
+  // });
+
+  app.get('/how-it-works', function (req, res) {
+    res.redirect('/');
+  });
+  app.get('/pricing', function (req, res) {
+    res.redirect('/');
+  });
+  app.get('/press', function (req, res) {
+    res.redirect('/');
+  });
+  app.get('/contact', function (req, res) {
+    res.redirect('/');
+  });
+  app.get('/team', function (req, res) {
+    res.redirect('/');
   });
 
   app.get('/get-started', function (req, res){
@@ -421,5 +435,5 @@ app.get('/logout', function (req, res) {
   // The call to app.use(app.router); is to position the route handler in the middleware chain.
   // Everything afterward is assumed to have not matched a route.
   // https://github.com/visionmedia/express/blob/master/examples/error-pages/index.js
-  app.use(app.router);
+  // app.use(app.router);
 };

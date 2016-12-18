@@ -42,10 +42,8 @@ module.exports = function(app, callback) {
 
 
   // locals are passed down to the views
-  app.locals({
-    title : 'Bitponics',
-    className: undefined
-  });
+  app.locals.title = 'Bitponics';
+  app.locals.className = undefined;
 
 
   if (app.settings.env === 'local'){
